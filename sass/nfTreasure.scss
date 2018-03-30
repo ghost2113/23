@@ -1,0 +1,170 @@
+@charset "utf-8";
+// 默认将输出webkit前缀，moz前缀和标准
+@mixin prefixerKey($property, $value, $prefixes: webkit moz o ms) {
+  #{$property}: $value;
+
+  @each $prefix in $prefixes {
+    @if $prefix == webkit {
+      -webkit-#{$property}:#{$value};
+    }
+    @else if $prefix == moz {
+      -moz-#{$property}:#{$value};
+    }
+    @else if $prefix == o {
+      -o-#{$property}:#{$value};
+    }
+    @else if $prefix == ms {
+      -ms-#{$property}:#{$value};
+    }
+  }
+}
+@mixin prefixerValue($property, $value, $prefixes: webkit moz o ms) {
+  #{$property}: $value;
+
+  @each $prefix in $prefixes {
+    @if $prefix == webkit {
+      #{$property}:-webkit-#{$value};
+    }
+    @else if $prefix == moz {
+      #{$property}:-moz-#{$value};
+    }
+    @else if $prefix == o {
+      #{$property}:-o-#{$value};
+    }
+    @else if $prefix == ms {
+      #{$property}:-ms-#{$value};
+    }
+  }
+}
+//元素水平居中
+@mixin centerRow{
+    margin:0 auto;
+}
+@mixin img100{
+    display:block;
+    width: 100%;
+    height:100%;
+}
+//主题黄色
+$fontColor:#f8e5a1;
+html,body{
+    position:relative;
+    font-size:14px;
+    background:url(../img/footerBg.png) repeat-y center center;
+    background-size:100% auto;
+}
+#main{
+  padding-top:0.45rem;
+  display:flex;
+  display:-webkit-flex;
+  flex-direction:column;
+  align-items: flex-end;
+  .treasureTit{
+      margin:0 auto;
+      img{
+          display:block;
+          width:3.12rem;
+      }
+  }
+  .treasure{
+      position:relative;
+      margin-top:0.35rem;
+      width:100%;
+      img{
+          display:block;
+          width:100%;
+      }
+      .openRules{
+        position:absolute;
+        left:0;
+        bottom:1.2rem;
+        width:95%;
+        padding:0 2.5%;
+        font-size:0.15rem;
+        font-weight:500;
+        color:#fff;
+        line-height:0.2rem;
+        .h4{
+            font-size:0.16rem;
+            text-align:center;
+            line-height:0.3rem;
+        }
+    }
+   }
+}
+#footer{
+    z-index:9999;
+    position:fixed;
+    left:0;
+    bottom:0;
+    height:0.8rem;
+    a{
+        display:block;
+        width:3rem;
+        height:0.575rem;
+        margin:0 auto;
+        font-size:0.15rem;
+        color:#e73d3d;
+        font-weight:600;
+        line-height:0.575rem;
+        text-align:center;
+        background:url(../img/treasureBtn.png) no-repeat center center;
+        background-size:100% auto;
+    }
+    .countdown{
+        display:none;
+    }
+}
+//活动规则弹出层
+.mask{
+    z-index:1000000;
+    position:fixed;
+    left:0;
+    top:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.5);
+    padding-top:1.7rem;
+    .box{
+        display:flex;
+        display:-webkit-flex;
+        flex-direction:column;
+        justify-content: center;
+        align-items: center;
+        width:2.95rem;
+        height:2rem;
+        background:#fff;
+        border-radius:0.12rem;
+        margin:0 auto;
+        img{
+            display:block;
+            width:0.925rem;
+            margin-bottom:0.1rem;
+        }
+        .p1{
+            font-size:0.16rem;
+            color:#e73d3d;
+            line-height:0.24rem;
+            text-align:center;
+        }
+         .p2{
+            font-size:0.14rem;
+            color:#1a1a1a;
+            line-height:0.24rem;
+            text-align:center;
+        }
+        button{
+            width:1.9rem;
+            height:0.4rem;
+            margin-top:0.1rem;
+            font-size:0.15rem;
+            color:#fff;
+            line-height:0.4rem;
+            text-align:center;
+            font-weight:600;
+            border:none;
+            border-radius:0.12rem;
+            background:#e73d3d;
+        }
+    }
+}

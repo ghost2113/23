@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>开启宝箱</title>
+    <link rel="stylesheet" href="./css/reset.css" />
+    <link rel="stylesheet" href="./css/common.css" />
+    <link rel="stylesheet" href="./css/nfTreasure.css" />
+    <script type="text/javascript">    	
+   		document.addEventListener('plusready', function(){
+   			//console.log("所有plus api都应该在此事件发生后调用，否则会出现plus is undefined。"   			
+   		});   		
+    </script>
+</head>
+<body>
+	<!--背景图-->
+	<div class="actiBg"><img src="./img/treasureBg.png" alt="" /></div>
+	<section id="main">	
+		<div class="treasureTit"><img src="./img/treasureTit.png" alt="" /></div>
+		<div class="treasureTime"></div>
+		<div class="treasure">
+			<img src="./img/treasure.png" alt="" />
+			<div class="openRules">
+				<p class="h4">宝箱规则</p>
+				<p>1、活动期间开启神秘宝箱可获得金币或现金 </p>
+				<p>2、神秘宝箱开启之后三个小时您可以再次开启宝箱</p>
+			</div>
+		</div>
+	</section>
+	<footer id="footer">		
+		<a class="open" href="javascript:void(0);">开启宝盒</a>
+		<a class="countdown" href="javascript:void(0);"><span id="_h">03</span>:<span id="_m">00</span>:<span id="_s">00</span>后可再次开启
+		</a>
+	</footer>
+	<div class="mask" style="display:none;">
+			<div class="box">
+				<img src="./img/treasureStar.png" alt="" />
+				<p class="p1">恭喜您获得<span class="getGold">10</span>金币</p>
+				<p class="p2">收徒越多 奖励越多</p>
+				<button class="close">确定</button>
+			</div>
+	</div>
+	<script type="text/javascript" src="./js/rem.js"></script>
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	<script type="text/javascript" src="./js/zepto.js"></script>
+	<script type="text/javascript" src="./js/fastclick.js"></script>
+	<script>				
+		$(function(){
+			var _handle = true;//是否可以开启宝箱
+			var nextOpen;
+			axios.get("http://47.96.1.236:8080/zaotoutiao-api-home-1.0.0//open/treasure?userId=1&isSubmit=1")
+				.then(function(response){
+					console.log({"现在时间":timestampToTime(response.data.leadTime.now),"下次开启时间":timestampToTime(response.data.leadTime.nextOpen),"创建时间":timestampToTime(response.data.leadTime.createDate)});	
+					nextOpen = response.data.leadTime.nextOpen;
+					if(response.data.msg=="可以开宝箱"){
+						$(".open").show();$(".countdown").hide();	
+						$(".getGold").html(response.data.leadTime.getGold);
+					}else{
+						$(".open").hide();$(".countdown").show();
+						
+					}
+				})
+			   .catch(function(error){
+			   		console.log(error);
+			 })
+			/*   var count=8;*/
+		    var countTime = setInterval(function(){
+		   	console.log(1111);
+/*		   	count++;*/
+						var leftTime = nextOpen - new Date();
+						var d,h,m,s;  
+		                 if(leftTime>=0){  
+			                 d = Math.floor(leftTime/1000/60/60/24);  
+			                 h = Math.floor(leftTime/1000/60/60%24);  
+			                 m = Math.floor(leftTime/1000/60%60);  
+			                 s = Math.floor(leftTime/1000%60);                     
+			            }  
+			            //将倒计时赋值到div中  				
+			            document.getElementById("_h").innerHTML = h+"时";  
+			            document.getElementById("_m").innerHTML = m+"分";  
+			            document.getElementById("_s").innerHTML = s+"秒"; 	
+/*			            if(count==13){
+			            	clearInterval(countTime);
+			            	$(".open").show();$(".countdown").hide();
+			            }*/
+			},1000)						
+			$(".open").on("click",function(){
+				axios.get("http://47.96.1.236:8080/zaotoutiao-api-home-1.0.0//open/treasure?userId=1&isSubmit=1")
+				.then(function(response){
+					console.log(response);					
+				})
+			   .catch(function(error){
+			   		console.log(error);
+			   })
+				/*$.ajax({
+		    		url:"http://47.96.1.236:8080/zaotoutiao-api-home-1.0.0//open/treasure?userId=1&isSubmit=0",
+					type:"get",
+					dataType:"json",
+					async:true,
+					success:function(res){
+						console.log("宝箱信息",res);
+					},
+					error:function(error){
+						console.log(error);
+					}
+		    	});*/
+				$(".mask").show();
+			});
+
+			//时间戳转日期
+			function timestampToTime(timestamp) {
+				console.log(timestamp);
+		        var date = new Date(parseInt(timestamp));//时间戳为10位需*1000，时间戳为13位的话不需乘1000
+		        Y = date.getFullYear() + '-';
+		        M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
+		        D = date.getDate() + ' ';
+		        h = date.getHours() + ':';
+		        m = date.getMinutes() + ':';
+		        s = date.getSeconds();
+		        return Y+M+D+h+m+s;
+		    }
+			//获取倒计时时间
+			function countTime(leftTime){
+				var d,h,m,s;  
+                 if(leftTime>=0){  
+	                 d = Math.floor(leftTime/1000/60/60/24);  
+	                 h = Math.floor(leftTime/1000/60/60%24);  
+	                 m = Math.floor(leftTime/1000/60%60);  
+	                 s = Math.floor(leftTime/1000%60);                     
+	            }  
+	            //将倒计时赋值到div中  
+	
+	            document.getElementById("_h").innerHTML = h+"时";  
+	            document.getElementById("_m").innerHTML = m+"分";  
+	            document.getElementById("_s").innerHTML = s+"秒"; 
+			}
+			//关闭弹出层
+			$(".close").on("click",function(){
+				$(".mask").hide();
+			})
+		})
+	</script>
+</body>
+</html>
