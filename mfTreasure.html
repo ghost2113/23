@@ -49,7 +49,7 @@
 		$(function(){
 			var _handle = true;//是否可以开启宝箱
 			var nextOpen;
-			axios.get("http://47.96.1.236:8080/zaotoutiao-api-home-1.0.0//open/treasure?userId=1&isSubmit=1")
+			axios.get("http://47.96.1.236:8080/zaotoutiao-api-home-1.0.0//open/treasure?userId=1&isSubmit=0")
 				.then(function(response){
 					console.log({"现在时间":timestampToTime(response.data.leadTime.now),"下次开启时间":timestampToTime(response.data.leadTime.nextOpen),"创建时间":timestampToTime(response.data.leadTime.createDate)});	
 					nextOpen = response.data.leadTime.nextOpen;
@@ -57,8 +57,7 @@
 						$(".open").show();$(".countdown").hide();	
 						$(".getGold").html(response.data.leadTime.getGold);
 					}else{
-						$(".open").hide();$(".countdown").show();
-						
+						$(".open").hide();$(".countdown").show();						
 					}
 				})
 			   .catch(function(error){
@@ -88,7 +87,8 @@
 			$(".open").on("click",function(){
 				axios.get("http://47.96.1.236:8080/zaotoutiao-api-home-1.0.0//open/treasure?userId=1&isSubmit=1")
 				.then(function(response){
-					console.log(response);					
+					console.log(response);
+					countTime();
 				})
 			   .catch(function(error){
 			   		console.log(error);

@@ -64,7 +64,7 @@ $(function() {
 	            $dateLi.eq(i + monthFirst).text(i+1);
 	            //当前日期之前字体改变
 	            //显示已经签到的日期
-	            console.log(dateArray);
+	            /*console.log(dateArray);*/	           	     	       
 	            for (var j = 0; j < dateArray.length; j++) {
 	            	console.log("ll");
 	                if (i == dateArray[j]) {	
@@ -154,20 +154,28 @@ $(function() {
         		/*$(".date" + item).text(_qiandaoJl[index]);*/
         	})
         	//签到成功之后，存储签到日期并向后台传送数据
-  /*      	var dateFormat =  new Date().toLocaleDateString();
+/*        	var dateFormat =  new Date().toLocaleDateString();
         	dateList.push(dateFormat);
         	axios.post("http://47.96.1.236:8080/zaotoutiao-api-home-1.0.0/sign/in?userId=1&isSubmit=1").then(function(response){
 	    		console.log(response);
 	    	}).catch(function(error){
 	    		console.log(error);
 	    	})*/
+
 	    	//向后台发送签到成功请求 把签到信息追加到signList数组中去
-	    	axios.post("http://47.96.1.236:8080/zaotoutiao-api-home-1.0.0/sign/in?userId=1&isSubmit=0").then(function(response){
+	    	axios.post("http://47.96.1.236:8080/zaotoutiao-api-home-1.0.0/sign/in?userId=1&isSubmit=1")
+	    	.then(function(response){
 	    		console.log(response);
 	    	}).catch(function(error){
 	    		console.log(error);
 	    	})
-	    	
         }
     }();
 })
+
+ 	axios.post("http://47.96.1.236:8080/zaotoutiao-api-home-1.0.0/sign/in?userId=1&isSubmit=0").then(function(response){
+        		console.log(response.data);
+    			
+	    	}).catch(function(error){
+	    		console.log(error);
+	    	});
