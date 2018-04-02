@@ -20,7 +20,7 @@
 		<div class="banner">
 			<img src="./img/nfDisTopBg.png" alt="" />
 			<span class="rules">活动规则</span>
-			<span class="list" onclick="window.location.href='./discList.html'">徒弟列表</span>
+			<span class="list" onclick="window.location.href='./discList.html?userId=2'">徒弟列表</span>
 		</div>
 		<p class="textTime">— 活动时间：3月1日-3月31日  —</p>
 		<img class="conBg" src="./img/nfDisTitBg.png" alt="error" />
@@ -85,6 +85,15 @@
 	<script type="text/javascript" src="js/fastclick.js"></script>
 	<script type="text/javascript">
 		$(function(){
+			//获取Url地址中userId参数
+			function getUrlParams(name) { 
+			    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i"); //定义正则表达式 
+			    var r = window.location.search.substr(1).match(reg);  
+			    if (r != null) return unescape(r[2]); 
+			    return null; 
+			};
+			var userID = getUrlParams("userId");
+			console.log("用户userId",userID);
 			$(".rules").on("click",function(){
 				$(".mask").show();
 			});
@@ -97,7 +106,7 @@
 			var danList = ["青铜","白银","黄金","白金","钻石","大师","王者"];
 			var index;
 			$.ajax({
-				url:"http://47.96.1.236:8080/zaotoutiao-api-home-1.0.0/activity/reward?userId="+1+"&startDate=&startEnd=",
+				url:"http://47.96.1.236:8080/zaotoutiao-api-home-1.0.0/activity/reward?userId="+userID+"&startDate=&startEnd=",
 				type:"get",
 				dataType:"json",
 				async:true,

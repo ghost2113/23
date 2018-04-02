@@ -3,10 +3,10 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>开启宝箱</title>
+    <title>H5分享页面</title>
     <link rel="stylesheet" href="./css/reset.css" />
     <link rel="stylesheet" href="./css/common.css" />
-    <link rel="stylesheet" href="./css/nfTreasure.css" />
+    <link rel="stylesheet" href="./css/shareH5.css" />
     <script type="text/javascript">    	
    		document.addEventListener('plusready', function(){
    			//console.log("所有plus api都应该在此事件发生后调用，否则会出现plus is undefined。"   			
@@ -15,47 +15,43 @@
 </head>
 <body>
 	<!--背景图-->
-	<div class="actiBg"><img src="./img/treasureBg.png" alt="" /></div>
 	<section id="main">	
-		<div class="treasureTit"><img src="./img/treasureTit.png" alt="" /></div>
-		<div class="treasureTime"></div>
-		<div class="treasure">
-			<img src="./img/treasure.png" alt="" />
-			<div class="openRules">
-				<p class="h4" onclick="javascript:history.back(-1);">宝箱规则</p>
-				<p>1、活动期间开启神秘宝箱可获得金币或现金 </p>
-				<p>2、神秘宝箱开启之后三个小时您可以再次开启宝箱</p>
+		<div class="notice">
+			<div class="user">				
 			</div>
+			<div class="userName"></div>
+			<div class="getMoney">微信提现<span>100</span>元</div> 
+			<div class="time"><span>10分钟</span>前</div>
+		</div>
+		<div class="shareTit"><img src="./img/shareTit.png" alt="" /></div>
+		<div class="openPacket">
+			<div class="packetNum"></div>
+			<div class="prompt">
+				<p>春风十年不如红包送你</p>
+				<p>下载抢先领取5元现金</p>
+			</div>
+			<button></button>
 		</div>
 	</section>
-	<footer id="footer">		
-		<a class="open" href="javascript:void(0);">开启宝盒</a>
-		<a class="countdown" href="javascript:void(0);"><span id="_h">03</span>:<span id="_m">00</span>:<span id="_s">00</span>后可再次开启
-		</a>
-	</footer>
-	<div class="mask" style="display:none;">
-			<div class="box">
-				<img src="./img/treasureStar.png" alt="" />
-				<p class="p1">恭喜您获得<span class="getGold">10</span>金币</p>
-				<p class="p2">收徒越多 奖励越多</p>
-				<button class="close">确定</button>
-			</div>
-	</div>
 	<script type="text/javascript" src="./js/rem.js"></script>
 	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 	<script type="text/javascript" src="./js/zepto.js"></script>
 	<script type="text/javascript" src="./js/fastclick.js"></script>
 	<script>				
 		$(function(){
-			//获取Url地址中userId参数
+			/**
+			 * 获取Url地址中userId参数   userID
+			 */
 			function getUrlParams(name) { 
 			    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i"); //定义正则表达式 
 			    var r = window.location.search.substr(1).match(reg);  
 			    if (r != null) return unescape(r[2]); 
 			    return null; 
 			};
-			var userID = getUrlParams("userId");
-			console.log("用户userId",userID);
+			/**
+			 * 定义变量   		
+			 */
+			var userID = getUrlParams("userId");			
 			var _handle = true;//是否可以开启宝箱
 			var nextOpen;
 			axios.get("http://47.96.1.236:8080/zaotoutiao-api-home-1.0.0//open/treasure?userId="+userID+"&isSubmit=0")

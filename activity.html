@@ -32,10 +32,10 @@
 		</div>
 		<p>活动时间：3月1日-3月31日</p>
 		<div class="actiList">
-			<div class="actiItem" onclick="window.location.href='./mfNews.html'"><img src="./img/activity1.png" alt="error" /></div>
-			<div class="actiItem" onclick="window.location.href='./mfDisciple.html'"><img src="./img/activity2.png" alt="error" /></div>
-			<div class="actiItem" onclick="window.location.href='./mfSign.html'"><img src="./img/activity3.png" alt="error" /></div>
-			<div class="actiItem" onclick="window.location.href='./mfTreasure.html'"><img src="./img/activity4.png" alt="error" /></div>
+			<a class="actiItem" href=''><img src="./img/activity1.png" alt="error" /></a>
+			<a class="actiItem" href=''><img src="./img/activity2.png" alt="error" /></a>
+			<a class="actiItem" href=''><img src="./img/activity3.png" alt="error" /></a>
+			<a class="actiItem" href=''><img src="./img/activity4.png" alt="error" /></a>
 		</div>
 	</section>
 	<footer id="footer">
@@ -43,5 +43,21 @@
 		<div class="actiFoot actiFootR" onclick="window.location.href='./test.html?userId=123'">分享给更多的人</div>
 	</footer>
 	<script type="text/javascript" src="./js/rem.js"></script>
+	<script type="text/javascript" src="./js/zepto.js"></script>
+	<script type="text/javascript">
+			//获取Url地址中userId参数
+			function getUrlParams(name) { 
+			    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i"); //定义正则表达式 
+			    var r = window.location.search.substr(1).match(reg);  
+			    if (r != null) return unescape(r[2]); 
+			    return null; 
+			};
+			var userID = getUrlParams("userId");
+			console.log("本页面userId",userID);
+			['./mfNews.html?userId=','./mfDisciple.html?userId=','./mfSign.html?userId=','./mfTreasure.html?userId='].forEach(function(item,index){
+				$(".actiItem").eq(index).attr("href",item+userID);
+			})
+			
+	</script>
 </body>
 </html>

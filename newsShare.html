@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>新闻详情页</title>
+    <link rel="stylesheet" href="./css/reset.css" />
+    <link rel="stylesheet" href="./css/common.css" />
+    <link rel="stylesheet" href="./css/newsShare.css" />
+    <script type="text/javascript">    	
+	document.addEventListener('plusready', function(){
+   			//console.log("所有plus api都应该在此事件发生后调用，否则会出现plus is undefined。"
+	   	});   		
+    </script>
+    
+</head>
+<body>
+	<iframe name="ifm" id="iframepage" style="background-color: transparent;" marginwidth="0" marginheight="0" frameborder="0"  scrolling="yes" width="100%" src="http://sh.qihoo.com/mob/transcoding?url=http%3A%2F%2Fzm.news.so.com%2F0d889c892532c21552feb37e05c1ed83&check=8f02494a7e4eaa80&uid=ac3a43db4dcbd1682943c106fb4bc02f&sign=ex%5F2eb604c1&sv=1&templetctl=7&360newsdetail=1&articlety=zmt&hsitetype=1&ucheck=256a903d41fe2a6a7f7f117f68a9df8a&hscmt=1" >		
+	</iframe>		
+	<section id="main">				
+		<div class="title"><span></span>相关推荐</div>
+		<ul class="newsList">
+			<li class="items">
+				<div class="leftCon">
+					<p>vivo X21屏幕指纹手机发布 鹿晗邀你一起解锁vivoivo X21屏幕指纹手机发布 鹿晗邀你一起解锁viv</p>
+					<div class="itemsInfor">
+						<span>新华社</span>
+						<span>刚刚</span>
+						<span>18909</span>阅读
+					</div>
+				</div>
+				<div class="rightImg">
+					<img src="./img/userPhoto.jpg" alt="" />
+				</div>
+			</li>
+		</ul>
+	</section>
+	<div class="shareLink">
+		<div class="icon"><span></span><span>头条TVD</span></div>
+		<span>看新闻赚零花钱</span>
+		<a href="">打开</a>
+	</div>
+	<script type="text/javascript" src="./js/rem.js"></script>
+	<script type="text/javascript" src="./js/jquery-3.3.1.min.js"></script>
+	<script type="text/javascript" src="./js/fastclick.js"></script>
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			/**
+			 * 获取Url地址中userId参数   userID
+			 */
+			function getUrlParams(name) { 
+			    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i"); //定义正则表达式 
+			    var r = window.location.search.substr(1).match(reg);  
+			    if (r != null) return unescape(r[2]); 
+			    return null; 
+			};
+			/**
+			 *   @param    
+			 *   device:设备名称（0为安卓，1为iOS，2为PC）;
+			     userId:用户ID;
+			     packageName：app包名；
+			     appVersion：app版本号；
+			     idIdfa：ios为idfa;
+			     idImei: android为imei;
+			     height: 屏幕的物理高度，以像素为单位；
+			     width：屏幕的物理宽度，以像素为单位；
+			     brand：设备品牌；
+			     model：设备型号；
+			     osVersion：设备操作系统版本号，例如3.1.2，需要三位数；
+			     osType: 操作系统类型 1.ANDROID 2.IOS 3.WP；
+			     type: 设备网络环境 1.WIFI 2.UNKNOWN 3.2G 4.3G 5.4G；
+			     ip: 设备当前ip；
+			     domain：站点主域；
+			     urls: 当前页面；
+			     userAgent：浏览器的UA
+			 */
+			var device = getUrlParams("device");
+			var userId = getUrlParams("userId");
+			var packageName = getUrlParams("packageName");
+			var appVersion = getUrlParams("appVersion");
+			var idIdfa = getUrlParams("idIdfa");
+			var idImei = getUrlParams("idImei");
+			var height = getUrlParams("height");
+			var width = getUrlParams("width");
+			var brand = getUrlParams("brand");
+			var model = getUrlParams("model");
+			var osVersion = getUrlParams("osVersion");
+			var osType = getUrlParams("osType");
+			var type = getUrlParams("type");
+			var ip = getUrlParams("ip");
+			var domain = getUrlParams("domain");
+			var urls = getUrlParams("urls");
+			var userAgent = getUrlParams("userAgent");
+			
+			/*axios.get("http://47.96.1.236:8080/zaotoutiao-api-home-1.0.0//open/treasure?userId="+userID+"&isSubmit=0")*/
+			axios({	
+			  url: 'open/treasure',
+			  method: 'get', // 默认是 get
+			  baseURL: 'http://47.96.1.236:8080/zaotoutiao-api-home-1.0.0/',
+			  params: {
+			     device:device,
+			     userId:userId,
+			     packageName:packageName,
+			     appVersion:appVersion,
+			     idIdfa:idIdfa,
+			     idImei: idImei,
+			     height: height,
+			     width:width,
+			     brand:brand,
+			     model:model,
+			     osVersion:osVersion,//设备操作系统版本号，例如3.1.2，需要三位数；
+			     osType: osType, //1.ANDROID 2.IOS 3.WP；
+			     type: type, //1.WIFI 2.UNKNOWN 3.2G 4.3G 5.4G；
+			     ip: ip,//设备当前ip；
+			     domain:domain,//站点主域；
+			     urls: urls,//当前页面；
+			     userAgent:userAgent,//浏览器的UA
+			  }
+			  })
+			.then(function(res){
+			  	console.log(res);
+			  	var _html = "";
+			  	res.data.forEach(function(item,index){
+			  		html+=
+					   '<li class="items">'
+						+'<div class="leftCon">'
+							+'<p>'+item.title+'</p>'
+							+'<div class="itemsInfor">'
+								+'<span>新华社</span>'
+								+'<span>刚刚</span>'
+								+'<span>18909</span>阅读'
+							+'</div>'
+						+'</div>'
+						+'<div class="rightImg">'
+							+'<img src="./img/userPhoto.jpg" alt="" />'
+						+'</div>'
+					+'</li>';
+			  	})	
+			  	
+			  	//渲染新闻列表
+			  	$(".newsList").eq(0).html(_html);
+			 })
+			.catch(function(error){
+				
+			})
+			  
+			/**
+			 * iframe高度全屏
+			 */
+		    $('#iframepage').css("height",$(window).height()+"px");
+			
+		})
+		
+/*			alert(document.getElementById("iframepage").contentWindow.document.documentElement.scrollTop );
+			document.getElementById("iframepage").contentWindow.document.documentElement.scrollTop = 1000;
+			alert(document.getElementById("iframepage").contentWindow.document.documentElement.scrollTop );
+		var frameWidow = document.getElementById('iframepage').contentWindow;
+			$(frameWidow).scroll(function(){
+			console.log("scroll");
+		});*/
+/*		var myIframe = document.getElementById('iframepage');
+		myIframe.onload = function(){
+		    myIframe.contentWindow.scrollTo(0,500);
+		};*/
+		var url = "http://rcv.aiclk.com/show?CAAQGQ.tpYcfGb_41NlFSiZkgBBkgbekgigkSxSkgsAkGF_FGFZkg9lM19O41Tsk1F4-4mJwba9lJffz9zEdpPNMGpoFGpZFG3cp0PUcCezyqTryqUc4CULvOesvmo60gieMGilkS3op1Ppb99NIpYbmsSPp3PCtQhNCltDlHz4rD0DfTOiyS9YbpH5pHNYtpYb1qNktpYcptPhkg3_kgYRMqPd4ZUOvCJ3yCoJXSTEphPQ4ZyOvCJ3yCoJ4ZyOqZ4lD9lSimksymewv1Plk10EtABrXmxOxhTIMSTEtmXgimUSMSYoD9BuiZTsvAVJXSmfpUbNpUNNtpYbpU9tNpp_pYNYDhs_Dfpmpp";
+		/**
+		 * http://lkme.cc/pc_landingpage.jsp?app_id=12641&app_name=早头条&deeplink_id=4350179641655300&qrcode_url=https://www.linkedme.cc/demojsp/mobile_landingpage.jsp?deeplink_url=https://lkme.cc/t9D/s3hRpL9vJ&is_imessage=false/
+		 */
+		var urlCode = decodeURIComponent(url);
+		console.log("地址",urlCode);
+	</script>
+
+</body>
+</html>

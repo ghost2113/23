@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAiDA,UAAS,GACL,QAAQ,EAAC,QAAQ,EACjB,KAAK,EAAC,IAAI,EACd,MAAM,EAAC,IAAI,EACP,SAAS,EAAC,IAAI",
+"sources": ["../sass/newsDetail.scss"],
+"names": [],
+"file": "newsDetail.css"
+}

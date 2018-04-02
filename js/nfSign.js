@@ -12,7 +12,15 @@ $(function() {
 				console.log(error);
 			}
     	});*/
-
+		//获取Url地址中userId参数
+		function getUrlParams(name) { 
+		    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i"); //定义正则表达式 
+		    var r = window.location.search.substr(1).match(reg);  
+		    if (r != null) return unescape(r[2]); 
+		    return null; 
+		};		
+		var userID = getUrlParams("userId");
+		console.log({"用户userId":userID,"地址":window.location.search});
 		var olDate;//后台返回线上日期
         var dateArray = []; //遍历网格		        
         var dateList = [];//定义空数组,存储已经签到日期，向后台传送
@@ -34,30 +42,37 @@ $(function() {
         $dateBox.html(_html) //生成日历网格
         var $dateLi = $dateBox.find("li");
         //请求用户已经签到信息，存储到数组中去
-        axios.post("http://47.96.1.236:8080/zaotoutiao-api-home-1.0.0/sign/in?userId=1&isSubmit=0").then(function(response){
+        axios.post("http://47.96.1.236:8080/zaotoutiao-api-home-1.0.0/sign/in?userId="+userID+"&isSubmit=0").then(function(response){
         	console.log(response.data);
-    		if(response.data.msg="今天已经签到"){
+    		if(response.data.msg!="今天还没签到"){
     			_handle=false;
     			qiandaoFun();
     		};
     		var signList = new Array();
     		var _index;
-    		response.data.signList.forEach(function(items,index){
-    			if(items.signContinuousDay==1){
-    				signList.push(items);
-    			};
-    			if(items.createDate == signList[signList.length-1].createDate){
-    				_index = index;
-    			};    			
-    			if(index<(_index+1)){
-    				dateArray.unshift(items.createDate.split(" ")[0].substr(8,2));
-    			};
-    		});
+			//判断是否有签到日期
+    		if(response.data.signList){
+	    		response.data.signList.forEach(function(items,index){
+	    			if(items.signContinuousDay==1){
+	    				signList.unshift(items);
+	    			};
+	    			if(items.createDate == signList[signList.length-1].createDate){
+	    				_index = index;
+	    			};    			
+	    			if(index<(_index+1)){
+	    				dateArray.unshift(items.createDate.split(" ")[0].substr(8,2));
+	    			};    			
+	    		});
+    		}else{
+    			dateArray = [];
+    		}
+    		
 	    	$dateLi.each(function(index,item){	    	
 		    	if((index+1-monthFirst) < myDate.getDate()){
 					item.style.color = "#b2b2b2";						
 		    	}			
 			})
+	    	console.log("qia",dateArray);
 	        for (var i = 0; i < totalDay; i++) {
 	        	//设置日历 日期起始位置
 	            $dateLi.eq(i + monthFirst).addClass("date" + parseInt(i + 1));		            
@@ -70,9 +85,15 @@ $(function() {
 	                if (i == dateArray[j]) {	
 	                	console.log("ok");
 	                    $dateLi.eq(i + monthFirst-1).addClass("qiandaoActive");
+	                    //签到成功之后，按签到天数显示奖励			 
 	                }
 	            }
-	        } 	        		
+	        } 
+	        //渲染持续签到奖励
+           	[parseInt(dateArray[0])+7,parseInt(dateArray[0])+14,parseInt(dateArray[0])+21,parseInt(dateArray[0])+28].forEach(function(item,index){
+        		$(".date" + item).addClass('qiandaoActive'+index);
+	        		/*$(".date" + item).text(_qiandaoJl[index]);*/
+	        })
     	}).catch(function(error){
     		console.log(error);
     	});
@@ -143,16 +164,17 @@ $(function() {
         	//判断签到日期前一天是否未签
     	    if($(".date" + myDate.getDate()-1).hasClass("qiandaoActive")){
     			$(".date" + myDate.getDate()).addClass('qiandaoActive');
+    			console.log("ok");
+    			//签到成功之后，按签到天数显示奖励
+	        	/*[myDate.getDate()+7,myDate.getDate()+14,myDate.getDate()+21,myDate.getDate()+28].forEach(function(item,index){
+	        		$(".date" + item).addClass('qiandaoActive'+index);
+	        	})*/
         	}else{
         		$(".date" + myDate.getDate()).addClass('qiandaoActive').siblings().removeClass('qiandaoActive');
         		//如果未签，则清空数组
     			dateList=[];
         	}
-        	//签到成功之后，按签到天数显示奖励
-        	[myDate.getDate()+7,myDate.getDate()+14,myDate.getDate()+21,myDate.getDate()+28].forEach(function(item,index){
-        		$(".date" + item).addClass('qiandaoActive'+index);
-        		/*$(".date" + item).text(_qiandaoJl[index]);*/
-        	})
+
         	//签到成功之后，存储签到日期并向后台传送数据
 /*        	var dateFormat =  new Date().toLocaleDateString();
         	dateList.push(dateFormat);
@@ -163,19 +185,13 @@ $(function() {
 	    	})*/
 
 	    	//向后台发送签到成功请求 把签到信息追加到signList数组中去
-	    	axios.post("http://47.96.1.236:8080/zaotoutiao-api-home-1.0.0/sign/in?userId=1&isSubmit=1")
+	    	axios.post("http://47.96.1.236:8080/zaotoutiao-api-home-1.0.0/sign/in?userId="+userID+"&isSubmit=1")
 	    	.then(function(response){
 	    		console.log(response);
+	    		location.reload();
 	    	}).catch(function(error){
 	    		console.log(error);
 	    	})
         }
     }();
-})
-
- 	axios.post("http://47.96.1.236:8080/zaotoutiao-api-home-1.0.0/sign/in?userId=1&isSubmit=0").then(function(response){
-        		console.log(response.data);
-    			
-	    	}).catch(function(error){
-	    		console.log(error);
-	    	});
+});

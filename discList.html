@@ -156,11 +156,18 @@
 	<script type="text/javascript" src="./js/rem.js"></script>
 	<script type="text/javascript" src="./js/zepto.js"></script>
 	<script type="text/javascript" src="js/fastclick.js"></script>
-	<script type="text/javascript" src="./js/drop.js"></script>
 	<script type="text/javascript">
 		$(function(){
+			//获取Url地址中userId参数
+			function getUrlParams(name) { 
+			    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i"); //定义正则表达式 
+			    var r = window.location.search.substr(1).match(reg);  
+			    if (r != null) return unescape(r[2]); 
+			    return null; 
+			};
+			var userID = getUrlParams("userId");//用户userId
+			console.log("用户userId",userID);
 			var type = "avaken";//定义请求类型;
-			var userId;//用户userId
 			var _html = '';//渲染模板
 			var page=1;//加载页数;
 			var listHeight = $(".discList").height();//列表固定高度
@@ -182,11 +189,11 @@
 				$(this).siblings().find("span").hide();
 				$(this).addClass("active").siblings().removeClass("active");
 				/*$(".discList").eq(index).show().siblings(".discList").hide();*/
-				updataLoad(1,type,1);				
+				updataLoad(userID,type,1);				
 			});
 			//数据请求和渲染
 			function updataLoad(userID,type,numPage){	
-				page++;
+				numPage++;
 				$.ajax({
 					url:"http://47.96.1.236:8080/zaotoutiao-api-home-1.0.0/apprentice/list?userId="+userID+"&type="+type+"&pageNo="+numPage+"&pageSize=1",
 					type:"get",
@@ -199,7 +206,6 @@
 							switch(type){
 								case "effective":
 									_html+= 
-
 									'<li>'
 										+'<div class="availDisc">'
 											+'<span class="userPhoto"><img src=\"'+item.headPath+'\" alt="" /></span><span class="userName">'+(item.nickName?item.nickName:"么有")+'</span>'
@@ -253,7 +259,7 @@
 				if(listScrollTop<(listHeight+scrollTop)){
 					console.log("正在更新。。。。。。");
 					console.log(type);
-					updataLoad(1,type,page);
+					updataLoad(userID,type,page);
 				}
 			})
 		})

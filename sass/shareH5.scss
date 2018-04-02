@@ -1,0 +1,123 @@
+@charset "utf-8";
+// 默认将输出webkit前缀，moz前缀和标准
+@mixin prefixerKey($property, $value, $prefixes: webkit moz o ms) {
+  #{$property}: $value;
+
+  @each $prefix in $prefixes {
+    @if $prefix == webkit {
+      -webkit-#{$property}:#{$value};
+    }
+    @else if $prefix == moz {
+      -moz-#{$property}:#{$value};
+    }
+    @else if $prefix == o {
+      -o-#{$property}:#{$value};
+    }
+    @else if $prefix == ms {
+      -ms-#{$property}:#{$value};
+    }
+  }
+}
+@mixin prefixerValue($property, $value, $prefixes: webkit moz o ms) {
+  #{$property}: $value;
+
+  @each $prefix in $prefixes {
+    @if $prefix == webkit {
+      #{$property}:-webkit-#{$value};
+    }
+    @else if $prefix == moz {
+      #{$property}:-moz-#{$value};
+    }
+    @else if $prefix == o {
+      #{$property}:-o-#{$value};
+    }
+    @else if $prefix == ms {
+      #{$property}:-ms-#{$value};
+    }
+  }
+}
+//flex布局
+@mixin flex($direction,$justify:center,$alignItems:center){
+    display:flex;
+    display:-webkit-flex;
+    flex-direction:$direction;
+    justify-content: $justify;
+    align-items: $alignItems;
+}
+//字体样式
+@mixin font($size:14px,$weight:500,$family:"微软雅黑",$height:1.4,$color:#000){
+    font-size:$size;
+    font-weight:$weight;
+    font-family:$family;
+    line-height:$height;
+    color:$color;
+}
+//元素水平居中
+@mixin centerRow{
+    margin:0 auto;
+}
+@mixin img100{
+    display:block;
+    width: 100%;
+    height:100%;
+}
+//主题黄色
+$fontColor:#f8e5a1;
+html,body{
+    position:relative;
+    font-size:14px;
+    background:url(../img/shareBg.png) repeat-y center center;
+    background-size:100% auto;
+}
+#main{
+    padding:0.2rem 0;
+   @include flex(column,space-between);
+  .notice{
+      @include flex(row,space-between);
+      flex-shrink: 1;
+      width:1.76rem;
+      height:0.32rem;
+      padding:0 0.16rem;
+      @include font(0.12rem,null,null,null,white);
+      background:rgba(0,0,0,0.3);
+      border-radius:100px;
+      .user{
+          width:0.225rem;
+          height:0.225rem;
+          border-radius:100px;
+          background:url(../img/shareUser.png) repeat-y center center;
+          background-size:100% auto;
+      }
+  }
+  .shareTit{
+      flex-shrink: 1;
+      margin:0 auto;
+      img{
+          display:block;
+          width:3.12rem;
+      }
+  }
+  .openPacket{
+      flex-shrink: 1;
+      width:3.15rem;
+      height:1.87rem;
+      padding-top:1.67rem;
+      background:url(../img/shareRedPacket.png) repeat-y center center;
+      background-size:100% auto;
+      .prompt{
+          @include font(0.2rem,null,null,0.36rem,white);
+          text-align:center;
+      }
+      button{
+          display:block;
+          width:1.88rem;
+          height:0.48rem;
+          margin:0.35rem auto 0;
+          border:none;
+          outline-style: none;
+          background:url(../img/shareBtn.png) repeat-y center center;
+          background-size:100% auto;
+      }
+  }
+  
+}
