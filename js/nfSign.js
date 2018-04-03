@@ -1,17 +1,5 @@
-$(function() {		
+		
     var signFun = function() {
-/*    	$.ajax({
-    		url:"http://47.96.1.236:8080/zaotoutiao-api-home-1.0.0/sign/in?userId=1&isSubmit=0",
-			type:"post",
-			dataType:"json",
-			async:true,
-			success:function(res){
-				console.log("签到信息",res);
-			},
-			error:function(error){
-				console.log(error);
-			}
-    	});*/
 		//获取Url地址中userId参数
 		function getUrlParams(name) { 
 		    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i"); //定义正则表达式 
@@ -20,6 +8,7 @@ $(function() {
 		    return null; 
 		};		
 		var userID = getUrlParams("userId");
+		userID = 3;
 		console.log({"用户userId":userID,"地址":window.location.search});
 		var olDate;//后台返回线上日期
         var dateArray = []; //遍历网格		        
@@ -35,12 +24,23 @@ $(function() {
         var d = new Date(myDate.getFullYear(), parseInt(myDate.getMonth() + 1), 0);
         var totalDay = d.getDate(); //获取当前月的天数
         var len = (totalDay + monthFirst)>35?42:35;//网格个数
-        
         for (var i = 0; i < len; i++) {
             _html += ' <li><div class="qiandao-icon"></div></li>'
         }
         $dateBox.html(_html) //生成日历网格
         var $dateLi = $dateBox.find("li");
+        
+        
+        //是否请求到用户信息，模拟日历 false
+        if(!userID){
+        	console.log(111111111111111111);
+        	_handle = false;
+        	for (var i = 0; i < totalDay; i++) {
+	        	//设置日历 日期起始位置
+	            $dateLi.eq(i + monthFirst).addClass("date" + parseInt(i + 1));		            
+	            $dateLi.eq(i + monthFirst).text(i+1);        
+	        } 
+        }
         //请求用户已经签到信息，存储到数组中去
         axios.post("http://47.96.1.236:8080/zaotoutiao-api-home-1.0.0/sign/in?userId="+userID+"&isSubmit=0").then(function(response){
         	console.log(response.data);
@@ -65,14 +65,13 @@ $(function() {
 	    		});
     		}else{
     			dateArray = [];
-    		}
-    		
+    		}    		
 	    	$dateLi.each(function(index,item){	    	
 		    	if((index+1-monthFirst) < myDate.getDate()){
 					item.style.color = "#b2b2b2";						
 		    	}			
-			})
-	    	console.log("qia",dateArray);
+			});
+	    	console.log("签到渲染数组",dateArray);
 	        for (var i = 0; i < totalDay; i++) {
 	        	//设置日历 日期起始位置
 	            $dateLi.eq(i + monthFirst).addClass("date" + parseInt(i + 1));		            
@@ -97,36 +96,7 @@ $(function() {
     	}).catch(function(error){
     		console.log(error);
     	});
-    	/*$.ajax({
-			url:"./json/date.json",
-			type:"get",
-			dataType:"json",
-			async:false,
-			success:function(res){
-				console.log(res);
-				//判断服务器签到日期是否为当前月，如果不是签到日期dataArray=[];
-	    		if(res.signDate[0].substr(5,1)==(new Date().getMonth()+1)){
-	    			res.signDate.forEach(function(item,index){
-	    				dateArray.push(item.substr(7,2));
-	    				dateList.push(item);
-	    			})
-	    		}else{
-	    			dateArray = [];
-	    			dateList=[];
-	    		}
-	    		//判断当前时间是否和服务器时间一致，否则不能进行签到操作
-	    		var isNowTime = new Date().toLocaleDateString()==res.olDate;
-				if(!isNowTime){		
-					_handle = false;
-					console.log("与服务器时间不一致");
-				}
-			},
-			error:function(error){
-				console.log(error);
-			}
-		})		*/
-	   
-        
+           
         //判断当前日期是否已经签到,如果未签到添加可签到标记 class='able-qiandao'
         if($(".date" + myDate.getDate()).hasClass('qiandaoActive')){
         	_handle = false;
@@ -175,23 +145,27 @@ $(function() {
     			dateList=[];
         	}
 
-        	//签到成功之后，存储签到日期并向后台传送数据
-/*        	var dateFormat =  new Date().toLocaleDateString();
-        	dateList.push(dateFormat);
-        	axios.post("http://47.96.1.236:8080/zaotoutiao-api-home-1.0.0/sign/in?userId=1&isSubmit=1").then(function(response){
-	    		console.log(response);
-	    	}).catch(function(error){
-	    		console.log(error);
-	    	})*/
-
 	    	//向后台发送签到成功请求 把签到信息追加到signList数组中去
 	    	axios.post("http://47.96.1.236:8080/zaotoutiao-api-home-1.0.0/sign/in?userId="+userID+"&isSubmit=1")
 	    	.then(function(response){
-	    		console.log(response);
-	    		location.reload();
+	    		if(response.data.msg=="今天已经签到"){
+	    			wake();
+	    		}
+	    		console.log(response);	    		
 	    	}).catch(function(error){
 	    		console.log(error);
 	    	})
         }
+        function wake(){    
+	       var u = navigator.userAgent;
+	       var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
+	       var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+	       if(isAndroid){
+	            alert('是否是Android：'+isAndroid);
+	           window.android.wake("ok")
+	       }else if(isiOS){
+	            alert('是否是iOS：'+isiOS);
+	           window.webkit.messageHandlers.wake.postMessage("ok");
+	       }
+		}        
     }();
-});

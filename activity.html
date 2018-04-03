@@ -39,12 +39,13 @@
 		</div>
 	</section>
 	<footer id="footer">
-		<div class="actiFoot actiFootL" onclick="window.location.href='./strategy.html'">查看赚钱攻略</div>
-		<div class="actiFoot actiFootR" onclick="window.location.href='./test.html?userId=123'">分享给更多的人</div>
+		<div class="actiFoot actiFootL" onclick="strategy()">查看赚钱攻略</div>
+		<div class="actiFoot actiFootR" onclick="shareMore()">分享给更多的人</div>
 	</footer>
 	<script type="text/javascript" src="./js/rem.js"></script>
 	<script type="text/javascript" src="./js/zepto.js"></script>
 	<script type="text/javascript">
+		alert("ok");
 			//获取Url地址中userId参数
 			function getUrlParams(name) { 
 			    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i"); //定义正则表达式 
@@ -56,8 +57,34 @@
 			console.log("本页面userId",userID);
 			['./mfNews.html?userId=','./mfDisciple.html?userId=','./mfSign.html?userId=','./mfTreasure.html?userId='].forEach(function(item,index){
 				$(".actiItem").eq(index).attr("href",item+userID);
-			})
-			
+			});
+			 function strategy(){      
+			 	alert("攻略",123);
+		       var u = navigator.userAgent;
+		       var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
+		       var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+		       if(isAndroid){
+		           /* alert('是否是Android：'+isAndroid);*/
+		           window.android.strategy(title,desc,urls,img,goodsPrice)
+		       }else if(isiOS){
+		            /*alert('是否是iOS：'+isiOS);*/
+		           window.webkit.messageHandlers.strategy.postMessage([urls,title,desc,img,goodsPrice]);
+		       }
+   			}	
+   			function shareMore(){    
+   			   alert("分享",123);
+		       var u = navigator.userAgent;
+		       var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
+		       var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+		       if(isAndroid){
+		            alert('是否是Android：'+isAndroid);
+		           /*window.android.shareMore(title,desc,urls,img,goodsPrice);*/
+		           window.jsi.showToast("tian");
+		       }else if(isiOS){
+		            alert('是否是iOS：'+isiOS);
+		           window.webkit.messageHandlers.shareMore.postMessage("ok");
+		       }
+   			}			
 	</script>
 </body>
 </html>

@@ -94,6 +94,7 @@
 			var userAgent = getUrlParams("userAgent");
 			
 			/*axios.get("http://47.96.1.236:8080/zaotoutiao-api-home-1.0.0//open/treasure?userId="+userID+"&isSubmit=0")*/
+			
 			axios({	
 			  url: 'open/treasure',
 			  method: 'get', // 默认是 get
@@ -119,6 +120,7 @@
 			  }
 			  })
 			.then(function(res){
+				alert("appVersion",appVersion);
 			  	console.log(res);
 			  	var _html = "";
 			  	res.data.forEach(function(item,index){
@@ -143,14 +145,13 @@
 			 })
 			.catch(function(error){
 				
-			})
-			  
+			})			  
 			/**
 			 * iframe高度全屏
 			 */
 		    $('#iframepage').css("height",$(window).height()+"px");
 			
-		})
+		});
 		
 /*			alert(document.getElementById("iframepage").contentWindow.document.documentElement.scrollTop );
 			document.getElementById("iframepage").contentWindow.document.documentElement.scrollTop = 1000;
@@ -163,13 +164,11 @@
 		myIframe.onload = function(){
 		    myIframe.contentWindow.scrollTo(0,500);
 		};*/
-		var url = "http://rcv.aiclk.com/show?CAAQGQ.tpYcfGb_41NlFSiZkgBBkgbekgigkSxSkgsAkGF_FGFZkg9lM19O41Tsk1F4-4mJwba9lJffz9zEdpPNMGpoFGpZFG3cp0PUcCezyqTryqUc4CULvOesvmo60gieMGilkS3op1Ppb99NIpYbmsSPp3PCtQhNCltDlHz4rD0DfTOiyS9YbpH5pHNYtpYb1qNktpYcptPhkg3_kgYRMqPd4ZUOvCJ3yCoJXSTEphPQ4ZyOvCJ3yCoJ4ZyOqZ4lD9lSimksymewv1Plk10EtABrXmxOxhTIMSTEtmXgimUSMSYoD9BuiZTsvAVJXSmfpUbNpUNNtpYbpU9tNpp_pYNYDhs_Dfpmpp";
-		/**
-		 * http://lkme.cc/pc_landingpage.jsp?app_id=12641&app_name=早头条&deeplink_id=4350179641655300&qrcode_url=https://www.linkedme.cc/demojsp/mobile_landingpage.jsp?deeplink_url=https://lkme.cc/t9D/s3hRpL9vJ&is_imessage=false/
-		 */
-		var urlCode = decodeURIComponent(url);
-		console.log("地址",urlCode);
+	
 	</script>
 
 </body>
 </html>
+
+
+

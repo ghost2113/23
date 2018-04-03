@@ -55,6 +55,7 @@
 			    return null; 
 			};
 			var userID = getUrlParams("userId");
+			userID = 1;
 			console.log("用户userId",userID);
 			var _handle = true;//是否可以开启宝箱
 			var nextOpen;
@@ -97,10 +98,11 @@
 			            }*/
 			},1000)						
 			$(".open").on("click",function(){
-				axios.get("http://47.96.1.236:8080/zaotoutiao-api-home-1.0.0//open/treasure?userId=1&isSubmit=1")
+				axios.get("http://47.96.1.236:8080/zaotoutiao-api-home-1.0.0//open/treasure?userId="+userID+"&isSubmit=1")
 				.then(function(response){
 					console.log(response);
 					countTime();
+					$(".mask").show();
 				})
 			   .catch(function(error){
 			   		console.log(error);
@@ -117,7 +119,7 @@
 						console.log(error);
 					}
 		    	});*/
-				$(".mask").show();
+				
 			});
 
 			//时间戳转日期
@@ -141,8 +143,7 @@
 	                 m = Math.floor(leftTime/1000/60%60);  
 	                 s = Math.floor(leftTime/1000%60);                     
 	            }  
-	            //将倒计时赋值到div中  
-	
+	            //将倒计时赋值到div中  	
 	            document.getElementById("_h").innerHTML = h+"时";  
 	            document.getElementById("_m").innerHTML = m+"分";  
 	            document.getElementById("_s").innerHTML = s+"秒"; 
@@ -150,7 +151,13 @@
 			//关闭弹出层
 			$(".close").on("click",function(){
 				$(".mask").hide();
+				location.reload();
 			})
+			//禁止滑动
+/*			var me = $("#main");
+			var preHandler=function(e){e.preventDefault();};// 注意此处代码片段必须这样提出来已保证传入下边两个事件的处理程序一样才生效，分别写到事件处理程序中不生效。
+			document.addEventListener('touchmove', me.preHandler,false);//阻止默认滑动事件
+			document.removeEventListener('touchmove', me.preHandler, false);*/
 		})
 	</script>
 </body>

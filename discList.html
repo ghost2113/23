@@ -157,7 +157,7 @@
 	<script type="text/javascript" src="./js/zepto.js"></script>
 	<script type="text/javascript" src="js/fastclick.js"></script>
 	<script type="text/javascript">
-		$(function(){
+
 			//获取Url地址中userId参数
 			function getUrlParams(name) { 
 			    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i"); //定义正则表达式 
@@ -166,6 +166,7 @@
 			    return null; 
 			};
 			var userID = getUrlParams("userId");//用户userId
+			
 			console.log("用户userId",userID);
 			var type = "avaken";//定义请求类型;
 			var _html = '';//渲染模板
@@ -195,7 +196,7 @@
 			function updataLoad(userID,type,numPage){	
 				numPage++;
 				$.ajax({
-					url:"http://47.96.1.236:8080/zaotoutiao-api-home-1.0.0/apprentice/list?userId="+userID+"&type="+type+"&pageNo="+numPage+"&pageSize=1",
+					url:"http://47.96.1.236:8080/zaotoutiao-api-home-1.0.0/apprentice/list?userId="+userID+"&type="+type+"&pageNo="+numPage+"&pageSize=5",
 					type:"get",
 					dataType:"json",
 					async:false,
@@ -233,7 +234,7 @@
 											+'<span class="userPhoto"><img src=\"'+item.headPath+'\" alt="" /></span><span class="userName">'+(item.nickName?item.nickName:"么有")+'</span>'
 										+'</div>'
 										+'<div class="wakeDisc">'
-											+'<button>唤醒</button>'
+											+'<button onclick="wake()">唤醒</button>'
 										+'</div>'
 									+'</li>';	
 									break;
@@ -262,7 +263,32 @@
 					updataLoad(userID,type,page);
 				}
 			})
-		})
+			//唤醒徒弟
+			function wake(){    
+		       var u = navigator.userAgent;
+		       var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
+		       var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+		       if(isAndroid){
+		            alert('是否是Android：'+isAndroid);
+		           window.android.wake("ok")
+		       }else if(isiOS){
+		            alert('是否是iOS：'+isiOS);
+		           window.webkit.messageHandlers.wake.postMessage("ok");
+		       }
+			}
+			//收徒赚大钱
+			function disciple(){    
+		       var u = navigator.userAgent;
+		       var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
+		       var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+		       if(isAndroid){
+		            alert('是否是Android：'+isAndroid);
+		           window.android.disciple("ok")
+		       }else if(isiOS){
+		            alert('是否是iOS：'+isiOS);
+		           window.webkit.messageHandlers.disciple.postMessage("ok");
+		       }		       	  
+			}	
 	</script>
 </body>
 </html>

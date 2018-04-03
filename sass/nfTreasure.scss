@@ -52,6 +52,7 @@ html,body{
     font-size:14px;
     background:url(../img/footerBg.png) repeat-y center center;
     background-size:100% auto;
+    overflow:hidden;
 }
 #main{
   padding-top:0.45rem;
@@ -77,7 +78,7 @@ html,body{
       .openRules{
         position:absolute;
         left:0;
-        bottom:1.2rem;
+        bottom:1.8rem;
         width:95%;
         padding:0 2.5%;
         font-size:0.15rem;

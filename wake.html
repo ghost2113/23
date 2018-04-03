@@ -6,7 +6,7 @@
     <title>H5分享页面</title>
     <link rel="stylesheet" href="./css/reset.css" />
     <link rel="stylesheet" href="./css/common.css" />
-    <link rel="stylesheet" href="./css/shareH5.css" />
+    <link rel="stylesheet" href="./css/wake.css" />
     <script type="text/javascript">    	
    		document.addEventListener('plusready', function(){
    			//console.log("所有plus api都应该在此事件发生后调用，否则会出现plus is undefined。"   			
@@ -15,22 +15,11 @@
 </head>
 <body>
 	<section id="main">	
-		<div class="notice">
-			<div class="user">				
-			</div>
-			<div class="userName"></div>
-			<div class="getMoney">微信提现<span>100</span>元</div> 
-			<div class="time"><span>10分钟</span>前</div>
-		</div>
-		<div class="shareTit"><img src="./img/shareTit.png" alt="" /></div>
-		<div class="openPacket">
-			<div class="packetNum"></div>
-			<div class="prompt">
-				<p>春风十年不如红包送你</p>
-				<p>下载抢先领取5元现金</p>
-			</div>
-			<button></button>
-		</div>
+		<img class="bg" src="./img/wakeBg.png" alt="error"/>
+		<img src="./img/wakeText.png" alt="" class="wakeText" />
+		<button class="wakeBtn"></button>
+		<img src="./img/wakeCon.png" alt="" class="wakeCon" />
+		<button class="wakeBtn2"></button>
 	</section>
 	<script type="text/javascript" src="./js/rem.js"></script>
 	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
@@ -46,28 +35,7 @@
 			    var r = window.location.search.substr(1).match(reg);  
 			    if (r != null) return unescape(r[2]); 
 			    return null; 
-			};
-			/**
-			 * 定义变量   		
-			 */
-			var userID = getUrlParams("userId");
-			/**
-			 * 立即领取
-			 */
-			axios({	
-			  url: 'open/treasure',
-			  method: 'get', // 默认是 get
-			  baseURL: 'http://47.96.1.236:8080/zaotoutiao-api-home-1.0.0/',
-			  params: {
-			     userId:userId,
-			  }
-			  })
-			.then(function(res){
-				
-			})
-			.catch(function(error){
-				
-			})
+			};			
 		}
 	</script>
 </body>

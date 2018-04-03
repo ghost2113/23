@@ -33,8 +33,25 @@
 		</div>
 	</section>
 	<footer id="footer">
-		<a href="javascript:;"><img src="./img/nfNewsBtn.png" alt="" /></a>
+		<a href="javascript:;" onclick="newsRead()"><img src="./img/nfNewsBtn.png" alt="" /></a>
 	</footer>
-	<script type="text/javascript" src="./js/rem.js"></script>
 </body>
+	<script type="text/javascript" src="./js/rem.js"></script>
+	<script type="text/javascript" src="./js/zepto.js"></script>
+	<script type="text/javascript" src="./js/fastclick.js"></script>
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	<script type="text/javascript">
+		function newsRead(){    
+	       var u = navigator.userAgent;
+	       var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
+	       var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+	       if(isAndroid){
+	            alert('是否是Android：'+isAndroid);
+	           window.android.newsRead("ok")
+	       }else if(isiOS){
+	            alert('是否是iOS：'+isiOS);
+	           window.webkit.messageHandlers.newsRead.postMessage("ok");
+	       }
+		}	
+	</script>
 </html>

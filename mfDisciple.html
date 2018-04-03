@@ -20,7 +20,7 @@
 		<div class="banner">
 			<img src="./img/nfDisTopBg.png" alt="" />
 			<span class="rules">活动规则</span>
-			<span class="list" onclick="window.location.href='./discList.html?userId=2'">徒弟列表</span>
+			<span class="list" onclick="toDiscList()">徒弟列表</span>
 		</div>
 		<p class="textTime">— 活动时间：3月1日-3月31日  —</p>
 		<img class="conBg" src="./img/nfDisTitBg.png" alt="error" />
@@ -51,7 +51,7 @@
 		</div>		
 	</section>
 	<footer id="footer">
-		<div class="discBtn">
+		<div class="discBtn" onclick="disciple()">
 			<img src="./img/nfDisBtn.png" alt="error" />
 		</div>
 	</footer>
@@ -79,12 +79,13 @@
 			</div>
 		</div>
 	</div>
-	<script type="text/javascript" src="./js/rem.js"></script>
+	
+</body>
+<script type="text/javascript" src="./js/rem.js"></script>
 	<script type="text/javascript" src="./js/jquery-3.3.1.min.js"></script>
 	<script type="text/javascript" src="js/zepto.js"></script>
 	<script type="text/javascript" src="js/fastclick.js"></script>
 	<script type="text/javascript">
-		$(function(){
 			//获取Url地址中userId参数
 			function getUrlParams(name) { 
 			    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i"); //定义正则表达式 
@@ -93,6 +94,9 @@
 			    return null; 
 			};
 			var userID = getUrlParams("userId");
+			function toDiscList(){
+				location.href = "./discList.html?userId="+userID;
+			}
 			console.log("用户userId",userID);
 			$(".rules").on("click",function(){
 				$(".mask").show();
@@ -122,10 +126,18 @@
 				error:function(error){
 					console.log(error);
 				}
-			})		
-			
-
-		})
+			})					
+		function disciple(){    
+	       var u = navigator.userAgent;
+	       var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
+	       var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+	       if(isAndroid){
+	            alert('是否是Android：'+isAndroid);
+	           window.android.disciple("ok")
+	       }else if(isiOS){
+	            alert('是否是iOS：'+isiOS);
+	           window.webkit.messageHandlers.disciple.postMessage("ok");
+	       }	       	   
+		}	
 	</script>
-</body>
 </html>

@@ -33,13 +33,25 @@
 				</p>
 			</div>
 		</div>
-		<button class="btn">立刻去收徒</button>
+		<button class="btn" onclick="javascript:disciple()">立刻去收徒</button>
 	</section>
-	<script type="text/javascript" src="./js/rem.js"></script>
-	<script type="text/javascript" src="./js/jquery-3.3.1.min.js"></script>
-	<script type="text/javascript" src="./js/zepto.js"></script>
-	<script type="text/javascript" src="./js/fastclick.js"></script>
-	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-	<script type="text/javascript" src="./js/nfSign.js"></script>
+
 </body>
+	<script type="text/javascript" src="./js/rem.js"></script>
+	<script type="text/javascript" src="./js/fastclick.js"></script>
+	<script type="text/javascript">
+		//收徒赚大钱
+			function disciple(){    
+		       var u = navigator.userAgent;
+		       var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
+		       var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+		       if(isAndroid){
+		            alert('是否是Android：'+isAndroid);
+		           window.android.disciple("ok")
+		       }else if(isiOS){
+		            alert('是否是iOS：'+isiOS);
+		           window.webkit.messageHandlers.disciple.postMessage("ok");
+		       }		       	  
+			}	
+	</script>>
 </html>
