@@ -1,8 +1,11 @@
 html, body { position: relative; font-size: 14px; background: url(../img/shareBg.png) repeat-y center center; background-size: 100% auto; }
 
 #main { padding: 0.2rem 0; display: flex; display: -webkit-flex; flex-direction: column; justify-content: space-between; align-items: center; }
-#main .notice { display: flex; display: -webkit-flex; flex-direction: row; justify-content: space-between; align-items: center; flex-shrink: 1; width: 1.76rem; height: 0.32rem; padding: 0 0.16rem; font-size: 0.12rem; color: white; background: rgba(0, 0, 0, 0.3); border-radius: 100px; }
-#main .notice .user { width: 0.225rem; height: 0.225rem; border-radius: 100px; background: url(../img/shareUser.png) repeat-y center center; background-size: 100% auto; }
+#main .swiper-container { height: 0.32rem; background: rgba(0, 0, 0, 0.3); border-radius: 100px; overflow: hidden; }
+#main .swiper-container .swiper-wrapper { height: 0.32rem; }
+#main .swiper-container .swiper-wrapper .notice { display: flex; display: -webkit-flex; flex-direction: row; justify-content: space-between; align-items: center; padding: 0 0.16rem; font-size: 0.12rem; color: white; }
+#main .swiper-container .swiper-wrapper .notice .user { width: 0.225rem; height: 0.225rem; border-radius: 100px; background: url(../img/shareUser.png) repeat-y center center; background-size: 100% auto; }
+#main .swiper-container .swiper-wrapper .notice .userName, #main .swiper-container .swiper-wrapper .notice .getMoney { margin: 0 0.05rem; }
 #main .shareTit { flex-shrink: 1; margin: 0 auto; }
 #main .shareTit img { display: block; width: 3.12rem; }
 #main .openPacket { flex-shrink: 1; width: 3.15rem; height: 1.87rem; padding-top: 1.67rem; background: url(../img/shareRedPacket.png) repeat-y center center; background-size: 100% auto; }

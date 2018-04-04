@@ -53,10 +53,12 @@
 			    var r = window.location.search.substr(1).match(reg);  
 			    if (r != null) return unescape(r[2]); 
 			    return null; 
+			    
 			};
 			var userID = getUrlParams("userId");
-			userID = 1;
+			userID = 5;
 			console.log("用户userId",userID);
+			//请求开启宝箱信息
 			var _handle = true;//是否可以开启宝箱
 			var nextOpen;
 			axios.get("http://47.96.1.236:8080/zaotoutiao-api-home-1.0.0//open/treasure?userId="+userID+"&isSubmit=0")
@@ -69,57 +71,30 @@
 					if(response.data.msg=="可以开宝箱"){
 						$(".open").show();$(".countdown").hide();
 						$(".getGold").text(response.data.getGold);
-					}else{
+					}else if(response.data.msg=="该用户还没开过宝箱,可以开启宝箱"){
+						$(".open").show();$(".countdown").hide();
+						$(".getGold").text(response.data.getGold);
+					}
+					else{
 						$(".open").hide();$(".countdown").show();						
 					}
 				})
 			   .catch(function(error){
 			   		console.log(error);
 			 })
-			/*   var count=8;*/
-		    var countTime = setInterval(function(){
-		   	console.log(1111);
-/*		   	count++;*/
-						var leftTime = nextOpen - new Date();
-						var d,h,m,s;  
-		                 if(leftTime>=0){  
-			                 d = Math.floor(leftTime/1000/60/60/24);  
-			                 h = Math.floor(leftTime/1000/60/60%24);  
-			                 m = Math.floor(leftTime/1000/60%60);  
-			                 s = Math.floor(leftTime/1000%60);                     
-			            }  
-			            //将倒计时赋值到div中  				
-			            document.getElementById("_h").innerHTML = h+"时";  
-			            document.getElementById("_m").innerHTML = m+"分";  
-			            document.getElementById("_s").innerHTML = s+"秒"; 	
-/*			            if(count==13){
-			            	clearInterval(countTime);
-			            	$(".open").show();$(".countdown").hide();
-			            }*/
-			},1000)						
+			//计时器
+		    var countTime = setInterval(countdown,1000);	
+			//开启宝箱
 			$(".open").on("click",function(){
 				axios.get("http://47.96.1.236:8080/zaotoutiao-api-home-1.0.0//open/treasure?userId="+userID+"&isSubmit=1")
 				.then(function(response){
-					console.log(response);
-					countTime();
+					/*countTime();*/
+					$(".open").hide();$(".countdown").show();
 					$(".mask").show();
 				})
 			   .catch(function(error){
 			   		console.log(error);
-			   })
-				/*$.ajax({
-		    		url:"http://47.96.1.236:8080/zaotoutiao-api-home-1.0.0//open/treasure?userId=1&isSubmit=0",
-					type:"get",
-					dataType:"json",
-					async:true,
-					success:function(res){
-						console.log("宝箱信息",res);
-					},
-					error:function(error){
-						console.log(error);
-					}
-		    	});*/
-				
+			   })				
 			});
 
 			//时间戳转日期
@@ -135,18 +110,22 @@
 		        return Y+M+D+h+m+s;
 		    }
 			//获取倒计时时间
-			function countTime(leftTime){
+			function countdown(leftTime){
+				var leftTime = nextOpen - new Date();
 				var d,h,m,s;  
-                 if(leftTime>=0){  
+                if(leftTime>=0){  
 	                 d = Math.floor(leftTime/1000/60/60/24);  
 	                 h = Math.floor(leftTime/1000/60/60%24);  
 	                 m = Math.floor(leftTime/1000/60%60);  
 	                 s = Math.floor(leftTime/1000%60);                     
 	            }  
-	            //将倒计时赋值到div中  	
+	            //将倒计时赋值到div中  				
 	            document.getElementById("_h").innerHTML = h+"时";  
 	            document.getElementById("_m").innerHTML = m+"分";  
 	            document.getElementById("_s").innerHTML = s+"秒"; 
+	            if(leftTime===0){
+	            	clearInterval(countTime);
+	            }
 			}
 			//关闭弹出层
 			$(".close").on("click",function(){
@@ -158,6 +137,7 @@
 			var preHandler=function(e){e.preventDefault();};// 注意此处代码片段必须这样提出来已保证传入下边两个事件的处理程序一样才生效，分别写到事件处理程序中不生效。
 			document.addEventListener('touchmove', me.preHandler,false);//阻止默认滑动事件
 			document.removeEventListener('touchmove', me.preHandler, false);*/
+
 		})
 	</script>
 </body>

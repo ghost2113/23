@@ -21,7 +21,7 @@
 		<div class="banner">
 			<img src="./img/disListText1.png" alt="" />
 			<div class="getDisc">
-				<button>收徒赚大钱</button>
+				<button onclick="disciple()">收徒赚大钱</button>
 			</div>
 			<span class="rules">活动规则</span>
 		</div>
@@ -183,6 +183,7 @@
 			//选项卡
 			$(".discTab li").on("click",function(){
 				_html = "";
+				
 				listScrollTop = listHeight;
 				var index = $(this).index();
 				type = ["my","effective","avaken"][index];
@@ -202,6 +203,7 @@
 					async:false,
 					success:function(res){
 						console.log("http://47.96.1.236:8080/zaotoutiao-api-home-1.0.0/apprentice/list?userId="+userID+"&type="+type+"&pageNo="+numPage+"&pageSize=1");
+						console.log(res);
 						res.data.forEach(function(item,index){
 							/*console.log({"type":type,"item":item});*/
 							switch(type){

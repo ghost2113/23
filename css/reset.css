@@ -46,5 +46,5 @@ ul,ol,li {
 em {
   font-style: normal;
 }
-
+a,input,em,h2,button{-webkit-tap-highlight-color:rgba(255,0,0,0);}
 /*# sourceMappingURL=reset.css.map */

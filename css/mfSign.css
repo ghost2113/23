@@ -2,6 +2,8 @@
 body { font-size: 14px; background: white; }
 
 /*日历签到*/
+#main { overflow: auto; padding-bottom: 0.2rem; }
+
 #main .banner { height: 1.7rem; background: url(../img/nfSignBg.png) no-repeat center center; background-size: 100% auto; }
 
 #main .calendarBox { margin: -0.35rem auto 0; width: 3.35rem; overflow: hidden; box-shadow: 3px 3px 3px 0 rgba(0, 0, 0, 0.1); box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.1); }
@@ -26,12 +28,12 @@ body { font-size: 14px; background: white; }
 
 #js-qiandao-list li.qiandaoActive3 { background-image: url(../img/redPackets.png); }
 
-.qiandaoBox { width: 1.8rem; height: 0.38rem; margin: 0.24rem auto 0; }
+.qiandaoBox { width: 1.8rem; height: 0.38rem; margin: 0.20rem auto 0; }
 .qiandaoBox #qiandaoBtn { width: 100%; height: 100%; border: none; border-radius: 2rem; background: #f84e50; box-shadow: 0 2px 5px #f84e50; color: white; line-height: 0.38rem; }
 .qiandaoBox .btnActived { background: #a8a8a8 !important; box-shadow: none !important; }
 
 .signRules { width: 3.35rem; margin: 0 auto; }
-.signRules h4 { font-size: 0.13rem; margin-top: 0.1rem; }
-.signRules p { color: #a3a3a3; font-size: 0.12rem; line-height: 0.18rem; }
+.signRules h4 { font-size: 0.14rem; line-height: 0.2rem; margin-top: 0.1rem; }
+.signRules p { color: #a3a3a3; font-size: 0.13rem; line-height: 0.18rem; }
 
 /*# sourceMappingURL=mfSign.css.map */

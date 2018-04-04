@@ -52,6 +52,10 @@ body{
     background:white;
 }
 /*日历签到*/
+#main{
+    overflow:auto;
+    padding-bottom:0.2rem;
+}
 #main .banner{
     height:1.7rem;
     background:url(../img/nfSignBg.png) no-repeat center center;
@@ -134,7 +138,7 @@ body{
 .qiandaoBox{
     width:1.8rem;
     height:0.38rem;
-    margin:0.24rem auto 0;
+    margin:0.20rem auto 0;
     #qiandaoBtn{
         width:100%;
         height:100%;
@@ -155,12 +159,13 @@ body{
     width:3.35rem;
     margin:0 auto;
     h4{
-        font-size:0.13rem;
+        font-size:0.14rem;
+        line-height:0.2rem; 
         margin-top:0.1rem;
     }
     p{
        color:#a3a3a3;
-       font-size:0.12rem;
+       font-size:0.13rem;
        line-height:0.18rem; 
     }
 }

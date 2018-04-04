@@ -42,8 +42,9 @@ $fontColor:#f8e5a1;
 #main{
     background:url(../img/activityBg.jpg) no-repeat center center;
     background-size:cover;
-    padding:0.12rem 0.075rem;
+    padding:0.12rem 0.075rem 0.62rem;
     box-sizing: border-box;    
+    overflow: auto;
     .actiText1{
         width: 60%;        
         @include centerRow;

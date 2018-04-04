@@ -72,23 +72,31 @@ html,body{
 #main{
     padding:0.2rem 0;
    @include flex(column,space-between);
-  .notice{
-      @include flex(row,space-between);
-      flex-shrink: 1;
-      width:1.76rem;
+   .swiper-container{
       height:0.32rem;
-      padding:0 0.16rem;
-      @include font(0.12rem,null,null,null,white);
       background:rgba(0,0,0,0.3);
       border-radius:100px;
-      .user{
-          width:0.225rem;
-          height:0.225rem;
-          border-radius:100px;
-          background:url(../img/shareUser.png) repeat-y center center;
-          background-size:100% auto;
+      overflow:hidden;
+      .swiper-wrapper{
+        height:0.32rem;
+        .notice{
+          @include flex(row,space-between);   
+          padding:0 0.16rem;
+          @include font(0.12rem,null,null,null,white);          
+          .user{
+              width:0.225rem;
+              height:0.225rem;
+              border-radius:100px;
+              background:url(../img/shareUser.png) repeat-y center center;
+              background-size:100% auto;
+          }
+          .userName,.getMoney{
+              margin:0 0.05rem;
+          }
+        }
       }
-  }
+   }
+  
   .shareTit{
       flex-shrink: 1;
       margin:0 auto;
@@ -118,6 +126,5 @@ html,body{
           background:url(../img/shareBtn.png) repeat-y center center;
           background-size:100% auto;
       }
-  }
-  
+  }  
 }

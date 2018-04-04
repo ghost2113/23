@@ -7,7 +7,8 @@
     <link rel="stylesheet" href="./css/reset.css" />
     <link rel="stylesheet" href="./css/common.css" />
     <link rel="stylesheet" href="./css/shareH5.css" />
-    <script type="text/javascript">    	
+    <script src="js/swiper-4.2.0.min.js"></script>
+    <script type="text/javascript" type="text/javascript">    	
    		document.addEventListener('plusready', function(){
    			//console.log("所有plus api都应该在此事件发生后调用，否则会出现plus is undefined。"   			
    		});   		
@@ -15,13 +16,24 @@
 </head>
 <body>
 	<section id="main">	
-		<div class="notice">
+		<div class="swiper-container">
+		    <div class="swiper-wrapper" id="notice">
+		        <div class="swiper-slide notice">
+		        	<div class="user">				
+					</div>
+					<div class="userName">tian</div>
+					<div class="getMoney">微信提现<span>100</span>元</div> 
+					<div class="time"><span>10分钟</span>前</div>
+		        </div>
+		    </div>
+		</div>
+		<!--<div class="notice">			
 			<div class="user">				
 			</div>
 			<div class="userName"></div>
 			<div class="getMoney">微信提现<span>100</span>元</div> 
 			<div class="time"><span>10分钟</span>前</div>
-		</div>
+		</div>-->
 		<div class="shareTit"><img src="./img/shareTit.png" alt="" /></div>
 		<div class="openPacket">
 			<div class="packetNum"></div>
@@ -29,7 +41,7 @@
 				<p>春风十年不如红包送你</p>
 				<p>下载抢先领取5元现金</p>
 			</div>
-			<button></button>
+			<button onclick="dlApp()"></button>
 		</div>
 	</section>
 	<script type="text/javascript" src="./js/rem.js"></script>
@@ -38,6 +50,15 @@
 	<script type="text/javascript" src="./js/fastclick.js"></script>
 	<script>
 		window.onload=function(){
+			/**
+			 * 轮播
+			 */
+			var mySwiper = new Swiper ('.swiper-container', {
+			    direction: 'vertical',
+			    speed:1000,
+			    loop: true,	
+			    autoplay:true,
+			})        
 			/**
 			 * 获取Url地址中userId参数   userID
 			 */
@@ -52,23 +73,72 @@
 			 */
 			var userID = getUrlParams("userId");
 			/**
-			 * 立即领取
+			 * 已领取用户数据
 			 */
+			var _html = '';
 			axios({	
 			  url: 'open/treasure',
 			  method: 'get', // 默认是 get
 			  baseURL: 'http://47.96.1.236:8080/zaotoutiao-api-home-1.0.0/',
 			  params: {
-			     userId:userId,
+			     userId:userID,
 			  }
 			  })
 			.then(function(res){
-				
+				_html+=
+				 '<div class="swiper-slide notice">'
+		        	+'<div class="user">'				
+					+'</div>'
+					+'<div class="userName">tian</div>'
+					+'<div class="getMoney">微信提现<span>100</span>元</div>'
+					+'<div class="time"><span class="showTime">10分钟</span>前</div>'
+		        +'</div>';
 			})
 			.catch(function(error){
 				
 			})
-		}
+			/**
+			 * 立即领取
+			 */
+			function dlApp(){    
+			       var u = navigator.userAgent;
+			       var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
+			       var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+			       if(isAndroid){
+			            alert('是否是Android：'+isAndroid);
+			           window.android.dlApp("ok")
+			       }else if(isiOS){
+			            alert('是否是iOS：'+isiOS);
+			           window.webkit.messageHandlers.dlApp.postMessage("ok");
+			       }		       	  
+				}	
+			}
+			/**
+			 * 时间计时
+			 */
+			var startT = new Date();//记录页面打开时时间
+			function countdown(leftTime){
+				var leftTime = new Date() - startT;//时间差
+				var d,h,m,s; 
+				var showTime;
+                if(leftTime>=0){  
+	                 d = Math.floor(leftTime/1000/60/60/24);  
+	                 h = Math.floor(leftTime/1000/60/60%24);  
+	                 m = Math.floor(leftTime/1000/60%60);  
+	                 s = Math.floor(leftTime/1000%60);                     
+	            }  
+/*	            //将倒计时赋值到div中  				
+				console.log(`${h}:${m}:${s}`);*/
+				if(m!=0&&h===0){
+					showTime = m+"分钟";
+				}else if(m===0){
+					showTime = s+"秒";
+				}else if(h!=0){
+					showTime = h+"小时";
+				}
+				$(".showTime").html(showTime);
+			};
+			var countTime = setInterval(countdown,1000);
 	</script>
 </body>
 </html>

@@ -1,4 +1,4 @@
-#main { background: url(../img/activityBg.jpg) no-repeat center center; background-size: cover; padding: 0.12rem 0.075rem; box-sizing: border-box; }
+#main { background: url(../img/activityBg.jpg) no-repeat center center; background-size: cover; padding: 0.12rem 0.075rem 0.62rem; box-sizing: border-box; overflow: auto; }
 #main .actiText1 { width: 60%; margin: 0 auto; }
 #main .actiText1 img { display: block; width: 100%; }
 #main .actiText2 { margin: 0 auto; width: 75%; margin-top: 0.08rem; }

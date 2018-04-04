@@ -26,10 +26,10 @@ html, body { posision: relative; left: 0; top: 0; }
 #main .discCon .discList li .wakeDisc button { width: 0.5rem; height: 0.23rem; border: none; background: #f65656; color: #fff; border-radius: 100px; }
 
 .mask { position: absolute; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); padding-top: 0.6rem; }
-.mask .discRules { display: flex; flex-direction: column; width: 3.15rem; height: 4.2rem; border-radius: 0.1rem; margin: 0 auto; overflow: hidden; }
+.mask .discRules { display: flex; flex-direction: column; width: 3.15rem; border-radius: 0.1rem; margin: 0 auto; overflow: hidden; }
 .mask .discRules .discRulesTit { height: 0.45rem; font-size: 0.14rem; font-family: "微软雅黑"; font-weight: bold; text-align: center; line-height: 0.45rem; padding-left: 0.45rem; color: #fff; background: -webkit-linear-gradient(left, #f44c53, #f86771); background: -o-linear-gradient(right, #f44c53, #f86771); background: -ms-linear-gradient(right, #f44c53, #f86771); background: --linear-gradient(right, #f44c53, #f86771); }
 .mask .discRules .discRulesTit span { display: block; float: right; width: 0.45rem; height: 0.45rem; background: url(../img/close.png) no-repeat center center; background-size: 0.12rem 0.12rem; -webkit-tap-highlight-color: transparent; }
-.mask .discRules .discRulesCont { flex: 1; padding: 0.15rem 0.15rem 0; font-size: 0.14rem; line-height: 0.21rem; background: white; }
+.mask .discRules .discRulesCont { flex: 1; padding: 0.15rem 0.15rem; font-size: 0.14rem; line-height: 0.21rem; background: white; }
 .mask .discRules .discRulesCont p { font-size: 0.14rem; line-height: 0.21rem; margin-bottom: 0.13rem; }
 .mask .discRules .discRulesCont .redFont { color: #f44d54; }
 
