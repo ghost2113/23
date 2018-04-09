@@ -166,7 +166,6 @@
 			    return null; 
 			};
 			var userID = getUrlParams("userId");//用户userId
-			
 			console.log("用户userId",userID);
 			var type = "avaken";//定义请求类型;
 			var _html = '';//渲染模板
@@ -272,7 +271,7 @@
 		       var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
 		       if(isAndroid){
 		            alert('是否是Android：'+isAndroid);
-		           window.android.wake("ok")
+		           window.jsi.wake("ok")
 		       }else if(isiOS){
 		            alert('是否是iOS：'+isiOS);
 		           window.webkit.messageHandlers.wake.postMessage("ok");
@@ -285,7 +284,7 @@
 		       var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
 		       if(isAndroid){
 		            alert('是否是Android：'+isAndroid);
-		           window.android.disciple("ok")
+		           window.jsi.disciple("ok")
 		       }else if(isiOS){
 		            alert('是否是iOS：'+isiOS);
 		           window.webkit.messageHandlers.disciple.postMessage("ok");

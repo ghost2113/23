@@ -41,13 +41,14 @@
 	<script type="text/javascript" src="./js/fastclick.js"></script>
 	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 	<script type="text/javascript">
-		function newsRead(){    
+		function newsRead(){ 
+			alert("newsRead");
 	       var u = navigator.userAgent;
 	       var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
 	       var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
 	       if(isAndroid){
 	            alert('是否是Android：'+isAndroid);
-	           window.android.newsRead("ok")
+	           window.jsi.newsRead("ok");
 	       }else if(isiOS){
 	            alert('是否是iOS：'+isiOS);
 	           window.webkit.messageHandlers.newsRead.postMessage("ok");

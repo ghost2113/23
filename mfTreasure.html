@@ -46,7 +46,6 @@
 	<script type="text/javascript" src="./js/zepto.js"></script>
 	<script type="text/javascript" src="./js/fastclick.js"></script>
 	<script>				
-		$(function(){
 			//获取Url地址中userId参数
 			function getUrlParams(name) { 
 			    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i"); //定义正则表达式 
@@ -56,7 +55,6 @@
 			    
 			};
 			var userID = getUrlParams("userId");
-			userID = 5;
 			console.log("用户userId",userID);
 			//请求开启宝箱信息
 			var _handle = true;//是否可以开启宝箱
@@ -137,8 +135,6 @@
 			var preHandler=function(e){e.preventDefault();};// 注意此处代码片段必须这样提出来已保证传入下边两个事件的处理程序一样才生效，分别写到事件处理程序中不生效。
 			document.addEventListener('touchmove', me.preHandler,false);//阻止默认滑动事件
 			document.removeEventListener('touchmove', me.preHandler, false);*/
-
-		})
 	</script>
 </body>
 </html>

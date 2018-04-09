@@ -17,16 +17,16 @@
 	<section id="main">	
 		<img class="bg" src="./img/wakeBg.png" alt="error"/>
 		<img src="./img/wakeText.png" alt="" class="wakeText" />
-		<button class="wakeBtn"></button>
+		<button class="wakeBtn" type="button" onclick="goLogin()"></button>
 		<img src="./img/wakeCon.png" alt="" class="wakeCon" />
-		<button class="wakeBtn2"></button>
+		<button class="wakeBtn2" type="button" onclick="goLogin()"></button>
 	</section>
+</body>
 	<script type="text/javascript" src="./js/rem.js"></script>
 	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 	<script type="text/javascript" src="./js/zepto.js"></script>
 	<script type="text/javascript" src="./js/fastclick.js"></script>
 	<script>
-		window.onload=function(){
 			/**
 			 * 获取Url地址中userId参数   userID
 			 */
@@ -36,22 +36,24 @@
 			    if (r != null) return unescape(r[2]); 
 			    return null; 
 			};	
+			var userID = getUrlParams("userId");
+			console.log(userID);
 			/**
 			 * 登陆赚钱
 			 */
-			function goLogin(){    
+			function goLogin(){ 
+			   console.log(12);
 		       var u = navigator.userAgent;
 		       var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
 		       var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
 		       if(isAndroid){
 		            alert('是否是Android：'+isAndroid);
-		           window.android.goLogin("ok")
+		           window.jsi.goLogin("ok")
 		       }else if(isiOS){
 		            alert('是否是iOS：'+isiOS);
 		           window.webkit.messageHandlers.goLogin.postMessage("ok");
 		       }		       	  			
-		}
-		}
+			}
+			
 	</script>
-</body>
 </html>

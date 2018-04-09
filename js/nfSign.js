@@ -8,7 +8,6 @@
 		    return null; 
 		};		
 		var userID = getUrlParams("userId");
-		userID = 11;
 		console.log({"用户userId":userID,"地址":window.location.search});
 		var olDate;//后台返回线上日期
         var dateArray = []; //遍历网格	
@@ -121,6 +120,7 @@
         }) 
         //点击按钮签到
         $qiandaoBtn.on("click", function() { 
+        	signIn("100");
     		if(!_handle){
     			return false;
     		};
@@ -159,7 +159,7 @@
 			        		/*$(".date" + item).text(_qiandaoJl[index]);*/
 			        })
 	    		}
-	    	var getGold = response.data.getGold;
+	    		var getGold = response.data.getGold;
 	    		console.log(getGold);
 	    		signIn(getGold);	
 	    		
@@ -173,7 +173,7 @@
 	       var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
 	       if(isAndroid){
 	            alert('是否是Android：'+isAndroid);
-	           window.android.signIn(getGold)
+	           window.jsi.signIn(getGold)
 	       }else if(isiOS){
 	            alert('是否是iOS：'+isiOS);
 	           window.webkit.messageHandlers.signIn.postMessage(getGold);

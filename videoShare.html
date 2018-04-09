@@ -3,13 +3,44 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>视频分享详情页</title>
+    <title>新闻分享详情页</title>
     <link rel="stylesheet" href="./css/reset.css" />
+    <link rel="stylesheet" href="./css/video-js.css" /> 
     <link rel="stylesheet" href="./css/newsShare.css" /> 
+    	<style>
+		.m {
+			width: 100%;
+			height: 200px;
+			margin-left: auto;
+			margin-right: auto;
+		}
+		</style>
 </head>
 <body>
-	<iframe name="ifm" id="iframepage" style="background-color: transparent;" marginwidth="0" marginheight="0" frameborder="0"  scrolling="yes" width="100%" src="" style="overflow: hidden">		
-	</iframe>		
+	<div class="m">
+      <video id="my-video" class="video-js myVideo" controls preload="auto" poster="./img/100G.png" data-setup="{}" webkit-playsinline="true" playsinline="true">
+        <source class="videoSrc" src="http://jq22com.qiniudn.com/jq22-sp.mp4" type="video/mp4">
+        <p class="vjs-no-js"> To view this video please enable JavaScript, and consider upgrading to a web browser that <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a> </p>
+      </video>
+      <script src="js/video.min.js"></script> 
+      <script src="http://vjs.zencdn.net/5.19/lang/zh-CN.js"></script>
+      <script type="text/javascript">
+			var myPlayer = videojs('my-video');
+			videojs("my-video").ready(function(){
+				var myPlayer = this;
+				/*myPlayer.play();*/
+				
+			});
+			  
+		</script> 
+    </div>
+	<div class="videoCon">
+		<p class="videoName">迪丽热巴《烈火如歌》如歌红衣娇俏惊艳 银雪白衣颠倒娇俏惊艳 银雪白衣颠倒娇俏惊艳 银雪白衣颠倒娇俏惊艳 银雪白衣颠倒</p>
+		<div class="videoInfo">
+			<span class="videoSource">yuou哭的</span>
+			<span class="playCnt">164</span>次播放
+		</div>
+	</div>
 	<section id="main">				
 		<div class="title"><span></span>相关推荐</div>
 		<ul class="newsList">
@@ -32,29 +63,35 @@
 	</section>
 	<div class="shareLink">
 		<div class="icon"><span></span><span>头条TVD</span></div>
-		<span>看新闻赚零花钱</span>
-		<a id="openLink" href="#">打开</a>
-	</div>
+		
+		
+		
+		
+		<a id="openLink" href="">打开</a>
+	</div>	
+</body>
 	<script type="text/javascript" src="./js/rem.js"></script>
 	<script type="text/javascript" src="./js/jquery-3.3.1.min.js"></script>
 	<script type="text/javascript" src="./js/fastclick.js"></script>
 	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-	<script type="text/javascript">
-			var newsUrl = window.location.href;
-			newsUrl =  "http://47.96.1.236:8080/zttH5/newsShare.html?appVersion=0&brand=apple&device=1&domain=http://47.96.1.236:8080/zaotoutiao-api-home-1.0.0/&height=667&idIdfa=C83B320E-16C2-4324-BEC9-C43C0238E410&idImei=xxxx&ip=183.156.227.161&model=iPhone&osType=2&osVersion=11.3&packageName=com.muki.TopLineTV&type=1&urls=information/list&userAgent=Mozilla/5.0%20(iPhone;%20CPU%20iPhone%20OS%2011_3%20like%20Mac%20OS%20X)%20AppleWebKit/605.1.15%20(KHTML,%20like%20Gecko)%20Mobile/15E216&userId=333&width=375&****zlink=https://lkme.cc/GJD/kzeKlr1DK&****znewsUrl=http://sh.qihoo.com/mob/transcoding?url=http%253A%252F%252Fwww.yidianzixun.com%252F0IkHZpB0&check=e1e2646c0767c673&uid=36111c0e19d8fd8679613ee590b39f87&sign=ex%255F2eb604c1&sv=1&templetctl=7&360newsdetail=1&hsitetype=1&ucheck=dd2e144b7a803e96cf65dde717b9febe&hscmt=1";	
-/*			newsUrl = "http://47.96.1.236:8080/zttH5/newsShare.html?appVersion=1.2.3&brand=apple&device=0&domain=http://47.96.1.236:8080/zaotoutiao-api-home-1.0.0/&height=1136&idIdfa=(UIDevice.current.identifierForVendor?.uuidString)!&idImei=eefcebef9c3baffb&infoId=b044478a815240cc&ip=192.168.0.124&model=iPhone6&osType=1&osVersion=1.1.1&packageName=com.muki.topline&type=1&urls=information/list&userAgent=&userId=331&width=22&z****zlink=https://lkme.cc/GJD/e53ZATnCK&z****znewsUrl=http://sh.qihoo.com/mob/transcoding?url=http%3A%2F%2Fent.163.com%2F18%2F0409%2F08%2FDEUIPUJD00038FO9.html&check=724e65fe71157641&uid=1185ac1cb69b143ff1615e0beda40507&sign=ex%5F2eb604c1&sv=1&templetctl=7&360newsdetail=1&articlety=zmt&hsitetype=1&ucheck=f95b630068ef84f0ccd1373f49264a91&hscmt=1&from=singlemessage"*///android
-			var urlResult = decodeURI(newsUrl).split("****");
+	<script type="text/javascript">		
+			var videoUrl = window.location.href;
+			videoUrl = 						
+			"http://47.96.1.236:8080/zttH5/newsShare.html?appVersion=1.2.3&backdata=1&brand=apple&domain=http://47.96.1.236:8080/zaotoutiao-api-home-1.0.0/&extdata=eyJzdHJhdGVneSI6IjIuNi4zMC44LmJ1dHdtM3Y3NWo4Mi45LjJ1ei4zLnZueXJyaC4uMS40Y3h4bmYzY3FramMiLCJjaGFubmVsX2lkIjoiMjQifQ==&height=667&idIdfa=C83B320E-16C2-4324-BEC9-C43C0238E410&idImei=xxxx&infoId=9q0KkXapK3ax&ip=183.156.227.161&model=iPhone&osType=2&osVersion=11.3&packageName=com.muki.TopLineTV&type=1&urls=video/list&userAgent=Mozilla/5.0%20(iPhone;%20CPU%20iPhone%20OS%2011_3%20like%20Mac%20OS%20X)%20AppleWebKit/605.1.15%20(KHTML,%20like%20Gecko)%20Mobile/15E216&userId=333&videoOsType=ios&width=375&****zlink=https://lkme.cc/GJD/kzeKlr1DK";
+	
+			var urlResult = decodeURI(videoUrl).split("****");
 			var urlPara = urlResult[0].split("?")[1];
 			/**
 			 * 获取Url地址中userId参数   userID
 			 */
+			console.log("canshu",urlPara);
 			function getUrlParams(name) { 
 			    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i"); //定义正则表达式 
 			    var r = urlPara.match(reg);  
 			    if (r != null) return unescape(r[2]); 
 			    return null; 
 			};
-			console.log(urlResult);
+			
 			/**
 			 *   @param    
 			 *   device:设备名称（0为安卓，1为iOS，2为PC）;
@@ -76,10 +113,13 @@
 			     userAgent：浏览器的UA			     
 			     link:深度链接
 			 */
+			var videoOsType = getUrlParams("videoOsType");
 			var device = getUrlParams("device");
 			var userId = getUrlParams("userId");
+			var extdata = getUrlParams("extdata");
 			var packageName = getUrlParams("packageName");
 			var appVersion = getUrlParams("appVersion");
+			var page = getUrlParams("page");
 			var idIdfa = getUrlParams("idIdfa");
 			var idImei = getUrlParams("idImei");
 			var height = getUrlParams("height");
@@ -92,14 +132,15 @@
 			var ip = getUrlParams("ip");
 			var domain = getUrlParams("domain");
 			var urls = getUrlParams("urls");
-			var userAgent = navigator.userAgent;
+			var userAgent = getUrlParams("userAgent");
 			var zlink = urlResult[1].split("zlink=")[1];//深度链接
-			var newsUrl = urlResult[2].split("newsUrl=")[1];//新闻链接
-			var infoId = getUrlParams("infoId");//详情
-			console.log({"zlink":zlink,"newsUrl":newsUrl});
+			var id = getUrlParams("infoId");//详情
+			device = 1;
 			console.log({
-			     "device":device,
-			     "userId":userId,
+				"userId":userId,
+				"id":id,
+			    "extdata":extdata,
+			    "page":page,			     
 			     "packageName":packageName,
 			     "appVersion":appVersion,
 			     "idIdfa":idIdfa,
@@ -115,29 +156,51 @@
 			     "domain":domain,
 			     "urls": urls,
 			     "userAgent":userAgent,
-			     "zLink":zlink,
-			     "newsUrl":newsUrl,
-			     "infoId":infoId
-			});
-			/**
-			 * iframe高度全屏
-			 */
-		    $('#iframepage').css("height",$(window).height()+"px");		    
-			/**
-			 * 文章相关推荐
-			 */
-			axios({	
-			  url: 'information/relevant/list',
+			     "zlink":zlink,
+			  });
+		 	/**
+		    * 视频链接
+		    */
+		   axios({	
+			  url: '/infos/get',
 			  method: 'get', // 默认是 get
 			  baseURL: 'http://47.96.1.236:8080/zaotoutiao-api-home-1.0.0/',
 			  params: {
-			     device:device,
-			     userId:userId,
+			     infoId:id		    
+			  }
+			  })
+			.then(function(res){
+				console.log("详情",res);
+				var item = res.data.data;
+					$(".vjs-poster").css("background-image","url("+item.imgUrl+")");
+					$(".vjs-tech").attr("src",item.url);
+					$(".videoName").html(item.title);
+					$(".videoSource").html(item.source);
+					$(".playCnt").html(item.readCnt);
+			 })
+			.catch(function(error){
+				console.log(error);
+			});
+			/**
+			 * 打开
+			 */
+			$("#openLink").attr("href",zlink);    
+		   
+			axios({	
+			  url: '/video/related',
+			  method: 'get', // 默认是 get
+			  baseURL: 'http://47.96.1.236:8080/zaotoutiao-api-home-1.0.0/',
+			  params: {
+			  	 userId:userId,
+			     videoOsType:videoOsType,
+			     id:id,
+			     extdata:extdata,
+			     page:1,
 			     packageName:packageName,
 			     appVersion:appVersion,
 			     idIdfa:idIdfa,
-			     idImei:idImei, 
-			     height:height,
+			     idImei: idImei, 
+			     height: height,
 			     width:width,
 			     brand:brand,
 			     model:model,
@@ -152,13 +215,12 @@
 			  })
 			.then(function(res){
 				/*alert("appVersion",appVersion);*/
-			  	console.log(res);
+			  	console.log("相关视频",res);
 			  	var _html = "";	
 			  	console.log(res.data.data);
 			  	res.data.data.forEach(function(item,index){
 			  		var timeDiff = new Date() - new Date(item.obj.createDate).getTime();
-			  		console.log("item",item);
-			  		if(item.type==1){
+			  		if(item.type==0){
 			  			_html += 
 			  			'<a href="'+ item.obj.url+'">'
 							+'<li class="items">'
@@ -167,11 +229,11 @@
 									+'<div class="itemsInfor">'
 										+'<span>'+item.obj.author+'</span>'
 										+'<span>'+countdown(timeDiff)+'</span>'
-										+'<span>'+item.obj.readCnt+'</span>阅读'
+										+'<span>'+item.obj.playCnt+'</span>阅读'
 									+'</div>'
 								+'</div>'
 								+'<div class="rightImg">'
-									+'<img src="'+item.obj.picUrl+'" alt="" />'
+									+'<img src="'+item.obj.url+'" alt="" />'
 								+'</div>'
 							+'</li>'
 						+'</a>';
@@ -201,15 +263,6 @@
 				console.log(error);
 			});
 			/**
-			 * 深度链接
-			 */
-			$("#openLink").attr("href",zlink.split("&")[0]);
-			/**
-		     * iframe 新闻链接
-		     */
-			$('#iframepage').attr("src",newsUrl);
-			document.frames("ifm").document.location=newsUrl;
-			/**
 			 * 时间计时
 			 */
 			function countdown(leftTime){				
@@ -233,11 +286,8 @@
 				return showTime;
 				/*console.log(showTime);*/
 			};
-
 			
 	</script>
-
-</body>
 </html>
 
 

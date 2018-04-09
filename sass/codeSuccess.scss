@@ -36,17 +36,6 @@
     }
   }
 }
-//元素水平居中
-@mixin centerRow{
-    margin:0 auto;
-}
-@mixin img100{
-    display:block;
-    width: 100%;
-    height:100%;
-}
-//主题黄色
-$fontColor:#f8e5a1;
 //flex布局
 @mixin flex($direction,$justify:center,$alignItems:center){
     display:flex;
@@ -70,39 +59,37 @@ $fontColor:#f8e5a1;
     -webkit-line-clamp: $num;
     overflow: hidden; 
 }
-html,body{
-    position:relative;
-    width:100%;
-    height:100%;
-    font-size:14px;
-    overflow:auto;
+//元素水平居中
+@mixin centerRow{
+    margin:0 auto;
 }
+@mixin img100{
+    display:block;
+    width: 100%;
+    height:100%;
+}
+//主题黄色
+$fontColor:#f8e5a1;
 #main{
-    padding:0.1rem 0.15rem 0;
-    box-sizing:border-box;
-    header{
-        @include font(24px,null,"宋体",30px,#000);
-        @include overflow(2);
-        text-align: justify;
-    }
-    .newsInfo{
-        @include font(12px,null,null,38px,#999999);
-        span:nth-child(2){
-            padding-left:10px;
-        };
-    }
-    .newsCon{
-//      @include flex(column,null,null);
-        @include font(18px,null,"宋体",28px,#292929);
-        p{
-            text-align: justify;
-        }
-        img{
-          display:block;
-          width:auto !important;
-          max-width:100%;  
-          margin:10px auto;         
-        }
-    }
-
+   padding-top:1.05rem;
+   @include flex(column,flex-start);
+   box-sizing:border-box;
+   img{
+       display:block;
+       width:0.9rem;
+   }
+   .p1{
+       @include font(20px,600,"微软雅黑",22px,#000);
+       margin-top:0.2rem;
+   }
+   .p2{
+       margin-top:0.3rem;
+       @include font(16px,500,"微软雅黑",22px,#8f8f8f);
+   }
+   .p3{
+       @include font(16px,500,"微软雅黑",22px,#8f8f8f);
+       span{
+           color:#f25959;
+       }
+   }
 }
