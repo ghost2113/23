@@ -59,8 +59,8 @@ html,body{
   display:flex;
   display:-webkit-flex;
   flex-direction:column;
-  align-items: flex-end;
-  overflow: auto;
+  align-items: space-between;
+  overflow: hidden;
   .treasureTit{
       margin:0 auto;
       img{
@@ -69,17 +69,21 @@ html,body{
       }
   }
   .treasure{
+      flex:1;
       position:relative;
       margin-top:0.35rem;
       width:100%;
       img{
+          position:absolute;
+          left:0;
+          bottom:0;
           display:block;
           width:100%;
       }
       .openRules{
         position:absolute;
         left:0;
-        bottom:1.8rem;
+        bottom:1.2rem;
         width:95%;
         padding:0 2.5%;
         font-size:0.15rem;

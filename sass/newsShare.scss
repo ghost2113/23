@@ -78,6 +78,7 @@ html,body{
     font-size:14px;
     overflow: scroll;
 }
+#iframepage{z-index:-1000;}
 #main{
     padding:15px 15px 1rem;
     box-sizing:border-box;
@@ -135,7 +136,7 @@ html,body{
 }
 //视频信息
 .videoCon{
-    padding:0 15px;
+    padding:10px 15px 0;
     box-sizing:border-box;
     .videoName{
         @include font(24px,null,null,32px,null);

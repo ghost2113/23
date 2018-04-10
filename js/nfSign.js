@@ -120,7 +120,6 @@
         }) 
         //点击按钮签到
         $qiandaoBtn.on("click", function() { 
-        	signIn("100");
     		if(!_handle){
     			return false;
     		};
@@ -161,6 +160,9 @@
 	    		}
 	    		var getGold = response.data.getGold;
 	    		console.log(getGold);
+	    		/**
+	    		 * 签到成功弹出层  原生
+	    		 */
 	    		signIn(getGold);	
 	    		
 	    	}).catch(function(error){
@@ -172,10 +174,10 @@
 	       var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
 	       var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
 	       if(isAndroid){
-	            alert('是否是Android：'+isAndroid);
+	            /*alert('是否是Android：'+isAndroid);*/
 	           window.jsi.signIn(getGold)
 	       }else if(isiOS){
-	            alert('是否是iOS：'+isiOS);
+	            /*alert('是否是iOS：'+isiOS);*/
 	           window.webkit.messageHandlers.signIn.postMessage(getGold);
 	       }
 		}        

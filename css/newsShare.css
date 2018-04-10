@@ -1,6 +1,8 @@
 @charset "UTF-8";
 html, body { margin: 0; padding: 0; position: relative; font-size: 14px; overflow: scroll; }
 
+#iframepage { z-index: -1000; }
+
 #main { padding: 15px 15px 1rem; box-sizing: border-box; }
 #main .title { display: flex; display: -webkit-flex; flex-direction: row; justify-content: flex-start; align-items: center; height: 0.39rem; font-size: 16px; border-bottom: 1px solid #f2f3f5; }
 #main .title span { display: block; width: 3px; height: 0.14rem; background: #e73d3d; margin-right: 5px; }
@@ -14,7 +16,7 @@ html, body { margin: 0; padding: 0; position: relative; font-size: 14px; overflo
 #main .items .rightImg { display: flex; display: -webkit-flex; flex-direction: column; justify-content: center; align-items: center; }
 #main .items .rightImg img { display: block; width: 1.14rem; height: 0.73rem; }
 
-.videoCon { padding: 0 15px; box-sizing: border-box; }
+.videoCon { padding: 10px 15px 0; box-sizing: border-box; }
 .videoCon .videoName { font-size: 24px; line-height: 32px; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; }
 .videoCon .videoInfo { font-size: 12px; font-weight: "黑体"; line-height: 22px; color: #999; display: flex; display: -webkit-flex; flex-direction: row; justify-content: flex-start; align-items: center; }
 .videoCon .videoInfo span:nth-child(1) { margin-right: 10px; }

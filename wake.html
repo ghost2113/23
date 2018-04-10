@@ -37,13 +37,14 @@
 			    return null; 
 			};	
 			var userID = getUrlParams("userId");
-			console.log(userID);
+			var link = getUrlParams("link");
+		
 			/**
 			 * 登陆赚钱
 			 */
 			function goLogin(){ 
-			   console.log(12);
-		       var u = navigator.userAgent;
+			   window.location.href = link;
+		       /*var u = navigator.userAgent;
 		       var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
 		       var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
 		       if(isAndroid){
@@ -52,7 +53,7 @@
 		       }else if(isiOS){
 		            alert('是否是iOS：'+isiOS);
 		           window.webkit.messageHandlers.goLogin.postMessage("ok");
-		       }		       	  			
+		       }		       	  			*/
 			}
 			
 	</script>

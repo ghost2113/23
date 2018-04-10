@@ -76,11 +76,11 @@
 		       var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
 		       var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
 		       if(isAndroid){
-		            alert('是否是Android：'+isAndroid);
+		            /*alert('是否是Android：'+isAndroid);*/
 		           /*window.android.shareMore(title,desc,urls,img,goodsPrice);*/
 		           window.jsi.shareMore("ok");
 		       }else if(isiOS){
-		            alert('是否是iOS：'+isiOS);
+		            /*alert('是否是iOS：'+isiOS);*/
 		           window.webkit.messageHandlers.shareMore.postMessage("shareMore");
 		       }
    			}			

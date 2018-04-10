@@ -1,11 +1,11 @@
 html, body { position: relative; font-size: 14px; background: url(../img/footerBg.png) repeat-y center center; background-size: 100% auto; overflow: hidden; }
 
-#main { padding-top: 0.45rem; display: flex; display: -webkit-flex; flex-direction: column; align-items: flex-end; overflow: auto; }
+#main { padding-top: 0.45rem; display: flex; display: -webkit-flex; flex-direction: column; align-items: space-between; overflow: hidden; }
 #main .treasureTit { margin: 0 auto; }
 #main .treasureTit img { display: block; width: 3.12rem; }
-#main .treasure { position: relative; margin-top: 0.35rem; width: 100%; }
-#main .treasure img { display: block; width: 100%; }
-#main .treasure .openRules { position: absolute; left: 0; bottom: 1.8rem; width: 95%; padding: 0 2.5%; font-size: 0.15rem; font-weight: 500; color: #fff; line-height: 0.2rem; }
+#main .treasure { flex: 1; position: relative; margin-top: 0.35rem; width: 100%; }
+#main .treasure img { position: absolute; left: 0; bottom: 0; display: block; width: 100%; }
+#main .treasure .openRules { position: absolute; left: 0; bottom: 1.2rem; width: 95%; padding: 0 2.5%; font-size: 0.15rem; font-weight: 500; color: #fff; line-height: 0.2rem; }
 #main .treasure .openRules .h4 { font-size: 0.16rem; text-align: center; line-height: 0.3rem; }
 
 #footer { z-index: 9999; position: fixed; left: 0; bottom: 0; height: 0.8rem; }

@@ -22,7 +22,7 @@
 		<div class="treasure">
 			<img src="./img/treasure.png" alt="" />
 			<div class="openRules">
-				<p class="h4" onclick="javascript:history.back(-1);">宝箱规则</p>
+				<p class="h4">宝箱规则</p>
 				<p>1、活动期间开启神秘宝箱可获得金币或现金 </p>
 				<p>2、神秘宝箱开启之后三个小时您可以再次开启宝箱</p>
 			</div>
@@ -67,11 +67,11 @@
 					//开启宝箱获取金币数
 					$(".getGold").text(response.data.getGold);
 					if(response.data.msg=="可以开宝箱"){
-						$(".open").show();$(".countdown").hide();
-						$(".getGold").text(response.data.getGold);
+						$(".open").show();$(".countdown").hide();						
 					}else if(response.data.msg=="该用户还没开过宝箱,可以开启宝箱"){
-						$(".open").show();$(".countdown").hide();
-						$(".getGold").text(response.data.getGold);
+						$(".open").show();$(".countdown").hide();						
+					}else if(response.data.msg=="还未到下次开宝箱时间，返回下次开箱时间"){
+						$(".open").hide();$(".countdown").show();						
 					}
 					else{
 						$(".open").hide();$(".countdown").show();						
@@ -86,9 +86,17 @@
 			$(".open").on("click",function(){
 				axios.get("http://47.96.1.236:8080/zaotoutiao-api-home-1.0.0//open/treasure?userId="+userID+"&isSubmit=1")
 				.then(function(response){
+					console.log(response);
+					if(response.data.msg=="还未到下次开宝箱时间，返回下次开箱时间"){
+						$(".open").show();$(".countdown").hide();
+						$(".mask").hide();
+					}else{
+						$(".open").hide();$(".countdown").show();
+						$(".mask").show();
+					}
 					/*countTime();*/
-					$(".open").hide();$(".countdown").show();
-					$(".mask").show();
+					
+					
 				})
 			   .catch(function(error){
 			   		console.log(error);

@@ -3,13 +3,13 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>视频分享详情页</title>
+    <title>新闻分享详情页</title>
     <link rel="stylesheet" href="./css/reset.css" />
     <link rel="stylesheet" href="./css/newsShare.css" /> 
 </head>
 <body>
 	<iframe name="ifm" id="iframepage" style="background-color: transparent;" marginwidth="0" marginheight="0" frameborder="0"  scrolling="yes" width="100%" src="" style="overflow: hidden">		
-	</iframe>		
+	</iframe>
 	<section id="main">				
 		<div class="title"><span></span>相关推荐</div>
 		<ul class="newsList">
@@ -28,10 +28,12 @@
 				</div>
 			</li>
 			</a>
+		
 		</ul>
 	</section>
+
 	<div class="shareLink">
-		<div class="icon"><span></span><span>头条TVD</span></div>
+		<div class="icon"><span></span><span>头条TV</span></div>
 		<span>看新闻赚零花钱</span>
 		<a id="openLink" href="#">打开</a>
 	</div>
@@ -41,16 +43,17 @@
 	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 	<script type="text/javascript">
 			var newsUrl = window.location.href;
-			newsUrl =  "http://47.96.1.236:8080/zttH5/newsShare.html?appVersion=0&brand=apple&device=1&domain=http://47.96.1.236:8080/zaotoutiao-api-home-1.0.0/&height=667&idIdfa=C83B320E-16C2-4324-BEC9-C43C0238E410&idImei=xxxx&ip=183.156.227.161&model=iPhone&osType=2&osVersion=11.3&packageName=com.muki.TopLineTV&type=1&urls=information/list&userAgent=Mozilla/5.0%20(iPhone;%20CPU%20iPhone%20OS%2011_3%20like%20Mac%20OS%20X)%20AppleWebKit/605.1.15%20(KHTML,%20like%20Gecko)%20Mobile/15E216&userId=333&width=375&****zlink=https://lkme.cc/GJD/kzeKlr1DK&****znewsUrl=http://sh.qihoo.com/mob/transcoding?url=http%253A%252F%252Fwww.yidianzixun.com%252F0IkHZpB0&check=e1e2646c0767c673&uid=36111c0e19d8fd8679613ee590b39f87&sign=ex%255F2eb604c1&sv=1&templetctl=7&360newsdetail=1&hsitetype=1&ucheck=dd2e144b7a803e96cf65dde717b9febe&hscmt=1";	
+/*			newsUrl =  "http://47.96.1.236:8080/zttH5/newsShare.html?appVersion=0&brand=apple&device=1&domain=http://47.96.1.236:8080/zaotoutiao-api-home-1.0.0/&height=667&idIdfa=C83B320E-16C2-4324-BEC9-C43C0238E410&idImei=xxxx&ip=183.156.227.161&model=iPhone&osType=2&osVersion=11.3&packageName=com.muki.TopLineTV&type=1&urls=information/list&userAgent=Mozilla/5.0%20(iPhone;%20CPU%20iPhone%20OS%2011_3%20like%20Mac%20OS%20X)%20AppleWebKit/605.1.15%20(KHTML,%20like%20Gecko)%20Mobile/15E216&userId=333&width=375&****zlink=https://lkme.cc/GJD/kzeKlr1DK&****znewsUrl=http://sh.qihoo.com/mob/transcoding?url=http%253A%252F%252Fwww.yidianzixun.com%252F0IkHZpB0&check=e1e2646c0767c673&uid=36111c0e19d8fd8679613ee590b39f87&sign=ex%255F2eb604c1&sv=1&templetctl=7&360newsdetail=1&hsitetype=1&ucheck=dd2e144b7a803e96cf65dde717b9febe&hscmt=1";*/	
 /*			newsUrl = "http://47.96.1.236:8080/zttH5/newsShare.html?appVersion=1.2.3&brand=apple&device=0&domain=http://47.96.1.236:8080/zaotoutiao-api-home-1.0.0/&height=1136&idIdfa=(UIDevice.current.identifierForVendor?.uuidString)!&idImei=eefcebef9c3baffb&infoId=b044478a815240cc&ip=192.168.0.124&model=iPhone6&osType=1&osVersion=1.1.1&packageName=com.muki.topline&type=1&urls=information/list&userAgent=&userId=331&width=22&z****zlink=https://lkme.cc/GJD/e53ZATnCK&z****znewsUrl=http://sh.qihoo.com/mob/transcoding?url=http%3A%2F%2Fent.163.com%2F18%2F0409%2F08%2FDEUIPUJD00038FO9.html&check=724e65fe71157641&uid=1185ac1cb69b143ff1615e0beda40507&sign=ex%5F2eb604c1&sv=1&templetctl=7&360newsdetail=1&articlety=zmt&hsitetype=1&ucheck=f95b630068ef84f0ccd1373f49264a91&hscmt=1&from=singlemessage"*///android
 			var urlResult = decodeURI(newsUrl).split("****");
-			var urlPara = urlResult[0].split("?")[1];
+			var urlPara = urlResult[0];
 			/**
 			 * 获取Url地址中userId参数   userID
 			 */
+			console.log(urlPara.substr(urlPara.indexOf("?")+1));
 			function getUrlParams(name) { 
 			    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i"); //定义正则表达式 
-			    var r = urlPara.match(reg);  
+			    var r = urlPara.substr(urlPara.indexOf("?")+1).match(reg);  
 			    if (r != null) return unescape(r[2]); 
 			    return null; 
 			};
@@ -122,7 +125,7 @@
 			/**
 			 * iframe高度全屏
 			 */
-		    $('#iframepage').css("height",$(window).height()+"px");		    
+		    $('#iframepage').css("height",$(window).height()+"px" );		    
 			/**
 			 * 文章相关推荐
 			 */
@@ -204,6 +207,7 @@
 			 * 深度链接
 			 */
 			$("#openLink").attr("href",zlink.split("&")[0]);
+/*			$("#openLink").attr("href","https://www.baidu.com/");*/
 			/**
 		     * iframe 新闻链接
 		     */

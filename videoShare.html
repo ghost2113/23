@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>新闻分享详情页</title>
+    <title>视频分享详情页</title>
     <link rel="stylesheet" href="./css/reset.css" />
     <link rel="stylesheet" href="./css/video-js.css" /> 
     <link rel="stylesheet" href="./css/newsShare.css" /> 
@@ -18,7 +18,7 @@
 </head>
 <body>
 	<div class="m">
-      <video id="my-video" class="video-js myVideo" controls preload="auto" poster="./img/100G.png" data-setup="{}" webkit-playsinline="true" playsinline="true">
+      <video id="my-video" class="video-js myVideo" controls preload="auto" poster="" data-setup="{}" webkit-playsinline="true" playsinline="true">
         <source class="videoSrc" src="http://jq22com.qiniudn.com/jq22-sp.mp4" type="video/mp4">
         <p class="vjs-no-js"> To view this video please enable JavaScript, and consider upgrading to a web browser that <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a> </p>
       </video>
@@ -28,8 +28,7 @@
 			var myPlayer = videojs('my-video');
 			videojs("my-video").ready(function(){
 				var myPlayer = this;
-				/*myPlayer.play();*/
-				
+				/*myPlayer.play();*/				
 			});
 			  
 		</script> 
@@ -37,7 +36,7 @@
 	<div class="videoCon">
 		<p class="videoName">迪丽热巴《烈火如歌》如歌红衣娇俏惊艳 银雪白衣颠倒娇俏惊艳 银雪白衣颠倒娇俏惊艳 银雪白衣颠倒娇俏惊艳 银雪白衣颠倒</p>
 		<div class="videoInfo">
-			<span class="videoSource">yuou哭的</span>
+			<span class="videoSource">优酷</span>
 			<span class="playCnt">164</span>次播放
 		</div>
 	</div>
@@ -62,12 +61,9 @@
 		</ul>
 	</section>
 	<div class="shareLink">
-		<div class="icon"><span></span><span>头条TVD</span></div>
-		
-		
-		
-		
-		<a id="openLink" href="">打开</a>
+		<div class="icon"><span></span><span>头条TVD</span></div>		
+		<span>看新闻赚零花钱</span>		
+		<a id="openLink" href="#">打开</a>
 	</div>	
 </body>
 	<script type="text/javascript" src="./js/rem.js"></script>
@@ -76,18 +72,20 @@
 	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 	<script type="text/javascript">		
 			var videoUrl = window.location.href;
-			videoUrl = 						
-			"http://47.96.1.236:8080/zttH5/newsShare.html?appVersion=1.2.3&backdata=1&brand=apple&domain=http://47.96.1.236:8080/zaotoutiao-api-home-1.0.0/&extdata=eyJzdHJhdGVneSI6IjIuNi4zMC44LmJ1dHdtM3Y3NWo4Mi45LjJ1ei4zLnZueXJyaC4uMS40Y3h4bmYzY3FramMiLCJjaGFubmVsX2lkIjoiMjQifQ==&height=667&idIdfa=C83B320E-16C2-4324-BEC9-C43C0238E410&idImei=xxxx&infoId=9q0KkXapK3ax&ip=183.156.227.161&model=iPhone&osType=2&osVersion=11.3&packageName=com.muki.TopLineTV&type=1&urls=video/list&userAgent=Mozilla/5.0%20(iPhone;%20CPU%20iPhone%20OS%2011_3%20like%20Mac%20OS%20X)%20AppleWebKit/605.1.15%20(KHTML,%20like%20Gecko)%20Mobile/15E216&userId=333&videoOsType=ios&width=375&****zlink=https://lkme.cc/GJD/kzeKlr1DK";
+/*			videoUrl = 						
+			"http://47.96.1.236:8080/zttH5/newsShare.html?appVersion=1.2.3&backdata=1&brand=apple&domain=http://47.96.1.236:8080/zaotoutiao-api-home-1.0.0/&extdata=eyJzdHJhdGVneSI6IjIuNi4zMC44LmJ1dHdtM3Y3NWo4Mi45LjJ1ei4zLnZueXJyaC4uMS40Y3h4bmYzY3FramMiLCJjaGFubmVsX2lkIjoiMjQifQ==&height=667&idIdfa=C83B320E-16C2-4324-BEC9-C43C0238E410&idImei=xxxx&infoId=9q0KkXapK3ax&ip=183.156.227.161&model=iPhone&osType=2&osVersion=11.3&packageName=com.muki.TopLineTV&type=1&urls=video/list&userAgent=Mozilla/5.0%20(iPhone;%20CPU%20iPhone%20OS%2011_3%20like%20Mac%20OS%20X)%20AppleWebKit/605.1.15%20(KHTML,%20like%20Gecko)%20Mobile/15E216&userId=333&videoOsType=ios&width=375&****zlink=https://lkme.cc/GJD/kzeKlr1DK";*///ios
+/*			videoUrl = 						
+			"http://47.96.1.236:8080/zttH5/videoShare.html?appVersion=1.2.3&brand=apple&domain=http://47.96.1.236:8080/zaotoutiao-api-home-1.0.0/&extdata=eyJzdHJhdGVneSI6IjIuNi4zMC44LmJ3ZDN3NDZhNHA0dS45LjNtLjIyLjFkeDhiY2suLjMwMC4xZ3ZjcGZiOTU3MTIiLCJjaGFubmVsX2lkIjoiMjQifQ==&height=1136&id=nrVDa7jOW77X&idImei=eefcebef9c3baffb&infoId=nrVDa7jOW77X&ip=192.168.0.124&model=iPhone6&osType=1&osVersion=1.1.2&packageName=com.muki.topline&page=1&type=1&urls=information/list&userAgent=&userId=331&videoOsType=android&width=640&z****zlink=https://lkme.cc/GJD/e53ZATnCK&z****znewsUrl=http://p0.qhimg.com/video/568_320_70/t0137e30ab7129c9902.webp&from=singlemessage";*///android
 	
 			var urlResult = decodeURI(videoUrl).split("****");
 			var urlPara = urlResult[0].split("?")[1];
 			/**
 			 * 获取Url地址中userId参数   userID
 			 */
-			console.log("canshu",urlPara);
+			console.log("参数",urlPara);
 			function getUrlParams(name) { 
 			    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i"); //定义正则表达式 
-			    var r = urlPara.match(reg);  
+			    var r = urlPara.substr(urlPara.indexOf("?")+1).match(reg);   
 			    if (r != null) return unescape(r[2]); 
 			    return null; 
 			};
@@ -132,7 +130,7 @@
 			var ip = getUrlParams("ip");
 			var domain = getUrlParams("domain");
 			var urls = getUrlParams("urls");
-			var userAgent = getUrlParams("userAgent");
+			var userAgent = navigator.userAgent;
 			var zlink = urlResult[1].split("zlink=")[1];//深度链接
 			var id = getUrlParams("infoId");//详情
 			device = 1;
@@ -171,6 +169,7 @@
 			  })
 			.then(function(res){
 				console.log("详情",res);
+				//视频信息
 				var item = res.data.data;
 					$(".vjs-poster").css("background-image","url("+item.imgUrl+")");
 					$(".vjs-tech").attr("src",item.url);
@@ -184,8 +183,12 @@
 			/**
 			 * 打开
 			 */
-			$("#openLink").attr("href",zlink);    
-		   
+			
+			$("#openLink").attr("href",zlink.split("&")[0]); 
+/*		   $("#openLink").on("click",function(){
+		   	console.log("tiaozhuan");
+		   	window.location.href = zlink;
+		   });*/
 			axios({	
 			  url: '/video/related',
 			  method: 'get', // 默认是 get
@@ -238,7 +241,7 @@
 							+'</li>'
 						+'</a>';
 			  		}else if(item.type == 2){
-			  			console.log("zheshiyitiaogaunggao",index);
+			  			console.log("广告",index);
 			  			_html += 
 			  			'<a href="'+ item.obj.cUrl+'">'
 					  		+'<li class="items">'
@@ -255,7 +258,7 @@
 						+'</a>';
 			  		}					
 			  	})		
-			  	console.log("_html",_html);
+			  	console.log("_html渲染内容",_html);
 			  	//渲染相关推荐
 			  	$(".newsList").eq(0).html(_html);
 			 })
@@ -277,10 +280,13 @@
 /*	            //将倒计时赋值到div中  				
 				console.log(`${h}:${m}:${s}`);*/
 				if(m!=0&&h===0){
+					if(m=="undefiend"){showTime = "刚刚";}
 					showTime = m+"分钟前";
 				}else if(m===0){
+					if(s=="undefiend"){showTime = "刚刚";}
 					showTime = s+"秒前";
-				}else if(h!=0){
+				}else if(h!=0){	
+					if(h=="undefiend"){showTime = "刚刚";}
 					showTime = h+"小时前";
 				}
 				return showTime;

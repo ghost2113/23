@@ -65,7 +65,7 @@
 $fontColor:#f8e5a1;
 body{
     font-size:14px; 
-    overflow:auto;   
+    overflow:hidden;   
 }
 #main{
     position:relative;
@@ -73,6 +73,7 @@ body{
     padding-bottom:0.25rem;
     background:url(../img/strategy.png) no-repeat center center;
     background-size:100% auto;
+    overflow:auto;
     .strategyBg{
         z-index:-9999;
         position:absolute;

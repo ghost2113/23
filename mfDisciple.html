@@ -22,7 +22,7 @@
 			<span class="rules">活动规则</span>
 			<span class="list" onclick="toDiscList()">徒弟列表</span>
 		</div>
-		<p class="textTime">— 活动时间：3月1日-3月31日  —</p>
+		<p class="textTime">— 活动时间：4月1日-4月31日  —</p>
 		<img class="conBg" src="./img/nfDisTitBg.png" alt="error" />
 		<div class="discCon">
 			<ul class="discTab">
@@ -78,8 +78,7 @@
 				</ul>
 			</div>
 		</div>
-	</div>
-	
+	</div>	
 </body>
 <script type="text/javascript" src="./js/rem.js"></script>
 	<script type="text/javascript" src="./js/jquery-3.3.1.min.js"></script>
@@ -112,9 +111,9 @@
 			$.ajax({
 				url:"http://47.96.1.236:8080/zaotoutiao-api-home-1.0.0/activity/reward?userId="+userID+"&startDate=&startEnd=",
 				type:"get",
-				dataType:"json",
 				async:true,
 				success:function(res){
+					console.log(res);
 					index = danList.indexOf(res.dan);
 					$(".dan").text(res.dan);
 					$(".newNum").text(res.newNum);
