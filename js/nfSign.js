@@ -1,5 +1,33 @@
 		
     var signFun = function() {
+    		/**
+			 * 完美解决safari、微信浏览器下拉回弹效果和上拉空白的bug
+			 * @param {Object} el 滑动元素
+			 */
+			var overscroll = function(el) {  
+			    el.addEventListener('touchstart', function() {  
+			        var top = el.scrollTop  
+			        ,totalScroll = el.scrollHeight  
+			        ,currentScroll = top + el.offsetHeight;  
+			        if(top === 0) {  
+			            el.scrollTop = 1;  
+			        }else if(currentScroll === totalScroll) {  
+			            el.scrollTop = top - 1;  
+			        }  
+			    });  
+			  
+			    el.addEventListener('touchmove', function(evt) {  
+			    if(el.offsetHeight < el.scrollHeight)  
+			        evt._isScroller = true;  
+			    });  
+			}  
+			          
+			overscroll(document.querySelector('#main'));  
+			document.body.addEventListener('touchmove', function(evt) {  
+			    if(!evt._isScroller) {  
+			        evt.preventDefault();  
+			    }  
+			});  
 		//获取Url地址中userId参数
 		function getUrlParams(name) { 
 		    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i"); //定义正则表达式 

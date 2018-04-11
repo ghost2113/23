@@ -62,20 +62,21 @@
 			axios.get("http://47.96.1.236:8080/zaotoutiao-api-home-1.0.0//open/treasure?userId="+userID+"&isSubmit=0")
 				.then(function(response){
 					console.log(response);
-					console.log({"现在时间":timestampToTime(response.data.leadTime.now),"下次开启时间":timestampToTime(response.data.leadTime.nextOpen),"创建时间":timestampToTime(response.data.leadTime.createDate)});	
+					/*console.log({"现在时间":timestampToTime(response.data.leadTime.now),"下次开启时间":timestampToTime(response.data.leadTime.nextOpen),"创建时间":timestampToTime(response.data.leadTime.createDate)});*/	
 					nextOpen = response.data.leadTime.nextOpen;
-					//开启宝箱获取金币数
-					$(".getGold").text(response.data.getGold);
 					if(response.data.msg=="可以开宝箱"){
 						$(".open").show();$(".countdown").hide();						
 					}else if(response.data.msg=="该用户还没开过宝箱,可以开启宝箱"){
 						$(".open").show();$(".countdown").hide();						
+					}else if(response.data.msg=="该用户还没开过宝箱,直接开启宝箱"){
+						$(".open").show();$(".countdown").hide();						
+					}else if(response.data.msg=="可以开宝箱，已开"){
+						$(".open").hide();$(".countdown").show();						
+					}else if(response.data.msg=="已经达到今日最多开宝箱获得金币数"){
+						$(".open").hide();$(".countdown").show();						
 					}else if(response.data.msg=="还未到下次开宝箱时间，返回下次开箱时间"){
 						$(".open").hide();$(".countdown").show();						
-					}
-					else{
-						$(".open").hide();$(".countdown").show();						
-					}
+					}										
 				})
 			   .catch(function(error){
 			   		console.log(error);
@@ -86,35 +87,15 @@
 			$(".open").on("click",function(){
 				axios.get("http://47.96.1.236:8080/zaotoutiao-api-home-1.0.0//open/treasure?userId="+userID+"&isSubmit=1")
 				.then(function(response){
-					console.log(response);
-					if(response.data.msg=="还未到下次开宝箱时间，返回下次开箱时间"){
-						$(".open").show();$(".countdown").hide();
-						$(".mask").hide();
-					}else{
-						$(".open").hide();$(".countdown").show();
-						$(".mask").show();
-					}
-					/*countTime();*/
-					
-					
+					//开启宝箱获取金币数
+					$(".getGold").text(response.data.getGold);
+					$(".mask").show();
+					console.log("开启宝箱返回信息",response);					
 				})
 			   .catch(function(error){
 			   		console.log(error);
 			   })				
 			});
-
-			//时间戳转日期
-			function timestampToTime(timestamp) {
-				console.log(timestamp);
-		        var date = new Date(parseInt(timestamp));//时间戳为10位需*1000，时间戳为13位的话不需乘1000
-		        Y = date.getFullYear() + '-';
-		        M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
-		        D = date.getDate() + ' ';
-		        h = date.getHours() + ':';
-		        m = date.getMinutes() + ':';
-		        s = date.getSeconds();
-		        return Y+M+D+h+m+s;
-		    }
 			//获取倒计时时间
 			function countdown(leftTime){
 				var leftTime = nextOpen - new Date();

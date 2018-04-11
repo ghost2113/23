@@ -27,24 +27,25 @@
 					<img src="./img/userPhoto.jpg" alt="" />
 				</div>
 			</li>
-			</a>
-		
+			</a>		
 		</ul>
 	</section>
 
 	<div class="shareLink">
 		<div class="icon"><span></span><span>头条TV</span></div>
 		<span>看新闻赚零花钱</span>
-		<a id="openLink" href="#">打开</a>
+		<a class="linkedme" id="openLink" href="#">打开</a>
 	</div>
-	<script type="text/javascript" src="./js/rem.js"></script>
+</body>
+<script type="text/javascript" src="./js/rem.js"></script>
 	<script type="text/javascript" src="./js/jquery-3.3.1.min.js"></script>
 	<script type="text/javascript" src="./js/fastclick.js"></script>
 	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 	<script type="text/javascript">
 			var newsUrl = window.location.href;
-/*			newsUrl =  "http://47.96.1.236:8080/zttH5/newsShare.html?appVersion=0&brand=apple&device=1&domain=http://47.96.1.236:8080/zaotoutiao-api-home-1.0.0/&height=667&idIdfa=C83B320E-16C2-4324-BEC9-C43C0238E410&idImei=xxxx&ip=183.156.227.161&model=iPhone&osType=2&osVersion=11.3&packageName=com.muki.TopLineTV&type=1&urls=information/list&userAgent=Mozilla/5.0%20(iPhone;%20CPU%20iPhone%20OS%2011_3%20like%20Mac%20OS%20X)%20AppleWebKit/605.1.15%20(KHTML,%20like%20Gecko)%20Mobile/15E216&userId=333&width=375&****zlink=https://lkme.cc/GJD/kzeKlr1DK&****znewsUrl=http://sh.qihoo.com/mob/transcoding?url=http%253A%252F%252Fwww.yidianzixun.com%252F0IkHZpB0&check=e1e2646c0767c673&uid=36111c0e19d8fd8679613ee590b39f87&sign=ex%255F2eb604c1&sv=1&templetctl=7&360newsdetail=1&hsitetype=1&ucheck=dd2e144b7a803e96cf65dde717b9febe&hscmt=1";*/	
-/*			newsUrl = "http://47.96.1.236:8080/zttH5/newsShare.html?appVersion=1.2.3&brand=apple&device=0&domain=http://47.96.1.236:8080/zaotoutiao-api-home-1.0.0/&height=1136&idIdfa=(UIDevice.current.identifierForVendor?.uuidString)!&idImei=eefcebef9c3baffb&infoId=b044478a815240cc&ip=192.168.0.124&model=iPhone6&osType=1&osVersion=1.1.1&packageName=com.muki.topline&type=1&urls=information/list&userAgent=&userId=331&width=22&z****zlink=https://lkme.cc/GJD/e53ZATnCK&z****znewsUrl=http://sh.qihoo.com/mob/transcoding?url=http%3A%2F%2Fent.163.com%2F18%2F0409%2F08%2FDEUIPUJD00038FO9.html&check=724e65fe71157641&uid=1185ac1cb69b143ff1615e0beda40507&sign=ex%5F2eb604c1&sv=1&templetctl=7&360newsdetail=1&articlety=zmt&hsitetype=1&ucheck=f95b630068ef84f0ccd1373f49264a91&hscmt=1&from=singlemessage"*///android
+			/*			newsUrl =  "http://47.96.1.236:8080/zttH5/newsShare.html?appVersion=0&brand=apple&device=1&domain=http://47.96.1.236:8080/zaotoutiao-api-home-1.0.0/&height=667&idIdfa=C83B320E-16C2-4324-BEC9-C43C0238E410&idImei=xxxx&ip=183.156.227.161&model=iPhone&osType=2&osVersion=11.3&packageName=com.muki.TopLineTV&type=1&urls=information/list&userAgent=Mozilla/5.0%20(iPhone;%20CPU%20iPhone%20OS%2011_3%20like%20Mac%20OS%20X)%20AppleWebKit/605.1.15%20(KHTML,%20like%20Gecko)%20Mobile/15E216&userId=333&width=375&****zlink=https://lkme.cc/GJD/kzeKlr1DK&****znewsUrl=http://sh.qihoo.com/mob/transcoding?url=http%253A%252F%252Fwww.yidianzixun.com%252F0IkHZpB0&check=e1e2646c0767c673&uid=36111c0e19d8fd8679613ee590b39f87&sign=ex%255F2eb604c1&sv=1&templetctl=7&360newsdetail=1&hsitetype=1&ucheck=dd2e144b7a803e96cf65dde717b9febe&hscmt=1";*/	
+			/*newsUrl = "http://47.96.1.236:8080/zttH5/newsShare.html?appVersion=1.2.3&brand=apple&device=0&domain=http://47.96.1.236:8080/zaotoutiao-api-home-1.0.0/&height=1136&idIdfa=(UIDevice.current.identifierForVendor?.uuidString)!&idImei=eefcebef9c3baffb&infoId=b044478a815240cc&ip=192.168.0.124&model=iPhone6&osType=1&osVersion=1.1.1&packageName=com.muki.topline&type=1&urls=information/list&userAgent=&userId=331&width=22&z****zlink=https://lkme.cc/GJD/e53ZATnCK&z****znewsUrl=http://sh.qihoo.com/mob/transcoding?url=http%3A%2F%2Fent.163.com%2F18%2F0409%2F08%2FDEUIPUJD00038FO9.html&check=724e65fe71157641&uid=1185ac1cb69b143ff1615e0beda40507&sign=ex%5F2eb604c1&sv=1&templetctl=7&360newsdetail=1&articlety=zmt&hsitetype=1&ucheck=f95b630068ef84f0ccd1373f49264a91&hscmt=1&from=singlemessage"*///android
+			
 			var urlResult = decodeURI(newsUrl).split("****");
 			var urlPara = urlResult[0];
 			/**
@@ -96,10 +97,9 @@
 			var domain = getUrlParams("domain");
 			var urls = getUrlParams("urls");
 			var userAgent = navigator.userAgent;
-			var zlink = urlResult[1].split("zlink=")[1];//深度链接
 			var newsUrl = urlResult[2].split("newsUrl=")[1];//新闻链接
 			var infoId = getUrlParams("infoId");//详情
-			console.log({"zlink":zlink,"newsUrl":newsUrl});
+			console.log({"newsUrl":newsUrl});
 			console.log({
 			     "device":device,
 			     "userId":userId,
@@ -118,7 +118,6 @@
 			     "domain":domain,
 			     "urls": urls,
 			     "userAgent":userAgent,
-			     "zLink":zlink,
 			     "newsUrl":newsUrl,
 			     "infoId":infoId
 			});
@@ -204,11 +203,6 @@
 				console.log(error);
 			});
 			/**
-			 * 深度链接
-			 */
-			$("#openLink").attr("href",zlink.split("&")[0]);
-/*			$("#openLink").attr("href","https://www.baidu.com/");*/
-			/**
 		     * iframe 新闻链接
 		     */
 			$('#iframepage').attr("src",newsUrl);
@@ -237,11 +231,36 @@
 				return showTime;
 				/*console.log(showTime);*/
 			};
-
-			
 	</script>
+	<script src="https://static.lkme.cc/linkedme.min.js" ></script>
+	<script type="text/javascript">
+      linkedme.init("235d6842193c1bfb34204dd2ee7a3585", {type:"live"}, null);
+      var data = {};
+      data.type = "live";  //表示现在使用线上模式,如果填写"test", 表示测试模式.【可选】
+      data.feature = "功能名称"; // 自定义深度链接功能，多个用逗号分隔，【可选】
+      data.stage = "阶段名称"; // 自定义深度链接阶段，多个用逗号分隔，【可选】
+      data.channel = "渠道名称"; // 自定义深度链接渠道，多个用逗号分隔，【可选】
+      data.tags = "标签名称"; // 自定义深度链接标签，多个用逗号分隔，【可选】
+      data.ios_custom_url = "http://www.pgyer.com/Headline"; // 自定义iOS平台下App的下载地址，如果是AppStore的下载地址可以不用填写，需填写http或https【可选】
+      data.ios_direct_open = true; //未安装情况下，设置为true为直接打开ios_custom_url，默认为false【可选】
+      data.android_custom_url = "http://47.96.1.236:8080/app-debug.apk";// 自定义安卓平台下App的下载地址，需填写http或https【可选】
+      data.android_direct_open =true; //设置为true，所有情况下跳转android_custom_url，默认为false【可选】
+      var value1 = 1;
+      var value2 = 2;
+      data.params = '{"key1":"'+value1+'","key2":"'+value2+'"}'; //注意单引号和双引号的位置
+      linkedme.link(data, function(err, response){
+        if(err){
+          // 生成深度链接失败，返回错误对象err
+        } else {
+			/**
+			 * 深度链接
+			 */
+			$("#openLink").attr("href",response.url);
+        	/*document.body.innerHTML += '<a class="linkedme" href="'+response.url+'">LinkedME深度链接</a>'*/
+        }
+      },false);
 
-</body>
+	</script>
 </html>
 
 

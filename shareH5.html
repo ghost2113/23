@@ -3,16 +3,11 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>H5分享页面</title>
+    <title>春风十里不如红包送你，下载抢先领取5元现金</title>
     <link rel="stylesheet" href="./css/reset.css" />
     <link rel="stylesheet" href="./css/common.css" />
     <link rel="stylesheet" href="./css/shareH5.css" />
     <script src="js/swiper-4.2.0.min.js"></script>
-    <script type="text/javascript" type="text/javascript">    	
-   		document.addEventListener('plusready', function(){
-   			//console.log("所有plus api都应该在此事件发生后调用，否则会出现plus is undefined。"   			
-   		});   		
-    </script>
 </head>
 <body>
 	<section id="main">	
@@ -20,26 +15,75 @@
 		    <div class="swiper-wrapper" id="notice">
 		        <div class="swiper-slide notice">
 		        	<div class="user">	
-		        		<img src="./img/shareUser.png" alt="" />
+		        		<img src="./img/shareUser.jpg" alt="" />
 					</div>
-					<div class="userName">tiantiantian</div>
+					<div class="userName">手机用户01</div>
+					<div class="getMoney">微信提现<span>35</span>元</div> 
+					<div class="time"><span class="showTime">6秒</span>前</div>
+		        </div>
+		        <div class="swiper-slide notice">
+		        	<div class="user">	
+		        		<img src="./img/shareUser1.jpg" alt="" />
+					</div>
+					<div class="userName">曹振大大</div>
+					<div class="getMoney">微信提现<span>45</span>元</div> 
+					<div class="time"><span class="showTime">8秒</span>前</div>
+		        </div>
+		        <div class="swiper-slide notice">
+		        	<div class="user">	
+		        		<img src="./img/shareUser2.jpg" alt="" />
+					</div>
+					<div class="userName">qingqing</div>
+					<div class="getMoney">微信提现<span>50</span>元</div> 
+					<div class="time"><span class="showTime">34秒</span>前</div>
+		        </div>
+		        <div class="swiper-slide notice">
+		        	<div class="user">	
+		        		<img src="./img/shareUser3.jpg" alt="" />
+					</div>
+					<div class="userName">闫哥哥</div>
+					<div class="getMoney">微信提现<span>29</span>元</div> 
+					<div class="time"><span class="showTime">45秒</span>前</div>
+		        </div>
+		        <div class="swiper-slide notice">
+		        	<div class="user">	
+		        		<img src="./img/shareUser4.jpg" alt="" />
+					</div>
+					<div class="userName">隔壁老王</div>
+					<div class="getMoney">微信提现<span>78</span>元</div> 
+					<div class="time"><span class="showTime">23秒</span>前</div>
+		        </div>
+		        <div class="swiper-slide notice">
+		        	<div class="user">	
+		        		<img src="./img/shareUser5.jpg" alt="" />
+					</div>
+					<div class="userName">冰冰*_*</div>
+					<div class="getMoney">微信提现<span>125</span>元</div> 
+					<div class="time"><span class="showTime">5秒</span>前</div>
+		        </div>
+		        <div class="swiper-slide notice">
+		        	<div class="user">	
+		        		<img src="./img/shareUser6.jpg" alt="" />
+					</div>
+					<div class="userName">hahaha</div>
+					<div class="getMoney">微信提现<span>100</span>元</div> 
+					<div class="time"><span class="showTime">1秒</span>前</div>
+		        </div>
+		        <div class="swiper-slide notice">
+		        	<div class="user">	
+		        		<img src="./img/shareUser7.jpg" alt="" />
+					</div>
+					<div class="userName">这是个昵称</div>
 					<div class="getMoney">微信提现<span>100</span>元</div> 
 					<div class="time"><span class="showTime">1秒</span>前</div>
 		        </div>
 		    </div>
 		</div>
-		<!--<div class="notice">			
-			<div class="user">				
-			</div>
-			<div class="userName"></div>
-			<div class="getMoney">微信提现<span>100</span>元</div> 
-			<div class="time"><span>10分钟</span>前</div>
-		</div>-->
 		<div class="shareTit"><img src="./img/shareTit.png" alt="" /></div>
 		<div class="openPacket">
 			<div class="packetNum"></div>
 			<div class="prompt">
-				<p>春风十年不如红包送你</p>
+				<p>春风十里不如红包送你</p>
 				<p>下载抢先领取5元现金</p>
 			</div>
 			<a id="dlApp" href="#"></a>
@@ -71,111 +115,35 @@
 			    if (r != null) return unescape(r[2]); 
 			    return null; 
 			};
-			/**
-			 * 定义变量   		
-			 */
-			var userID = getUrlParams("userId");
-			var link = getUrlParams("link");
+		}
+	</script>
+	<script src="https://static.lkme.cc/linkedme.min.js" ></script>
+	<script type="text/javascript">
+      linkedme.init("235d6842193c1bfb34204dd2ee7a3585", {type:"live"}, null);
+      var data = {};
+      data.type = "live";  //表示现在使用线上模式,如果填写"test", 表示测试模式.【可选】
+      data.feature = "功能名称"; // 自定义深度链接功能，多个用逗号分隔，【可选】
+      data.stage = "阶段名称"; // 自定义深度链接阶段，多个用逗号分隔，【可选】
+      data.channel = "渠道名称"; // 自定义深度链接渠道，多个用逗号分隔，【可选】
+      data.tags = "标签名称"; // 自定义深度链接标签，多个用逗号分隔，【可选】
+      data.ios_custom_url = "http://www.pgyer.com/Headline"; // 自定义iOS平台下App的下载地址，如果是AppStore的下载地址可以不用填写，需填写http或https【可选】
+      data.ios_direct_open = true; //未安装情况下，设置为true为直接打开ios_custom_url，默认为false【可选】
+      data.android_custom_url = "http://47.96.1.236:8080/app-debug.apk";// 自定义安卓平台下App的下载地址，需填写http或https【可选】
+      data.android_direct_open =true; //设置为true，所有情况下跳转android_custom_url，默认为false【可选】
+      var value1 = 1;
+      var value2 = 2;
+      data.params = '{"key1":"'+value1+'","key2":"'+value2+'"}'; //注意单引号和双引号的位置
+      linkedme.link(data, function(err, response){
+        if(err){
+          // 生成深度链接失败，返回错误对象err
+        } else {
 			/**
 			 * 立即领取
 			 */
-			/*link = 'http://127.0.0.1:8020/ztt_H5/newsShare.html?__hbt=1523153896402';*/
-			$("#dlApp").attr("href",link);
-			/*alert(link);*/
-			/**
-			 * 用户提现记录
-			 */
-			var _html = '';
-			axios({	
-			  url: 'cash/list',
-			  method: 'get', // 默认是 get
-			  baseURL: 'http://47.96.1.236:8080/zaotoutiao-api-home-1.0.0/',
-			 /* params: {
-			     userId:userID,
-			  }*/
-			  })
-			.then(function(res){
-				console.log(res);
-				res.data.data.forEach(function(item,index){
-					var timeDiff =new Date() - new Date(item.createDate).getTime();
-					_html+=
-					 '<div class="swiper-slide notice">'
-			        	+'<div class="user">'
-			        		+'<img src="'+item.headPath+'" alt="" />'
-						+'</div>'
-						+'<div class="userName">'+item.nickName+'</div>'
-						+'<div class="getMoney">微信提现<span>'+item.money+'</span>元</div>'
-						+'<div class="time"><span class="showTime">'+time(timeDiff)+'</span>前</div>'
-			        +'</div>';
-				});
-				
-					//渲染用户领取数据
-					$("#notice").html(_html);
-			})
-			.catch(function(error){
-				console.log(error);
-			})
-	
-		}
-		/*link = 'http://127.0.0.1:8020/ztt_H5/newsShare.html?__hbt=1523153896402';
-			function dlApp(){    
-				window.location.href = link;
-			       var u = navigator.userAgent;
-			       var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
-			       var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
-			       if(isAndroid){
-			            alert('是否是Android：'+isAndroid);
-			           window.android.dlApp("ok")
-			       }else if(isiOS){
-			            alert('是否是iOS：'+isiOS);
-			           window.webkit.messageHandlers.dlApp.postMessage("ok");
-			       }		       	 
-			}*/
-			
-			/**
-			 * 时间计时
-			 */
-/*			var startT = new Date();//记录页面打开时时间
-			function countdown(leftTime){
-				var leftTime = new Date() - startT;//时间差
-				var d,h,m,s; 
-				var showTime;
-                if(leftTime>=0){  
-	                 d = Math.floor(leftTime/1000/60/60/24);  
-	                 h = Math.floor(leftTime/1000/60/60%24);  
-	                 m = Math.floor(leftTime/1000/60%60);  
-	                 s = Math.floor(leftTime/1000%60);                     
-	            }  
-				if(m!=0&&h===0){
-					showTime = m+"分钟";
-				}else if(m===0){
-					showTime = s+"秒";
-				}else if(h!=0){
-					showTime = h+"小时";
-				}
-				$(".showTime").html(showTime);
-			};			
-			var countTime = setInterval(countdown,(Math.random()*9000+1000));*/
-			function time(leftTime){
-				var d,h,m,s; 
-				var showTime;
-                if(leftTime>=0){  
-	                 d = Math.floor(leftTime/1000/60/60/24);  
-	                 h = Math.floor(leftTime/1000/60/60%24);  
-	                 m = Math.floor(leftTime/1000/60%60);  
-	                 s = Math.floor(leftTime/1000%60);                     
-	            }  
-/*	            //将倒计时赋值到div中  				
-				console.log(`${h}:${m}:${s}`);*/
-				if(m!=0&&h===0){
-					showTime = m+"分钟";
-				}else if(m===0){
-					showTime = s+"秒";
-				}else if(h!=0){
-					showTime = h+"小时";
-				}
-				return showTime;
-			};
+			$("#dlApp").attr("href",response.url);
+        	/*document.body.innerHTML += '<a class="linkedme" href="'+response.url+'">LinkedME深度链接</a>'*/
+        }
+      },false);            
 	</script>
 </body>
 </html>

@@ -98,7 +98,7 @@
 			});
 			//数据请求和渲染
 			function updataLoad(userID,type,numPage){					
-				alert({"userID":userID,"type":type,"numPage":numPage});
+				/*alert({"userID":userID,"type":type,"numPage":numPage});*/
 				$.ajax({
 					url:"http://47.96.1.236:8080/zaotoutiao-api-home-1.0.0/apprentice/list?userId="+userID+"&type="+type+"&pageNo="+numPage+"&pageSize=10",
 					type:"get",
