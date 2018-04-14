@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>视频分享详情页</title>
+    <title>视频</title>
     <link rel="stylesheet" href="./css/reset.css" />
     <link rel="stylesheet" href="./css/video-js.css" /> 
     <link rel="stylesheet" href="./css/newsShare.css" /> 
@@ -23,7 +23,7 @@
         <p class="vjs-no-js"> To view this video please enable JavaScript, and consider upgrading to a web browser that <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a> </p>
       </video>
       <script src="js/video.min.js"></script> 
-      <script src="http://vjs.zencdn.net/5.19/lang/zh-CN.js"></script>
+	  <script src="https://vjs.zencdn.net/5.19/lang/zh-CN.js"></script>
       <script type="text/javascript">
 			var myPlayer = videojs('my-video');
 			videojs("my-video").ready(function(){
@@ -43,7 +43,7 @@
 	<section id="main">				
 		<div class="title"><span></span>相关推荐</div>
 		<ul class="newsList">
-			<a href="">
+			<!--<a href="">
 			<li class="items">
 				<div class="leftCon">
 					<p>vivo X21屏幕指纹手机发布 鹿晗邀你一起解锁vivoivo X21屏幕指纹手机发布 鹿晗邀你一起解锁viv</p>
@@ -57,11 +57,11 @@
 					<img src="./img/userPhoto.jpg" alt="" />
 				</div>
 			</li>
-			</a>
+			</a>-->
 		</ul>
 	</section>
 	<div class="shareLink">
-		<div class="icon"><span></span><span>头条TVD</span></div>		
+		<div class="icon"><span></span><span>头条TV</span></div>		
 		<span>看新闻赚零花钱</span>		
 		<a id="openLink" href="#">打开</a>
 	</div>	
@@ -73,23 +73,21 @@
 	<script type="text/javascript">		
 			var videoUrl = window.location.href;
 /*			videoUrl = 						
-			"http://47.96.1.236:8080/zttH5/newsShare.html?appVersion=1.2.3&backdata=1&brand=apple&domain=http://47.96.1.236:8080/zaotoutiao-api-home-1.0.0/&extdata=eyJzdHJhdGVneSI6IjIuNi4zMC44LmJ1dHdtM3Y3NWo4Mi45LjJ1ei4zLnZueXJyaC4uMS40Y3h4bmYzY3FramMiLCJjaGFubmVsX2lkIjoiMjQifQ==&height=667&idIdfa=C83B320E-16C2-4324-BEC9-C43C0238E410&idImei=xxxx&infoId=9q0KkXapK3ax&ip=183.156.227.161&model=iPhone&osType=2&osVersion=11.3&packageName=com.muki.TopLineTV&type=1&urls=video/list&userAgent=Mozilla/5.0%20(iPhone;%20CPU%20iPhone%20OS%2011_3%20like%20Mac%20OS%20X)%20AppleWebKit/605.1.15%20(KHTML,%20like%20Gecko)%20Mobile/15E216&userId=333&videoOsType=ios&width=375&****zlink=https://lkme.cc/GJD/kzeKlr1DK";*///ios
+			"https://zhishun520.com/zttH5/videoShare.html?appVersion=1.2.3&backdata=1&brand=apple&channel=APP&domain=https://zhishun520.com/zaotoutiao-api-home-1.0.0/&extdata=eyJzdHJhdGVneSI6IjIuNi41MS43Mi5jM2ZqejQ0OW01YjkuOS44eS4yNi52Z2ZnbDQuLjEuMXFicjlwa3BkanI2IiwiY2hhbm5lbF9pZCI6IjI0In0=&height=667&idIdfa=845DC92A-015C-416D-B2A3-C8BC1B2764CC&idImei=xxxx&infoId=PO7rV0PJ3w9b&invitation=U7eQvTsbSfY&ip=36.24.229.181&model=iPhone&osType=2&osVersion=11.3&packageName=com.muki.TopLineTV&page=1&type=1&urls=video/list&userAgent=Mozilla/5.0%20(iPhone;%20CPU%20iPhone%20OS%2011_3%20like%20Mac%20OS%20X)%20AppleWebKit/605.1.15%20(KHTML,%20like%20Gecko)%20Mobile/15E216&userId=343&videoOsType=ios&width=375&****zTitle=EXO%E6%88%90%E5%91%98%E5%86%85%E9%83%A8%E5%A4%96%E8%B2%8C%EF%BC%8C%E5%A4%96%E8%B2%8C%E6%8E%92%E5%90%8D%E5%85%AC%E5%BC%80%EF%BC%8C%E5%BC%A0%E8%89%BA%E5%85%B4%E7%AC%AC4%EF%BC%8C%E5%89%8D%E4%B8%89%E6%98%AF%E4%BB%96%E4%BB%AC%EF%BC%81&****zlink=";*///ios
 /*			videoUrl = 						
-			"http://47.96.1.236:8080/zttH5/videoShare.html?appVersion=1.2.3&brand=apple&domain=http://47.96.1.236:8080/zaotoutiao-api-home-1.0.0/&extdata=eyJzdHJhdGVneSI6IjIuNi4zMC44LmJ3ZDN3NDZhNHA0dS45LjNtLjIyLjFkeDhiY2suLjMwMC4xZ3ZjcGZiOTU3MTIiLCJjaGFubmVsX2lkIjoiMjQifQ==&height=1136&id=nrVDa7jOW77X&idImei=eefcebef9c3baffb&infoId=nrVDa7jOW77X&ip=192.168.0.124&model=iPhone6&osType=1&osVersion=1.1.2&packageName=com.muki.topline&page=1&type=1&urls=information/list&userAgent=&userId=331&videoOsType=android&width=640&z****zlink=https://lkme.cc/GJD/e53ZATnCK&z****znewsUrl=http://p0.qhimg.com/video/568_320_70/t0137e30ab7129c9902.webp&from=singlemessage";*///android
-	
+			"https://zhishun520.com/zttH5/videoShare.html?device=0&packageName=com.muki.topline&userId=349&videoOsType=android&z****znewsUrl=http://p0.qhimg.com/video/568_320_70/t01612fa5b9a8ec0df3.webp&infoId=qDrvmA4Q1Z6e&z****zTitle=中国女排3-1胜荷兰进奥运决赛&channelId=12&appVersion=1.2.3&idImei=864594037502421&osVersion=1.1.1&channel=sanliuling&type=1&urls=video/list&invitation=45a856bcb&height=1136&domain=https://zhishun520.com/zaotoutiao-api-home-1.0.0/&idIdfa=(UIDevice.current.identifierForVendor?.uuidString)!&backdata=1&osType=1&z****zlink=&brand=apple&width=22&ip=49,57,50,46,49,54,56,46,48,46,49,50,52&userAgent=Mozilla/5.0 (Linux; Android 7.0; PRO 7-S Build/NRD90M; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/51.0.2704.110 Mobile Safari/537.36&model=iPhone6";*///android				
 			var urlResult = decodeURI(videoUrl).split("****");
 			var urlPara = urlResult[0].split("?")[1];
 			/**
 			 * 获取Url地址中userId参数   userID
 			 */
 			console.log("参数",urlPara);
-			function getUrlParams(name) { 
+			function getUrlParams(name) {  
 			    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i"); //定义正则表达式 
 			    var r = urlPara.substr(urlPara.indexOf("?")+1).match(reg);   
 			    if (r != null) return unescape(r[2]); 
 			    return null; 
-			};
-			
+			};			
 			/**
 			 *   @param    
 			 *   device:设备名称（0为安卓，1为iOS，2为PC）;
@@ -132,7 +130,9 @@
 			var urls = getUrlParams("urls");
 			var userAgent = navigator.userAgent;
 			var id = getUrlParams("infoId");//详情
-			device = 1;
+			var title = urlResult[1].split("zTitle=")[1];//标题
+			var channel = getUrlParams("channel");//深度链接渠道
+			var invitation = getUrlParams("invitation");//标题
 			console.log({
 				"userId":userId,
 				"id":id,
@@ -153,107 +153,185 @@
 			     "domain":domain,
 			     "urls": urls,
 			     "userAgent":userAgent,
+			     "title":title,
+			     "channel":channel,
+			     "invitation":invitation
 			  });
+			/**
+			 * 新闻标题
+			*/
+			document.title = title;
 		 	/**
 		    * 视频链接
 		    */
 		   axios({	
-			  url: '/infos/get',
+			  url: '/video/datil',
 			  method: 'get', // 默认是 get
-			  baseURL: 'http://47.96.1.236:8080/zaotoutiao-api-home-1.0.0/',
+			  baseURL: 'https://zhishun520.com/zaotoutiao-api-home-1.0.0/',
 			  params: {
-			     infoId:id		    
+			  	userId:userId,
+			  	osType:osType,
+			    id:id,
+			    extdata:extdata,
+			    ip:ip
 			  }
-			  })
+			})
 			.then(function(res){
-				console.log("详情",res);
+				console.log("视频详情链接",res);
 				//视频信息
 				var item = res.data.data;
-					$(".vjs-poster").css("background-image","url("+item.imgUrl+")");
-					$(".vjs-tech").attr("src",item.url);
+				$(".vjs-poster").css("background-image","url("+item.url+")");
+				$(".vjs-tech").attr("src",item.cdnUrl.replace("http://","https://"));
+				$(".videoName").html(item.title);
+				$(".videoSource").html(item.author);
+				$(".playCnt").html(item.playCnt?item.playCnt:0);
+				document.title = item.title;															
+			})
+			.catch(function(error){
+				console.log(error);
+			});
+			var uploadReVideo = function(){
+				axios({
+				  url: '/video/related',
+				  method: 'get', // 默认是 get
+				  baseURL: 'https://zhishun520.com/zaotoutiao-api-home-1.0.0/',
+				  params: {
+				  	 userId:userId,
+				     videoOsType:videoOsType,
+				     id:id,
+				     extdata:extdata,
+				     page:1,
+				     packageName:packageName,
+				     appVersion:appVersion,
+				     idIdfa:idIdfa,
+				     idImei: idImei, 
+				     height: height,
+				     width:width,
+				     brand:brand,
+				     model:model,
+				     osVersion:osVersion,//设备操作系统版本号，例如3.1.2，需要三位数；
+				     osType: osType, //1.ANDROID 2.IOS 3.WP；
+				     type: type, //1.WIFI 2.UNKNOWN 3.2G 4.3G 5.4G；
+				     ip: ip,//设备当前ip；
+				     domain:domain,//站点主域；
+				     urls: urls,//当前页面；
+				     userAgent:userAgent,//浏览器的UA
+				  }
+				  })
+				.then(function(res){
+					/*alert("appVersion",appVersion);*/
+				  	console.log("相关视频",res);
+				  	var _html = "";	
+				  	console.log(res.data.data);
+				  	res.data.data.forEach(function(item,index){
+				  		var timeDiff = new Date() - new Date(item.obj.createDate).getTime();
+				  		if(item.type==0){
+				  			var time1 = new Date().getTime();
+				  			var time2 = getTs(item.obj.createDate);
+				  			var timeDiff = time1-time2;
+				  			var playCnt;
+				  			console.log(item);
+				  			if(item.obj.playCnt.length>5||item.obj.playCnt.length==5){
+				  				playCnt = item.obj.playCnt.substr(0,item.obj.playCnt.length-4)+"万";
+				  			}else{
+				  				playCnt = item.obj.playCnt;
+				  			}
+				  			_html += 
+				  			'<a href="#" onclick="playVideo('+"'"+item.obj.id+"','"+item.obj.extdata+"'"+')">'
+								+'<li class="items">'
+									+'<div class="leftCon">'
+										+'<p>'+item.obj.title+'</p>'
+										+'<div class="itemsInfor">'
+											+'<span>'+item.obj.author+'</span>'
+											+'<span>'+countdown(timeDiff)+'</span>'
+											+'<span>'+playCnt+'</span>阅读'
+										+'</div>'
+									+'</div>'
+									+'<div class="rightImg">'
+										+'<img src="'+item.obj.url+'" alt="" />'
+									+'</div>'
+								+'</li>'
+							+'</a>';
+				  		}else if(item.type == 2){
+				  			console.log("广告",index);
+				  			_html += 
+				  			'<a href="'+ item.obj.cUrl+'">'
+						  		+'<li class="items">'
+									+'<div class="leftCon">'
+										+'<p>'+item.obj.title+'</p>'
+										+'<div class="itemsInfor">'
+											+'<span>广告</span>'								
+										+'</div>'
+									+'</div>'
+									+'<div class="rightImg">'
+										+'<img src="'+item.obj.url+'" alt="" />'
+									+'</div>'
+								+'</li>'
+							+'</a>';
+				  		}					
+				  	})		
+				  	/*console.log("_html渲染内容",_html);*/
+				  	//渲染相关推荐
+				  	$(".newsList").eq(0).html(_html);
+				 })
+				.catch(function(error){
+					console.log(error);
+				});
+			};
+			uploadReVideo();
+			/**
+			 * 相关推荐获取视频地址
+			 */
+			function playVideo(idRe,extdataRe){
+				var videoReOsType;
+				switch(osType){
+					case "1" : 
+					videoReOsType = "android";
+					break;
+					case "2" : 
+					videoReOsType = "ios";
+					break;
+					case "3" : 
+					videoReOsType = "pc";
+					break;
+					default:
+					break;
+				}
+				console.log({
+					"userId":userId,
+				  	"os_type":videoReOsType,
+				    "id":idRe,
+				    "extdata":extdataRe,
+				    "ip":ip
+				});
+				axios({	
+				  url: '/video/datil',
+				  method: 'get', // 默认是 get
+				  baseURL: 'https://zhishun520.com/zaotoutiao-api-home-1.0.0/',
+				  params: {
+				  	userId:userId,
+				  	osType:videoReOsType,
+				    id:idRe,
+				    extdata:extdataRe,
+				    ip:ip
+				  }
+				})
+				.then(function(res){
+					console.log("相关视频详情链接",res);
+					//视频信息
+					var item = res.data.data;
+					$(".vjs-poster").css("background-image","url("+item.url+")");
+					$(".vjs-tech").attr("src",item.cdnUrl);
 					$(".videoName").html(item.title);
-					$(".videoSource").html(item.source);
-					$(".playCnt").html(item.readCnt);
-			 })
-			.catch(function(error){
-				console.log(error);
-			});
-			axios({	
-			  url: '/video/related',
-			  method: 'get', // 默认是 get
-			  baseURL: 'http://47.96.1.236:8080/zaotoutiao-api-home-1.0.0/',
-			  params: {
-			  	 userId:userId,
-			     videoOsType:videoOsType,
-			     id:id,
-			     extdata:extdata,
-			     page:1,
-			     packageName:packageName,
-			     appVersion:appVersion,
-			     idIdfa:idIdfa,
-			     idImei: idImei, 
-			     height: height,
-			     width:width,
-			     brand:brand,
-			     model:model,
-			     osVersion:osVersion,//设备操作系统版本号，例如3.1.2，需要三位数；
-			     osType: osType, //1.ANDROID 2.IOS 3.WP；
-			     type: type, //1.WIFI 2.UNKNOWN 3.2G 4.3G 5.4G；
-			     ip: ip,//设备当前ip；
-			     domain:domain,//站点主域；
-			     urls: urls,//当前页面；
-			     userAgent:userAgent,//浏览器的UA
-			  }
-			  })
-			.then(function(res){
-				/*alert("appVersion",appVersion);*/
-			  	console.log("相关视频",res);
-			  	var _html = "";	
-			  	console.log(res.data.data);
-			  	res.data.data.forEach(function(item,index){
-			  		var timeDiff = new Date() - new Date(item.obj.createDate).getTime();
-			  		if(item.type==0){
-			  			_html += 
-			  			'<a href="'+ item.obj.url+'">'
-							+'<li class="items">'
-								+'<div class="leftCon">'
-									+'<p>'+item.obj.title+'</p>'
-									+'<div class="itemsInfor">'
-										+'<span>'+item.obj.author+'</span>'
-										+'<span>'+countdown(timeDiff)+'</span>'
-										+'<span>'+item.obj.playCnt+'</span>阅读'
-									+'</div>'
-								+'</div>'
-								+'<div class="rightImg">'
-									+'<img src="'+item.obj.url+'" alt="" />'
-								+'</div>'
-							+'</li>'
-						+'</a>';
-			  		}else if(item.type == 2){
-			  			console.log("广告",index);
-			  			_html += 
-			  			'<a href="'+ item.obj.cUrl+'">'
-					  		+'<li class="items">'
-								+'<div class="leftCon">'
-									+'<p>'+item.obj.title+'</p>'
-									+'<div class="itemsInfor">'
-										+'<span>广告</span>'								
-									+'</div>'
-								+'</div>'
-								+'<div class="rightImg">'
-									+'<img src="'+item.obj.url+'" alt="" />'
-								+'</div>'
-							+'</li>'
-						+'</a>';
-			  		}					
-			  	})		
-			  	console.log("_html渲染内容",_html);
-			  	//渲染相关推荐
-			  	$(".newsList").eq(0).html(_html);
-			 })
-			.catch(function(error){
-				console.log(error);
-			});
+					$(".videoSource").html(item.author);
+					$(".playCnt").html(item.playCnt?item.playCnt:0);
+					document.title = item.title;															
+					uploadReVideo();
+				})
+				.catch(function(error){
+					console.log(error);
+				});
+			}
 			/**
 			 * 时间计时
 			 */
@@ -281,24 +359,33 @@
 				return showTime;
 				/*console.log(showTime);*/
 			};
+						/**
+			 * 获取时间戳兼容问题
+			 */
+			function getTs(time){  
+			    var arr = time.split(/[- :]/),  
+			    _date = new Date(arr[0], arr[1]-1, arr[2], arr[3], arr[4], arr[5]),  
+			    timeStr = Date.parse(_date)  
+			    return timeStr  
+			}  
 			
 	</script>
 	<script src="https://static.lkme.cc/linkedme.min.js" ></script>
 	<script type="text/javascript">
       linkedme.init("235d6842193c1bfb34204dd2ee7a3585", {type:"live"}, null);
-      var data = {};
+     var data = {};
       data.type = "live";  //表示现在使用线上模式,如果填写"test", 表示测试模式.【可选】
       data.feature = "功能名称"; // 自定义深度链接功能，多个用逗号分隔，【可选】
       data.stage = "阶段名称"; // 自定义深度链接阶段，多个用逗号分隔，【可选】
-      data.channel = "渠道名称"; // 自定义深度链接渠道，多个用逗号分隔，【可选】
+      data.channel = channel; // 自定义深度链接渠道，多个用逗号分隔，【可选】
       data.tags = "标签名称"; // 自定义深度链接标签，多个用逗号分隔，【可选】
       data.ios_custom_url = "http://www.pgyer.com/Headline"; // 自定义iOS平台下App的下载地址，如果是AppStore的下载地址可以不用填写，需填写http或https【可选】
-      data.ios_direct_open = true; //未安装情况下，设置为true为直接打开ios_custom_url，默认为false【可选】
-      data.android_custom_url = "http://47.96.1.236:8080/app-debug.apk";// 自定义安卓平台下App的下载地址，需填写http或https【可选】
-      data.android_direct_open =true; //设置为true，所有情况下跳转android_custom_url，默认为false【可选】
-      var value1 = 1;
-      var value2 = 2;
-      data.params = '{"key1":"'+value1+'","key2":"'+value2+'"}'; //注意单引号和双引号的位置
+      data.ios_direct_open = "true"; //未安装情况下，设置为true为直接打开ios_custom_url，默认为false【可选】
+      data.android_custom_url = "https://zhishun520.com/app-debug.apk";// 自定义安卓平台下App的下载地址，需填写http或https【可选】
+      data.android_direct_open =""; //设置为true，所有情况下跳转android_custom_url，默认为false【可选】
+      var value1 = channel;
+      var value2 = invitation;
+      data.params = '{"channel":"'+value1+'","invitation":"'+value2+'"}'; //注意单引号和双引号的位置
       linkedme.link(data, function(err, response){
         if(err){
           // 生成深度链接失败，返回错误对象err

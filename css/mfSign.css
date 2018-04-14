@@ -20,7 +20,7 @@ body { font-size: 14px; background: white; }
 
 #js-qiandao-list li.qiandaoActive { background: url(../img/qiandaoActive.png) no-repeat center center; background-size: 0.14rem auto; color: transparent !important; }
 
-#js-qiandao-list li.qiandaoActive0, #js-qiandao-list li.qiandaoActive1, #js-qiandao-list li.qiandaoActive2, #js-qiandao-list li.qiandaoActive3 { background: url(../img/100G.png) no-repeat center center; background-size: 72% auto; color: transparent; }
+#js-qiandao-list li.qiandaoActive0, #js-qiandao-list li.qiandaoActive1, #js-qiandao-list li.qiandaoActive2, #js-qiandao-list li.qiandaoActive3 { background: url(../img/100G.png) no-repeat center center; background-size: 72% auto; color: transparent !important; }
 
 #js-qiandao-list li.qiandaoActive1 { background-image: url(../img/120G.png); }
 

@@ -100,13 +100,13 @@
 			function updataLoad(userID,type,numPage){					
 				/*alert({"userID":userID,"type":type,"numPage":numPage});*/
 				$.ajax({
-					url:"http://47.96.1.236:8080/zaotoutiao-api-home-1.0.0/apprentice/list?userId="+userID+"&type="+type+"&pageNo="+numPage+"&pageSize=10",
+					url:"https://zhishun520.com/zaotoutiao-api-home-1.0.0/apprentice/list?userId="+userID+"&type="+type+"&pageNo="+numPage+"&pageSize=10",
 					type:"get",
 					dataType:"json",
 					async:false,
 					success:function(res){
 						alert(res);
-						console.log("http://47.96.1.236:8080/zaotoutiao-api-home-1.0.0/apprentice/list?userId="+userID+"&type="+type+"&pageNo="+numPage+"&pageSize=10");
+						console.log("https://zhishun520.com/zaotoutiao-api-home-1.0.0/apprentice/list?userId="+userID+"&type="+type+"&pageNo="+numPage+"&pageSize=10");
 						console.log(res);
 						res.data.forEach(function(item,index){
 							/*console.log({"type":type,"item":item});*/
@@ -196,7 +196,35 @@
 		           /* alert('是否是iOS：'+isiOS);*/
 		           window.webkit.messageHandlers.disciple.postMessage("ok");
 		       }		       	  
-			}	
+			}
+			/**
+ * 完美解决safari、微信浏览器下拉回弹效果和上拉空白的bug
+ * @param {Object} el 滑动元素
+ */
+var overscroll = function(el) {  
+    el.addEventListener('touchstart', function() {  
+        var top = el.scrollTop  
+        ,totalScroll = el.scrollHeight  
+        ,currentScroll = top + el.offsetHeight;  
+        if(top === 0) {  
+            el.scrollTop = 1;  
+        }else if(currentScroll === totalScroll) {  
+            el.scrollTop = top - 1;  
+        }  
+    });  
+  
+    el.addEventListener('touchmove', function(evt) {  
+    if(el.offsetHeight < el.scrollHeight)  
+        evt._isScroller = true;  
+    });  
+}  
+          
+overscroll(document.querySelector('#main'));  
+document.body.addEventListener('touchmove', function(evt) {  
+    if(!evt._isScroller) {  
+        evt.preventDefault();  
+    }  
+});  
 	</script>
 </body>
 </html>

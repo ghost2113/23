@@ -1,4 +1,31 @@
-		
+	/**
+	 * 完美解决safari、微信浏览器下拉回弹效果和上拉空白的bug
+	 * @param {Object} el 滑动元素
+	 */
+	var overscroll = function(el) {  
+	    el.addEventListener('touchstart', function() {  
+	        var top = el.scrollTop  
+	        ,totalScroll = el.scrollHeight  
+	        ,currentScroll = top + el.offsetHeight;  
+	        if(top === 0) {  
+	            el.scrollTop = 1;  
+	        }else if(currentScroll === totalScroll) {  
+	            el.scrollTop = top - 1;  
+	        }  
+	    });  
+	  
+	    el.addEventListener('touchmove', function(evt) {  
+	    if(el.offsetHeight < el.scrollHeight)  
+	        evt._isScroller = true;  
+	    });  
+	}  
+	          
+	overscroll(document.querySelector('#main'));  
+	document.body.addEventListener('touchmove', function(evt) {  
+	    if(!evt._isScroller) {  
+	        evt.preventDefault();  
+	    }  
+	});  		
     var signFun = function() {
     		/**
 			 * 完美解决safari、微信浏览器下拉回弹效果和上拉空白的bug
@@ -56,9 +83,7 @@
             _html += ' <li><div class="qiandao-icon"></div></li>'
         }
         $dateBox.html(_html) //生成日历网格
-        var $dateLi = $dateBox.find("li");
-        
-        
+        var $dateLi = $dateBox.find("li");                
         //是否请求到用户信息，模拟日历 false
         if(userID==null){_handle=false;}//如果没有用户userID禁止签到
     	for (var i = 0; i < totalDay; i++) {
@@ -66,39 +91,34 @@
             $dateLi.eq(i + monthFirst).addClass("date" + parseInt(i + 1));		            
             $dateLi.eq(i + monthFirst).text(i+1);        
        } 
-        //请求用户已经签到信息，存储到数组中去
-        axios.post("http://47.96.1.236:8080/zaotoutiao-api-home-1.0.0/sign/in?userId="+userID+"&isSubmit=0").then(function(response){
+        /**
+         * 用户签到信息
+         */
+        axios.post("https://zhishun520.com/zaotoutiao-api-home-1.0.0/sign/in?userId="+userID+"&isSubmit=0").then(function(response){
         	console.log(response.data);
     		if(response.data.msg!="今天还没签到"){
     			_handle=false;
     			qiandaoFun();
     		};
-    		var signList = new Array();
+    		var signList = new Array();//签到日期数组
     		var _index;
 			//判断是否有签到日期
 			console.log("已经签到数组",response.data.signList);			
-
 			if(!response.data.signList){
-				console.log("kong");
+				console.log("空");
 				dateArray=[];
 			}else{	
 				response.data.signList.forEach(function(items,index){    			
     				dateArray.push(items.createDate.split(" ")[0].substr(8,2));
-    			});    			
-				/*dateArray.unshift(response.data.signList[i].createDate.split(" ")[0].substr(8,2));*/
-				console.log("签到渲染数组1",dateArray);
-			}	
+    			});    							
+			}
+			//当前日期字体变灰
 	    	$dateLi.each(function(index,item){	    	
 		    	if((index+1-monthFirst) < myDate.getDate()){
 					item.style.color = "#b2b2b2";						
 		    	}			
 			});
 	    	console.log("签到渲染数组",dateArray);
-/*		    dateArray.forEach(function(items,index){
-	        	if(dateArray[index]==parseInt(dateArray[index+1])+1){
-	        		dateM.unshift(items);
-	        	}
-	        });*/
 	       for(var k=0;k<dateArray.length;k++){
        			if(dateArray[k]==parseInt(dateArray[k+1])+1){
 	        		dateM.unshift(dateArray[k]);
@@ -112,6 +132,7 @@
 	            $dateLi.eq(i + monthFirst).addClass("date" + parseInt(i + 1));		            
 	            $dateLi.eq(i + monthFirst).text(i+1);
 	            //当前日期之前字体改变
+	            
 	            //显示已经签到的日期	
 	            for (var j = 0; j < dateM.length; j++) {	            	
 	                if (i == dateM[j]) {		                	
@@ -128,14 +149,14 @@
     		console.log(error);
     	});
            
-        //判断当前日期是否已经签到,如果未签到添加可签到标记 class='able-qiandao'
+        //可签到标记
         if($(".date" + myDate.getDate()).hasClass('qiandaoActive')){
         	_handle = false;
         	console.log("今天是否签到");
         }else{
         	$(".date" + myDate.getDate()).addClass('able-qiandao');
         };
-        //点击网格日期签到
+        //日历签到
         $dateBox.on("click", "li", function() {
     		if(!_handle){
     			return false;
@@ -146,7 +167,7 @@
             	qiandaoFun();    
     		}               		              
         }) 
-        //点击按钮签到
+        //按钮按钮
         $qiandaoBtn.on("click", function() { 
     		if(!_handle){
     			return false;
@@ -154,24 +175,23 @@
         	qiandaoShow();
 			qiandaoFun();		                            
         }); 
-        //签到按钮样式
+        //按钮样式
         function qiandaoFun() {
             $qiandaoBtn.addClass('btnActived');
             $qiandaoBtn.text("明日再来签到");           
         }  	
-        //签到成功后的操作
+        //签到成功
         function qiandaoShow(){ 
         	_handle = false;
         	//判断签到日期前一天是否未签
-    	    if($(".date" + myDate.getDate()-1).hasClass("qiandaoActive")){
+        	/*console.log({"前一天":$(".date" + (myDate.getDate()-1))},{"今天":$(".date" + myDate.getDate())});*/
+    	    if($(".date" + (myDate.getDate()-1)).hasClass("qiandaoActive")){
     			$(".date" + myDate.getDate()).addClass('qiandaoActive');
         	}else{
-        		$(".date" + myDate.getDate()).addClass('qiandaoActive').siblings().removeClass('qiandaoActive');
-        		
-        	}
-			
+        		$(".date" + myDate.getDate()).addClass('qiandaoActive').siblings().removeClass('qiandaoActive');        		
+        	}			
 	    	//向后台发送签到成功请求 把签到信息追加到signList数组中去
-	    	axios.post("http://47.96.1.236:8080/zaotoutiao-api-home-1.0.0/sign/in?userId="+userID+"&isSubmit=1")
+	    	axios.post("https://zhishun520.com/zaotoutiao-api-home-1.0.0/sign/in?userId="+userID+"&isSubmit=1")
 	    	.then(function(response){
 	    		console.log(response);
 	    		if(response.data.msg=="未连续签到，从头开始签到"){
@@ -186,17 +206,18 @@
 			        		/*$(".date" + item).text(_qiandaoJl[index]);*/
 			        })
 	    		}
-	    		var getGold = response.data.getGold;
-	    		console.log(getGold);
-	    		/**
-	    		 * 签到成功弹出层  原生
-	    		 */
+	    		var getGold = response.data.getGold;//签到成功金币数
+				//弹出层
 	    		signIn(getGold);	
 	    		
 	    	}).catch(function(error){
 	    		console.log(error);
 	    	})
         }
+        /**
+         * 签到成功弹出层
+         * @param {Object} getGold
+         */
         function signIn(getGold){    
 	       var u = navigator.userAgent;
 	       var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端

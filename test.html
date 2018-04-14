@@ -6,7 +6,6 @@
 		<title>测试页面</title>
 	</head>
 	<body>
-		<a href="./newsShare.html?userAgent=Mozilla/5.0 (iPhone; CPU iPhone OS 11_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E216&ip=183.156.227.161&width=375&osType=2&userId=333&model=iPhone&device=1&appVersion=1.2.3&type=1&brand=apple&height=667&osVersion=11.3&packageName=com.zhishun.MorningHeadline&idImei=xxxx&c=youlike&urls=information/list&idIdfa=C83B320E-16C2-4324-BEC9-C43C0238E410&domain=http://47.96.1.236:8080/zaotoutiao-api-home-1.0.0&newsUrl=http://sh.qihoo.com/mob/transcoding?url=http%3A%2F%2Fzm.news.so.com%2F0d889c892532c21552feb37e05c1ed83&check=8f02494a7e4eaa80&uid=ac3a43db4dcbd1682943c106fb4bc02f&sign=ex%5F2eb604c1&sv=1&templetctl=7&360newsdetail=1&articlety=zmt&hsitetype=1&ucheck=256a903d41fe2a6a7f7f117f68a9df8a&hscmt=1">dakaifsffs</a>
 	<!--	<iframe 
 			id="myFrameId" 			src="http://sh.qihoo.com/mob/transcoding?url=http%3A%2F%2Fzm.news.so.com%2F0d889c892532c21552feb37e05c1ed83&check=8f02494a7e4eaa80&uid=ac3a43db4dcbd1682943c106fb4bc02f&sign=ex%5F2eb604c1&sv=1&templetctl=7&360newsdetail=1&articlety=zmt&hsitetype=1&ucheck=256a903d41fe2a6a7f7f117f68a9df8a&hscmt=1" 
 			name="myFrameName" 
@@ -14,10 +13,8 @@
 			frameborder="0" 
 			frameborder="0" ></iframe> 　-->　	
 <!--<a href="http://sh.qihoo.com/mob/transcoding?url=http%3A%2F%2Fzm.news.so.com%2F0d889c892532c21552feb37e05c1ed83&check=8f02494a7e4eaa80&uid=ac3a43db4dcbd1682943c106fb4bc02f&sign=ex%5F2eb604c1&sv=1&templetctl=7&360newsdetail=1&articlety=zmt&hsitetype=1&ucheck=256a903d41fe2a6a7f7f117f68a9df8a&hscmt=1" target="myFrameName" >跳转</a>-->
-		<iframe name="ifm" id="ifm" style="background-color: transparent;" marginwidth="0" marginheight="0" frameborder="0" src="http://sh.qihoo.com/mob/transcoding?url=http%3A%2F%2Fzm.news.so.com%2F0d889c892532c21552feb37e05c1ed83&check=8f02494a7e4eaa80&uid=ac3a43db4dcbd1682943c106fb4bc02f&sign=ex%5F2eb604c1&sv=1&templetctl=7&360newsdetail=1&articlety=zmt&hsitetype=1&ucheck=256a903d41fe2a6a7f7f117f68a9df8a&hscmt=1" width="100%" height="100%" style="overflow: hidden">
-</iframe>			
-		
-		
+		<iframe name="ifm" id="ifm" style="background-color: transparent;" marginwidth="0" marginheight="0" frameborder="0" src="http://sh.qihoo.com/mob/transcoding?url=http%3A%2F%2Fzm.news.so.com%2F723400d9ab790bdf468cf36358d14518&check=7697e2f5060a23d5&uid=934cb1b40a1965fd44d07fd36a7314cf&sign=ex%5F2eb604c1&sv=1&templetctl=7&360newsdetail=1&articlety=zmt&hsitetype=1&ucheck=94bd7dca890d5e956f43de8c4cd0dc86&hscmt=1" width="100%" height="100%" scrolling="yes" style="overflow: hidden">
+</iframe>							
 		用户Id<div id="userId"></div>
 		<button style="width:150px;height:40px;margin:o auto;background:red;border:none;border-radius:30px;text-align:center;line-height:30px;color:white;outline：none;filter:chroma(color=#000000);">调用分享</button>
 	</body>
@@ -53,7 +50,7 @@
 		} 
 		$(function(){
 			//iframe高度
-			$('#ifm').css("height",$(window).height()+"px");	
+			/*$('#ifm').css("height",$(window).height()+"px");*/	
 			console.log(document.getElementById("ifm").contentWindow.document.documentElement.scrollTop); 
         	$("#ifm").contents().scroll(function(event){
 	            console.log(document.getElementById("ifm").contentWindow.document.documentElement.scrollTop); 	

@@ -121,7 +121,7 @@ body{
 #js-qiandao-list li.qiandaoActive0{
     background:url(../img/100G.png) no-repeat center center;
     background-size:72% auto;
-    color:transparent;
+    color:transparent !important;
 }
 #js-qiandao-list li.qiandaoActive1{
     @extend .qiandaoActive0;

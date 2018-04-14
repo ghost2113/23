@@ -19,9 +19,8 @@
   }
 }
 @mixin prefixerValue($property, $value, $prefixes: webkit moz o ms) {
-  #{$property}: $value;
-
-  @each $prefix in $prefixes {
+    #{$property}: $value;
+    @each $prefix in $prefixes {
     @if $prefix == webkit {
       #{$property}:-webkit-#{$value};
     }

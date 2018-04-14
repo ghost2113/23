@@ -59,7 +59,7 @@
 			//请求开启宝箱信息
 			var _handle = true;//是否可以开启宝箱
 			var nextOpen;
-			axios.get("http://47.96.1.236:8080/zaotoutiao-api-home-1.0.0//open/treasure?userId="+userID+"&isSubmit=0")
+			axios.get("https://zhishun520.com/zaotoutiao-api-home-1.0.0//open/treasure?userId="+userID+"&isSubmit=0")
 				.then(function(response){
 					console.log(response);
 					/*console.log({"现在时间":timestampToTime(response.data.leadTime.now),"下次开启时间":timestampToTime(response.data.leadTime.nextOpen),"创建时间":timestampToTime(response.data.leadTime.createDate)});*/	
@@ -85,7 +85,7 @@
 		    var countTime = setInterval(countdown,1000);	
 			//开启宝箱
 			$(".open").on("click",function(){
-				axios.get("http://47.96.1.236:8080/zaotoutiao-api-home-1.0.0//open/treasure?userId="+userID+"&isSubmit=1")
+				axios.get("https://zhishun520.com/zaotoutiao-api-home-1.0.0//open/treasure?userId="+userID+"&isSubmit=1")
 				.then(function(response){
 					//开启宝箱获取金币数
 					$(".getGold").text(response.data.getGold);
@@ -124,6 +124,34 @@
 			var preHandler=function(e){e.preventDefault();};// 注意此处代码片段必须这样提出来已保证传入下边两个事件的处理程序一样才生效，分别写到事件处理程序中不生效。
 			document.addEventListener('touchmove', me.preHandler,false);//阻止默认滑动事件
 			document.removeEventListener('touchmove', me.preHandler, false);*/
+			/**
+			 * 完美解决safari、微信浏览器下拉回弹效果和上拉空白的bug
+			 * @param {Object} el 滑动元素
+			 */
+			var overscroll = function(el) {  
+			    el.addEventListener('touchstart', function() {  
+			        var top = el.scrollTop  
+			        ,totalScroll = el.scrollHeight  
+			        ,currentScroll = top + el.offsetHeight;  
+			        if(top === 0) {  
+			            el.scrollTop = 1;  
+			        }else if(currentScroll === totalScroll) {  
+			            el.scrollTop = top - 1;  
+			        }  
+			    });  
+			  
+			    el.addEventListener('touchmove', function(evt) {  
+			    if(el.offsetHeight < el.scrollHeight)  
+			        evt._isScroller = true;  
+			    });  
+			}  
+			          
+			overscroll(document.querySelector('#main'));  
+			document.body.addEventListener('touchmove', function(evt) {  
+			    if(!evt._isScroller) {  
+			        evt.preventDefault();  
+			    }  
+			});  
 	</script>
 </body>
 </html>
