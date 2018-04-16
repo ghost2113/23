@@ -162,6 +162,8 @@ html,body{
     height:0.6rem;
     font-size:0.18rem;
     background:rgba(255,255,255,1);
+    border-top:1px solid #e5e5e5;
+    box-sizing:border-box;
     .icon{
         @include flex(row,space-around);
         span:nth-child(1){

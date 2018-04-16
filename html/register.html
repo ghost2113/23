@@ -1,0 +1,609 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>注册</title>
+<link href="/static/other/css/common.css" type="text/css" rel="stylesheet" />
+<script src="/static/js/jquery.min.js" type="text/javascript"></script>
+<script src="/static/js/jquery.easing.min.js" type="text/javascript"></script>
+<script src="/static/other/js/hover.js" type="text/javascript"></script>
+<script language="javascript" type="text/javascript" src="/static/artDialog/jquery.artDialog.js?skin=blue"></script>
+<script language="javascript" type="text/javascript" src="/static/artDialog/artDialog.iframeTools.js"></script>
+<!--[if IE 6]>
+            <link href="/static/other/css/ie6.css" type="text/css" rel="stylesheet" />
+                        <script type="text/javascript" src="/static/other/js/DD_belatedPNG.js"></script>
+            <script>
+                DD_belatedPNG.fix('.nav, .min_bg,.tishi2,.x_tb a.x_all.row var ,.cz_li_l a var,.img_bg,.sib_box .tishi .img_bg,.h_n .gg,.selt a,.h_bg, .con,.b_h_bg, .ptb, .jf,.jj, .h_n .mm, .h_vip, .vip_t i, .cz_li_l a i, .lo_cz,.lo_cz:hover, .lo_btn,.user_li a, img,background');
+            </script>
+                <![endif]-->
+<style type="text/css">
+<!--
+.theme-popover-mask {
+	z-index: 9998;
+	position:fixed;
+	top:0;
+	left:0;
+	width:100%;
+	height:100%;
+	background:#000000;
+	opacity:0.4;
+	filter:alpha(opacity=40);
+	display:none;
+}
+.theme-popover {
+	z-index:9999;
+	position:fixed;
+	top:50%;
+	left:50%;
+	width:720px;
+	height:450px;
+	margin:-180px 0 0 -330px;
+	border-radius:16px;
+	border:solid 1px #666666;
+	background-color:#ffffff;
+	display:none;
+	box-shadow: 0 0 10px #666666;
+	overflow:hidden;
+}
+-->
+</style>
+</head>
+<body>
+<div class="nav">
+  <!--导航栏-->
+  <div class="nav_bg">
+    <div class="logo fl"> <a target="_blank" href="/"><img src="/static/other/img/logo.jpg"></a> </div>
+    <div class="nav_li fr">
+      <ul>
+            <li><a id="menu_index" href="/">首页</a></li>
+    <li><a id="menu_news" href="/articlelist.html" target="_blank" >热门漫画</a></li>
+    <li><a id="menu_tujian" href="/instance.html" target="_blank" >团队介绍</a></li>
+    <li><a id="menu_game_faq" href="/game_faq.html" target="_blank" >使用说明</a></li>
+    <!--<li><a id="menu_pay" href="/pay.html" target="_blank" >游戏充值</a></li>-->
+    <!--<li><a id="menu_music" href="/music/" target="_blank" >音乐版块</a></li>-->
+    <li><a id="menu_kf" href="/kf.html" target="_blank" >客服中心</a></li>
+    <!--<li><a href="/public/jzjh.php" target="_blank" >家长监护</a></li>-->      </ul>
+    </div>
+  </div>
+</div>
+<!--导航栏结束-->
+<div class="alt_l_bg" style='display:none;'></div>
+<div class="alt_login_Bg" style='display:none;'>
+  <div class="alt_lo_tit"><span>账号登录</span><a href="#"></a></div>
+  <div class="alt_lo_con">
+    <div class="per">
+      <div class="tizi">账号：</div>
+      <div class="iput fl">
+        <input type="text" value="" class="inp">
+      </div>
+    </div>
+    <div class="per">
+      <div class="tizi">密码：</div>
+      <div class="iput fl">
+        <input type="text" value="" class="inp">
+      </div>
+    </div>
+    <div class="con_b"> 账号或密码错误 </div>
+    <div class="per_btn">
+      <input type="submit" value="登&nbsp;&nbsp;录" onclick="submitRegister();
+                                    return false;" class="btn" id="submit">
+    </div>
+    <div class="con_b"> <a href="#">注册账号</a>&nbsp;&nbsp;|&nbsp;&nbsp; <a href="#">忘记密码？</a> </div>
+  </div>
+</div>
+<link type="text/css" rel="stylesheet" href="/static/other/css/pop.css">
+<script type="text/javascript" src="/static/other/js/pop.js"></script>
+<script type="text/javascript" src="/static/game/js/sname.js"></script>
+<script type="text/javascript" src="/static/js/jquery.form.js"></script>
+<script language="javascript">
+    function submitRegister() {
+        if (checkReiger()) {
+            $("#formReg").ajaxSubmit(function(data) {
+                if (data == "1") {
+                    var notice = '<span></span><h3>恭喜您，成功注册平台账号</h3><p>系统将在2秒后自动跳转</p><p>如果您的浏览器没有自动跳转，<a href="javascript:void(0);" onclick="window.location.assign(\'/\')">请点击这里。</a></p>';
+                    Notice.showNotice(notice, 'popLog');
+                    setTimeout("window.location.assign('/');", 2000);
+                } else if (data == "-1") {
+                    Notice.showNotice('验证码错误', false);
+                    document.getElementById('password').value = "";
+                    document.getElementById('repeat').value = "";
+                    document.getElementById('tu').src = "http://www.chunnuan888.com/validatecode/index.html";
+                } else if (data == "-3") {
+                    Notice.showNotice('该用户名已被注册', false);
+                    document.getElementById('password').value = "";
+                    document.getElementById('repeat').value = "";
+                    document.getElementById('tu').src = "http://www.chunnuan888.com/validatecode/index.html";
+                } else if (data == "-4") {
+                    Notice.showNotice('平台维护，请稍后注册', false);
+                    document.getElementById('password').value = "";
+                    document.getElementById('repeat').value = "";
+                    document.getElementById('tu').src = "http://www.chunnuan888.com/validatecode/index.html";
+                } else if (data == "-5") {
+                    Notice.showNotice('您的用户名长度不符合要求', false);
+                    document.getElementById('password').value = "";
+                    document.getElementById('repeat').value = "";
+                    document.getElementById('tu').src = "http://www.chunnuan888.com/validatecode/index.html";
+                }else {
+                    Notice.showNotice('参数错误', false);
+                    document.getElementById('password').value = "";
+                    document.getElementById('repeat').value = "";
+                    document.getElementById('tu').src = "http://www.chunnuan888.com/validatecode/index.html";
+                }
+            });
+        }
+    }
+
+    function checkEmail()
+    {
+        var mail = document.getElementById('email').value;
+        var mail_len = mail.replace(/[^\x00-\xff]/g, '**').length;
+        if (!(/^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/.test(mail)) || mail_len > 40 || mail_len < 7)
+        {
+            $("#sp_email").html("邮箱不正确或长度超过40字节");
+            $("#sp_email").removeClass("routine");
+            $("#sp_email").addClass("wrong");
+            // document.getElementById('sp_email').className = "warn";
+        }
+        else
+        {
+            $("#sp_email").html("");
+            //document.getElementById('sp_email').className = "right";
+        }
+    }
+
+    function checkReiger()
+    {
+        var readed = document.getElementById('readed').checked;
+        if (!readed)
+        {
+            Notice.showNotice("请先同意注册协议", false);
+            return false;
+        }
+        var code = document.getElementById('code').value;
+        if (code.length > 20 || code.length < 4 || !(/^[a-z_][a-z_0-9]*$/i.test(code)))
+        {
+            Notice.showNotice("用户名不符合要求", false);
+            return false;
+        }
+        var pwd = document.getElementById('password').value;
+        if (pwd.length < 6 || pwd.length > 16)
+        {
+            Notice.showNotice("密码长度不符合要求", false);
+            return false;
+        }
+        var repeat = document.getElementById('repeat').value;
+        if (repeat != pwd)
+        {
+            Notice.showNotice("两次输入的密码不一致", false);
+            return false;
+        }
+        var mail = document.getElementById('email').value;
+        var mail_len = mail.replace(/[^\x00-\xff]/g, '**').length;
+        if (!(/^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/.test(mail)) ||
+                mail_len > 40 || mail_len < 7)
+        {
+            Notice.showNotice("邮箱不正确或长度超过40字节", false);
+
+            return false;
+        }
+        var name = document.getElementById('name').value;
+        if (!(/^[\u0391-\uFFE5]{2,4}$/.test(name)))
+        {
+            Notice.showNotice("请输入您的真实姓名", false);
+            return false;
+        }
+        if (surname.indexOf(name.substr(0, 2) + "|") == -1)
+        {
+            if (surname.indexOf(name.substr(0, 1) + "|") == -1)
+            {
+                Notice.showNotice("您输入的姓名有误，请重新输入", false);
+                return false;
+            }
+        }
+
+        var idcard = document.getElementById('idcard').value;
+        if (!IsIdCard(idcard))
+        {
+            Notice.showNotice("您输入的身份证号码有误，请重新输入", false);
+            return false;
+        }
+        var scode = document.getElementById('seccode').value;
+        if (scode.length != 4)
+        {
+            Notice.showNotice("验证码不正确", false);
+            return false;
+        }
+        return true;
+    }
+    ;
+
+    function checkPassWord(val, _bool)
+    {
+        var safe_level = document.getElementById('safe_level');
+        var len = val.length;
+        if (len < 6 || len > 16)
+        {
+            if (_bool)
+            {
+                safe_level.className = "v0";
+                //document.getElementById('sp_password').className = "warn";
+                $("#sp_password").html("密码长度必须大于6位");
+                $("#sp_password").removeClass("routine");
+                $("#sp_password").removeClass("yes");
+                $("#sp_password").addClass("wrong");
+            }
+            return false;
+        }
+        $("#sp_password").html("");
+        //document.getElementById('sp_password').className = "right";
+        var _NumberCount = len - val.replace(/\d/g, '').length;
+        if (len == _NumberCount)
+        {
+            safe_level.className = "v1";
+            return true;
+        }
+        var _UpperCount = len - val.replace(/[A-Z]/g, '').length;
+        if (len == _UpperCount)
+        {
+            safe_level.className = "v1";
+            return true;
+        }
+        var _LowerCount = len - val.replace(/[a-z]/g, '').length;
+        if (len == _LowerCount)
+        {
+            safe_level.className = "v1";
+            return true;
+        }
+        if (_LowerCount + _UpperCount + _NumberCount == len)
+        {
+            safe_level.className = "v2";
+        }
+        else
+        {
+            safe_level.className = "v3";
+        }
+        return true;
+    }
+
+
+    function checkRepeat(val)
+    {
+        if (!val || document.getElementById('password').value != val)
+        {
+            //document.getElementById('sp_repeat').className = "warn";
+            $("#sp_repeat").html("两次输入的密码不一致");
+            $("#sp_repeat").removeClass("routine");
+            $("#sp_repeat").addClass("wrong")
+        }
+        else
+        {
+            //document.getElementById('sp_repeat').className = "right";
+            $("#sp_repeat").html("");
+        }
+    }
+
+    function checkName()
+    {
+        var code = $("#code").val();
+        //$("#submit").attr("disabled", true);
+
+        if (code.length > 20 || code.length < 4 || !(/^[a-z_][a-z_0-9]*$/i.test(code)))
+        {
+            //document.getElementById('sp_code').className = "warn";
+            $("#sp_code").html("用户名不符合要求！");
+            $("#sp_code").removeClass("routine");
+            $("#sp_code").removeClass("yes");
+            $("#sp_code").addClass("wrong");
+            return false;
+        }
+        $.post("http://www.chunnuan888.com/validatezhanghao.html", {'op': 'ckName', 'name': code}, function(data) {
+            if (data == "1")
+            {
+                //$("#submit").attr("disabled", false);
+                //document.getElementById('sp_code').className = "right";
+                $("#sp_code").html("用户名可以注册");
+                $("#sp_code").removeClass('wrong');
+                $("#sp_code").removeClass('routine');
+                $("#sp_code").addClass("yes");
+            }
+            else if (data == "2")
+            {
+                //document.getElementById('sp_code').className = "warn";
+                $("#sp_code").html("该用户名已被注册");
+                $("#sp_code").removeClass("routine");
+                $("#sp_code").removeClass("yes");
+                $("#sp_code").addClass("wrong");
+                return false;
+            }
+        });
+    }
+
+    function checktruename(val)
+    {
+        if (!val || !(/^[\u0391-\uFFE5]{2,4}$/.test(val)))
+        {
+            //document.getElementById('sp_name').className = "warn";
+            $("#sp_name").html("您输入的姓名有误，请重新输入&nbsp;&nbsp;如：张三");
+            $("#sp_name").removeClass("routine");
+            $("#sp_name").addClass("wrong");
+            return false;
+        }
+        else
+        {
+            $("#sp_name").html("");
+            return true;
+        }
+    }
+
+    function checkidcard(val)
+    {
+        if (!val || !IsIdCard(val))
+        {
+            //document.getElementById('sp_idcard').className = "warn";
+            $("#sp_idcard").html("您输入的身份证号码有误");
+            $("#sp_idcard").removeClass("routine");
+            $("#sp_idcard").addClass("wrong");
+            return false;
+        }
+        else
+        {
+            //document.getElementById('sp_idcard').className = "suc";
+            $("#sp_idcard").html("");
+            return true;
+        }
+    }
+</script>
+<script>
+jQuery(document).ready(function($) {
+	$('#J_agreements_btn').click(function(){
+		$('.theme-popover-mask').fadeIn(100);
+		$('.theme-popover').slideDown(100);
+	})
+	$('.close').click(function(){
+		$('.theme-popover-mask').fadeOut(100);
+		$('.theme-popover').slideUp(100);
+	})
+	
+	// 姓名检测
+	$('#name').keyup(function(){
+		val = $(this).val();
+		checktruename(val);
+	})
+	// 身份证检测
+	//$('#idcard').keyup(function(){
+//		val = $(this).val();
+//		checkidcard(val);
+//	})
+
+
+})
+</script>
+<div class="bg">
+  <div class="min_bg">
+    <div class="con">
+      <!--内容-->
+      <div class="connon">
+        <!--内容中心-->
+        <form name="formReg" autocomplete="off" id="formReg" action="http://www.chunnuan888.com/reg.html" method="post" onsubmit="return false;">
+          <div class="mima_z">
+            <!--找回密码-->
+            <div class="zh_t"> 注册账号 </div>
+            <div class="mi_con">
+              <div class="re_section" style="display:block;">
+                <div class="per" >
+                  <div class="tizi">账&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;号：</div>
+                  <div class="iput fl">
+                    <input type="text" onchange="this.value = this.value.replace(/[^a-z_A-Z0-9]/g, '')" onblur="if (this.value != '')
+                                                    checkName();" maxlength="20" name="code" id="code" class="inp" value="">
+                  </div>
+                  <div id="sp_code" class="in_tishi routine">*  4~20个数字、字母或下划线，以字母开头 </div>
+                </div>
+                <div class="per">
+                  <div class="tizi">输入密码：</div>
+                  <div class="iput fl">
+                    <input type="password" id="password" onkeyup="checkPassWord(this.value, false);" onblur="checkPassWord(this.value, true);" name="password" class="inp" value="">
+                  </div>
+                  <div id="sp_password" class="in_tishi routine">* 密码不少于6个字符</div>
+                </div>
+                <div class="secure_level">
+                  <label>安全程度：</label>
+                  <span id="safe_level" class="v0">安全等级</span>
+                  <!--v0-v3-->
+                </div>
+                <div class="per">
+                  <div class="tizi">确认密码：</div>
+                  <div class="iput fl">
+                    <input type="password" onblur="checkRepeat(this.value);" id="repeat" name="repassword" class="inp" value="">
+                  </div>
+                  <div id="sp_repeat" class="in_tishi routine">* 请再次输入密码</div>
+                </div>
+                <div class="per">
+                  <div class="tizi">电子邮箱：</div>
+                  <div class="iput fl">
+                    <input type="text" onchange="this.value = this.value.replace(/^\s*|\s*$/g, '')" onblur="checkEmail();" id="email" name="email" class="inp" value="">
+                  </div>
+                  <div id="sp_email" class="in_tishi routine">* 邮箱是找回密码的重要凭证，请认真填写</div>
+                </div>
+                <div class="per1" style="visibility:hidden; height: 0px; overflow: hidden">
+                  <div class="tizi">真实姓名：</div>
+                  <div class="iput fl">
+                    <input type="text" id="name" onblur="checktruename(this.value);
+                                                return false;" class="inp" name="name" value="用户">
+                  </div>
+                  <div id="sp_name" class="in_tishi routine">*</div>
+                </div>
+                <div class="per1" style="visibility:hidden; height: 0px; overflow: hidden">
+                  <div class="tizi">身份证号：</div>
+                  <div class="iput fl">
+                    <input type="text" onblur="checkidcard(this.value);" id="idcard" class="inp" name="idcard" value="530126197811213822">
+                  </div>
+                  <div id="sp_idcard" class="in_tishi routine"> *  如：530126197811213822</div>
+                </div>
+                <div class="per">
+                  <div class="tizi">验&nbsp; 证&nbsp; 码：</div>
+                  <div class="iput fl">
+                    <input type="text" id="seccode" class="inp" name="seccode" value="">
+                    <img alt="点击刷新" src="http://www.chunnuan888.com/validatecode/index.html" id="tu" align="absbottom" onclick="this.src='http://www.chunnuan888.com/validatecode/index.html?'+Math.random();" style="margin-bottom:-4px; cursor:pointer;"> 看不清 ? 点击图片刷新 </div>
+                  <!--                                    <div class="in_tishi routine">fdgs</div>-->
+                </div>
+                <div class="b">
+                  <input type="checkbox" checked="checked" value="1" id="readed" name="readed">
+                  <label>我已经仔细阅读并接受<a id="J_agreements_btn" target="_black">《用户注册服务协议》</a></label>
+                </div>
+                <div class="per_btn">
+                  <input type="submit" id="submit" class="btn" onclick="submitRegister();
+                                            return false;" value="提&nbsp;&nbsp;交">
+                </div>
+              </div>
+              <div class="clear"></div>
+            </div>
+          </div>
+          <!--找回密码结束-->
+          
+        </form>
+        <div class="clear"></div>
+        
+        <div class="pop" id="pop_notice" style="display:none;">
+          <h2><span>系统提示</span><a href="javascript:void(0)" onclick="Notice.closeNotice();
+                            return false;" title="关闭"></a></h2>
+          <div class="popBox">
+            <div class="popTip" style="display:none;" id="notice_type"> </div>
+            <!--popTip end-->
+          </div>
+        </div>
+        <!--友情链接结束-->
+        <div class="footer">
+          <p class="f_lianxi">&nbsp;</p>
+          <p><a href="http://net.china.com.cn/index.htm" target="_blank" rel="nofollow"><img height="40" width="98" src="/static/game/css/img/down_blxx.jpg"></a><a href="http://www.bj.cyberpolice.cn/index.htm" target="_blank" rel="nofollow"><img height="40" width="98" src="/static/game/css/img/down_110.gif"></a><img height="40" width="98" src="/static/game/css/img/a11.jpg"><a href="http://210.76.65.188/" target="_blank" rel="nofollow"><img height="40" width="98" src="/static/game/css/img/a2.gif"></a><a href="javascript:void(0)"><img height="40" width="98" border="0" src="/static/game/css/img/360.png"></a></p>
+          <p>&nbsp;</p>
+          <p></p>
+        </div>
+      </div>
+      <!--内容中心结束-->
+    </div>
+    <!--内容结束-->
+  </div>
+</div>
+<div class="w3c"> <a class="gotoTop" onclick="goto_top()" title="回到顶部" href="javascript:void(0)"></a> </div>
+
+
+<div class="theme-popover">
+  <div><a href="javascript:;" title="关闭" class="close" style="float:right; margin-right:10px; margin-top:10px; color:#000000">×</a></div>
+  <div style="padding:20px;width:660px;	height:360px;OVERFLOW-Y: auto; OVERFLOW-X:hidden; margin-top:30px;">
+    <p>欢迎使用淼坤网络原创漫画网内容发布服务，请您仔细阅读以下全部内容。如您不同意《杭州淼坤网络科技有限公司内容上传协议》（以下简称&ldquo;本协议&rdquo;）中任何内容的，请不要使用本服务。 </p>
+<p>如您（未成年人应在法定监护人陪同并授权下）选择使用并点击&ldquo;同意&rdquo;的，即表示已经与淼坤网络原创漫画网达成协议，并自愿接受本协议的所有内容。本协议是《杭州淼坤网络科技有限公司用户协议》不可分割的组成部分，本协议未明确约定的，均依照《淼坤网络用户协议》执行。 </p>
+<p><strong>淼坤网络原创漫画网的所有权、经营管理权杭州淼坤网络科技有限公司（以下简称</strong><strong>&ldquo;淼坤网络&rdquo;</strong><strong>）所有。杭州淼坤网络有权根据法律规范及运营的合理需要，不断修改和完善本协议。协议如修改，淼坤网络将在您登陆后提示您查看，如您继续使用本服务，即意味着同意并自愿遵守修改后的服务协议。</strong><strong> </strong></p>
+<p> </p>
+<p>一、         定义 </p>
+<p>1.1            您：指有效申请并经淼坤网络审核同意后，通过淼坤网络原创漫画平台发布、分享漫画内容的自然人、法人、其他组织。 </p>
+<p>1.2            淼坤网络原创漫画平台：指杭州淼坤网络科技有限公司所有和经营的淼坤网络原创漫画网站（http://www.miaokun520.com）、智能手机及平板电脑的漫画应用程序及与淼坤网络原创漫画网相关联盟网站（包括但不限于其他第三方网站）等网络产品及应用等，旨在供著作权人或其合法授权人发布、查询、管理漫画等数字内容，为淼坤网络阅读用户提供漫画、资讯等的数字内容服务。 </p>
+<p>1.3            作品：指您在淼坤网络原创漫画平台所发布的文字、图片、链接等内容。 </p>
+<p> </p>
+<p>二、         用户上传或发布的内容 </p>
+<p>2.1  在您上传作品之前，请您了解并遵守国家相关法律及法规。在任何情况下，淼坤网络若合理地认为您的行为可能违反国家相关法律、法规或公序良俗，将有权独立判断并删除相关内容，并暂停或终止向您提供服务。 </p>
+<p>2.2  淼坤网络依法禁止上传、发布、传播或者含有下列内容之一的作品： </p>
+<p>a)       反对宪法所确定的基本原则的； </p>
+<p>b)      危害国家安全，泄露国家秘密，颠覆国家政权，危害国家统一、主权和领土完整的； </p>
+<p>c)       损害国家荣誉和利益的； </p>
+<p>d)      煽动民族仇恨、民族歧视，破坏民族团结的； </p>
+<p>e)       破坏国家宗教政策，宣扬邪教和封建迷信的； </p>
+<p>f)        散布谣言，扰乱社会秩序，破坏社会稳定的； </p>
+<p>g)       散布淫秽、色情、赌博、暴力、凶杀、恐怖或者教唆犯罪的； </p>
+<p>h)      侮辱或者诽谤他人，侵害他人合法权益的； </p>
+<p>i)         包含虚假或带有误导性内容的； </p>
+<p>j)         含有法律、行政法规禁止的其他内容的。 </p>
+<p>2.3  在淼坤网络原创漫画平台中，所上传的内容应遵守以下原则： </p>
+<p>a)       您在淼坤网络原创漫画平台所上传的一切内容，均应为漫画作品或与漫画作品相关的内容； </p>
+<p>b)      上传内容中凡选择标注为&ldquo;完全原创&rdquo;的，您保证该内容完全为用户本人独立创作； </p>
+<p>c)       上传内容中凡选择标注为&ldquo;二次创作&rdquo;的，您保证其改编原作品并在淼坤网络上传二次创作之作品的行为已经获得了原作品著作权人不可撤销之授权（此种情况应附相关授权书复印件）；同时，您应当标注原作品的名称和原作者的署名。 </p>
+<p>d)      上传内容中凡标注为&ldquo;网络收集&rdquo;的，您保证已经获得著作权人的授权拥有在互联网上发布该等内容的相关权利（此种情况应附相关授权书复印件），或原作者明确声明允许自由转载（此种情况应附相关声明原文）；同时，用户应当标注原作者的署名；如原作者的授权（或允许转载的声明）中要求的，应当同时标注作品的出处； </p>
+<p>e)       您上传无权发布的作品，将被视为无授权转载行为，自行承担相应法律责任。 </p>
+<p>f)        您若未获得淼坤网络书面同意，不得在淼坤网络原创漫画平台发布任何广告消息、变相广告或商家促销资料。 </p>
+<p>2.4  淼坤网络提醒您：请注意对您所发布内容进行备份及存储。对于您所发布信息的删除、恢复或储存失败，淼坤网络将不承担任何责任。 </p>
+<p>2.5  因您在本平台的上传或发布行为，而导致任何第三方提出索赔要求或衍生的任何损害或损失，由您自行承担全部责任，淼坤网络将不承担任何责任。 </p>
+<p>2.6  除非淼坤网络收到相反的主张权利的通知或相关投诉，淼坤网络将把您视为您在本平台上传或发布的内容的版权拥有人。因您侵犯或可能侵犯第三者权利而导致淼坤网络被索赔的，您应确保淼坤网络的权利不因此受到损害，包括但不限于为淼坤网络提供证据、进行辩护、赔偿淼坤网络为此支付的一切费用和损失。 </p>
+<p>2.7  任何上传至淼坤网络原创漫画平台的文字、图片等，淼坤网络有权将该等作品的全部或部分在淼坤网络及其他相关平台上进行推荐、汇编、排名、转载等推广活动。 </p>
+<p>2.8  不论作品因何种原因被删除，在删除之日以前淼坤网络为该作品所做推广分发的展示仍继续有效，淼坤网络对已推广、分发或展示的内容无法进行删除、撤回等操作。 </p>
+<p>2.9  所上传作品如包含真实人物，须事先获得肖像权人的授权许可。 </p>
+<p>2.10  所上传作品不得含有已注册商标或公司名称，以免侵犯他人商标权、名称权。 </p>
+<p> </p>
+<p>三、         您的权利和义务 </p>
+<p>3.1  您保证：对通过淼坤网络原创漫画平台发布的作品享有合法权益，是该作品的著作权人或已获得著作权人的合法授权，可以对该作品行使相关权利；若因您发布的作品发生权利纠纷或侵犯了任何第三方的合法权益，而导致任何第三方提出索赔要求或衍生的任何损害或损失均由您自行承担。因您侵犯淼坤网络或其他第三方知识产权的行为致使淼坤网络蒙受损失的，您应向淼坤网络赔偿。 </p>
+<p>3.2  您保证：提供给淼坤网络的所有信息、数据，包括但不限于其姓名（名称）、地址、链接、电子邮箱、联系方式等相关资料真实、合法、准确。如淼坤网络发现不真实、不合法或不准确的，则有权暂停或终止向您提供本协议下服务。 </p>
+<p>3.3  淼坤网络将不会为您上传、发布或发表的任何作品支付费用，对此您完全理解并同意。您和淼坤网络另行签订协议的除外。 </p>
+<p> </p>
+<p>四、         淼坤网络的权利和义务 </p>
+<p>4.1  淼坤网络尊重知识产权并注重保护您享有的各项权利，上传（发布）作品的著作权一律归作品的创作者所有。为了更好地对您、您发布（上传）的内容以及淼坤网络原创漫画平台进行宣传推广，您同意淼坤网络可在淼坤网络网站及淼坤网络旗下其他产品中使用和传播这些内容，以及为宣传推广的目的将上述内容许可给第三方使用和传播（包括但不限于网络、电子杂志、软件、出版等）。为了更好地维护您的各项知识产权，您同意授权淼坤网络有权针对侵犯您发布（上传）内容相关权利的行为进行维权。若此类维权行为产生任何收益，淼坤网络将在扣除维权成本后将维权收益支付给您。 </p>
+<p>4.2  淼坤网络承诺在以宣传推广您上传的内容为目的、以非盈利方式在淼坤网络原创漫画平台之外的第三方平台使用您上传的内容的，将会以站内短消息等形式及时通知您。您有权选择要求淼坤网络停止该使用行为。您授权淼坤网络以宣传推广您上传的内容为目的，在淼坤网络原创漫画平台之外的第三方平台使用您上传的内容。如您不同意本授权的，务必以电子邮件方式要求淼坤网络停止该宣传推广行为，联系邮箱为：kefu@chunnuan888.com </p>
+<p>4.3  淼坤网络承诺将善意地向第三方宣传和推广您上传的内容，在未经通知并与您达成一致前，不会以收费方式向公众提供该内容的线下和/或在线的阅读和浏览服务，或通过向第三方合作伙伴收费的形式向其提供您上传的内容。 </p>
+<p>4.4  淼坤网络有权对您上传的作品进行事先审核，经审核通过的作品方可在淼坤网络原创漫画平台发布。但因淼坤网络对于漫画作品知识产权不具备充分的辨别和监控能力，该审核仅以合理程度为限，淼坤网络并不实际控制您或其作品，不对其审核结果承担任何法律责任，亦不对您作品的合法性、不侵权、完整性做出任何明示或暗示的担保、保证责任。 </p>
+<p>4.5  淼坤网络有权知悉您的身份信息、注册数据，如发现该等信息、数据中存在任何问题或怀疑，有权要求您改正，或者直接做出删除、屏蔽您所发布的作品等处理。 </p>
+<p>4.6  淼坤网络对淼坤网络原创漫画平台的开发和运营等过程中产生的所有信息等享有完整、全部权利，包括但不限于著作权、专利权、商标权、商业秘密及其他知识财产和其他权利。 </p>
+<p>4.7  淼坤网络保留随时变更或终止淼坤网络原创漫画平台服务的权利，并无需对行使该权利向您承担责任。淼坤网络可通过网页公告、电子邮件、电话或信件传送等方式向您发出通知，该等通知在发送时即视为已送达收件人。 </p>
+<p>4.8  淼坤网络对不可抗力导致的损失不承担责任。本协议所指不可抗力包括：天灾、法律法规或政府指令的变更，因网络服务特性而特有的原因，例如境内外基础电信运营商的故障、计算机或互联网相关技术缺陷、互联网覆盖范围限制、计算机病毒、黑客攻击等因素，及其他合法范围内的不能预见、不能避免并不能克服的客观情况。 </p>
+<p> </p>
+<p>五、         版权政策及投诉机制 </p>
+<p>5.1  版权政策 </p>
+<p>淼坤网络重视知识产权保护并遵守各项法律、法规，坚信著作权拥有者的合法权益应该依法得到尊重和保护。我们坚决反对任何侵犯著作权的行为。 </p>
+<p>在淼坤网络作为信息网络存储空间提供者向您提供服务的情况下，我们依据《著作权法》及《信息网络传播权保护条例》制定了旨在保护著作权人合法权益的措施和步骤。如果您发现淼坤网络原创漫画平台上用户上传内容侵犯您的著作权或其他相关权利，请您按照本协议的程序进行投诉，我们将根据法律规定采取相关措施。 </p>
+<p>5.2  版权投诉的程序 </p>
+<p>a)       通知程序 </p>
+<p>如果您认为淼坤网络平台用户通过淼坤网络提供的信息存储空间所上传、传播的内容侵犯了您的著作权及相关权利，您可以通过本协议中列明的方式向我们发送通知，要求我们删除该作品或者断开该作品的链接。通知书需由权利人或其合法授权人亲笔签名，若为单位则需加盖单位公章。 </p>
+<p>通知书应当包含下列内容（为了我们能够更高效地处理的通知，我们建议采用本平台的格式文本进行填写，详见使用协议附件）： </p>
+<p>          i.              权利人的姓名（名称）、联系方式、地址、身份证复印件（自然人）、单位登记证明复印件（单位）； </p>
+<p>        ii.              要求删除或者断开链接的侵权作品的准确名称和网络地址，以便我们能够发现并初步审核涉嫌侵权作品； </p>
+<p>      iii.              认为构成侵权的初步证明材料，包括但不限于对作品享有版权或依法享有信息网络传播权的权属证明等。（权利人应对通知书的真实性负责。若通知书的内容不真实，权利人将承担由此造成的全部法律责任。） </p>
+<p> </p>
+<p>我们在收到符合要求的通知后： </p>
+<p>          i.              将在合理时间内删除涉嫌侵权的作品，或者断开涉嫌侵权作品的链接，并同时将通知书转送作品提供者； </p>
+<p>        ii.              除履行反通知程序外，对使用同一账号多次上传侵权作品的用户，我们有权不事先通知并随时终止该账号的使用。 </p>
+<p>b)      反通知程序 </p>
+<p>作品提供者收到我们转送的通知书后，认为其提供的作品并未侵犯他人权利的，可向我们提交反通知的书面说明，要求恢复被删除的作品或被断开的作品链接。反通知书需作品提供者或其合法授权人亲笔签名，若为单位则需加盖单位公章。 </p>
+<p>反通知应当包含下列内容（为了我们能够更高效地处理的通知，我们建议采用本平台的格式文本进行填写，详见使用协议附件）： </p>
+<p>          i.              作品提供者的姓名（名称）、联系方式、地址、身份证复印件（自然人）、单位登记证明复印件（单位）； </p>
+<p>        ii.              要求恢复被删除的作品，或者被断开链接的作品的准确名称和网络地址，以便我们能够发现并初步审核涉嫌侵权作品； </p>
+<p>      iii.              认为不构成侵权的初步证明材料，包括但不限于对作品享有著作权或依法享有信息网络传播权的权属证明等。（作品提供者应对反通知书的真实性负责。若通知书的内容不真实，提供者将承担由此造成的全部法律责任。） </p>
+<p>我们在收到作品提供者的反通知后，有权先行恢复被删除的作品或者被断开的作品链接，同时将作品提供者的反通知转送投诉人。投诉人有异议的，可直接通过法律途径向作品提供者主张权利。 </p>
+<p>5.3  联系方式 </p>
+<p>a)       初步沟通方式 </p>
+<p>为了更高效地处理您的相关通知，我们建议您先行通过以下方式与我们就所涉法律问题进行联系、沟通，我们会对您的意见给予充分的重视。 </p>
+<p>电　话：021-69121286</p>
+<p>联系人：客服部 </p>
+<p>b)      通知的送达方式 </p>
+<p>您可以选择采用以下方式发送本协议中所涉及的相关通知 </p>
+<p>（1）邮寄方式 </p>
+<p>如您采取邮寄的方式，请将邮件寄送至如下地址 </p>
+<p>地址：上海市嘉定区嘉好路700号1幢1281室</p>
+<p>邮编：201800</p>
+<p>（2）电子邮件方式 </p>
+<p>如您采取邮寄的方式，请将电子邮件发送至如下地址： </p>
+<p>电子邮件地址：kefu@chunnuan888.com</p>
+<p> </p>
+<p>六、         免责声明 </p>
+<p>6.1  凡有用户未经作者许可，在淼坤网络原创漫画平台内转载作品，淼坤网络对用户转载行为不负任何责任。接到作者投诉或发现可能存在未经许可上传作品的行为时，淼坤网络有权不事先通知用户即撤消或删除该作品，并无需向用户承担任何责任。 </p>
+<p>6.2  网络作品在无法与作者取得联系的前提下，淼坤网络保证转载后不得用于营利用途。如作者对相关的非营利性的转载持有异议，可以通知淼坤网络将其删除。 </p>
+<p>6.3  因有人恶意冒充网络作者向淼坤网络原创漫画平台投稿，并被淼坤网络原创漫画平台接受录入非其所有的原创作品，淼坤网络保证接到真实作者投诉时，经验证后第一时间内删除该作品及封冒充者id。如真实作者需要，淼坤网络可根据相关法律的规定向真实作者提供冒充者id相关的注册信息。淼坤网络不承担其他责任。 </p>
+<p>6.4  淼坤网络并不担保淼坤网络所提供的服务一定能满足用户的要求，也不担保提供的服务不会被中断、终止，并且对服务的及时性，安全性，出错发生均不作任何担保。作者自行留存原稿，淼坤网络对因任何原因导致用户上传的内容灭失均不承担责任。 </p>
+<p>6.5  淼坤网络在宣传推广用户上传的内容（包括但不限于在广告、推荐位及第三方宣传平台等推广）时，有权修改推荐内容的封面图片，同时标注淼坤网络的标识（包括但不限于相关的文字表述、淼坤网络的名称、LOGO等）。该等行为任何情况下均不应视为侵权。 </p>
+<p>6.6  淼坤网络有权根据本协议将上述作品推荐给合作伙伴宣传或转载，不另行告知。 </p>
+<p> </p>
+<p>七、         其他 </p>
+<p>如用户与淼坤网络签订了其他书面合同的，本协议作为该书面合同的一部分，与该书面合同具同等效力；该书面合同与本协议规定不一致的，适用书面合同的规定。 </p>
+<p>若您和淼坤网络之间发生任何纠纷或争议，首先应友好协商解决；协商不成的，您同意将纠纷或争议提交上海仲裁委员会仲裁解决。 </p>
+<p> </p>
+
+
+  </div>
+</div>
+<div class="theme-popover-mask"></div>
+<div class="pop" id="pop_notice" style="display:none;">
+          <h2><span>系统提示</span><a href="javascript:void(0)" onclick="Notice.closeNotice();
+                            return false;" title="关闭"></a></h2>
+          <div class="popBox">
+            <div class="popTip" style="display:none;" id="notice_type"> </div>
+            <!--popTip end-->
+          </div>
+        </div>
+
+</body>
+</html>

@@ -1,0 +1,32 @@
+@charset "utf-8";
+/* CSS Document */
+*{color:#3a3a3a;}
+body{font:14px/1.5 "微软雅黑",Arial,Tahoma, Helvetica,\5b8b\4f53, sans-serif;}
+body,html { background:#ffe6b6; }
+html,body,div,h1,h2,h3,h4,h5,h6,hr,p,blockquote,dl,dt,dd,ul,ol,li,pre,form,fieldset,object,code,legend,button,input,textarea,th,td,a,img{margin:0;padding:0;border:0;outline:0;}/*清除内外边距*/
+h1,h2,h3,h4,h5,h6{font-weight:normal;font-size:100%;}/*设置默认字体*/
+em,i{font-style:normal;}
+:focus{outline:0;}
+ul,ol{list-style: none; }/*重置列表*/
+address,caption,cite,em,code,dfn,th,var{font-style:normal;font-weight:normal;}
+form label{cursor:pointer;}
+input,button,select,textarea{font-family:inherit;font-size:100%;outline:none; }
+textarea{resize:none}
+input{vertical-align:middle;}
+img{border:0;}/*重置图片元素*/
+table{ border-collapse:collapse; border-spacing: 0;}/*重置表格*/
+.l{ float:left; }
+.r{ float:right; }
+.p { position:relative; }
+
+a{text-decoration:none;}
+a:hover{text-decoration:none;}
+
+/*--清除浮动
+------------------------------------------------------------------------------------------*/
+.clearfix:after{content:".";display:block;font-size:0;height:0;clear:both;visibility:hidden;}
+.clearfix{zoom:1;}
+.overflow{overflow:hidden; _zoom:1;}
+.clear{clear:both; height:0;font-size:0; overflow:hidden;}
+.clearn{clear:both;}
+html,html body{background-image:url(about:blank);background-attachment:fixed;}
