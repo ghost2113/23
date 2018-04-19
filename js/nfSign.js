@@ -18,8 +18,7 @@
 	    if(el.offsetHeight < el.scrollHeight)  
 	        evt._isScroller = true;  
 	    });  
-	}  
-	          
+	};  	          
 	overscroll(document.querySelector('#main'));  
 	document.body.addEventListener('touchmove', function(evt) {  
 	    if(!evt._isScroller) {  
@@ -63,6 +62,7 @@
 		    return null; 
 		};		
 		var userID = getUrlParams("userId");
+		userID= 8;
 		console.log({"用户userId":userID,"地址":window.location.search});
 		var olDate;//后台返回线上日期
         var dateArray = []; //遍历网格	
@@ -79,6 +79,7 @@
         var d = new Date(myDate.getFullYear(), parseInt(myDate.getMonth() + 1), 0);
         var totalDay = d.getDate(); //获取当前月的天数
         var len = (totalDay + monthFirst)>35?42:35;//网格个数
+        var isFirst = true;
         for (var i = 0; i < len; i++) {
             _html += ' <li><div class="qiandao-icon"></div></li>'
         }
@@ -125,14 +126,13 @@
 	        		console.log(dateArray[k]);
         		}	       		
 	       }
-	       dateM.unshift(dateArray[dateM.length]);
+	        dateM.unshift(dateArray[dateM.length]);
 	        console.log("dateM",dateM);
 	        for (var i = 0; i < totalDay; i++) {	        	
 	        	//设置日历 日期起始位置
 	            $dateLi.eq(i + monthFirst).addClass("date" + parseInt(i + 1));		            
 	            $dateLi.eq(i + monthFirst).text(i+1);
-	            //当前日期之前字体改变
-	            
+	            //当前日期之前字体改变	            
 	            //显示已经签到的日期	
 	            for (var j = 0; j < dateM.length; j++) {	            	
 	                if (i == dateM[j]) {		                	
@@ -140,9 +140,14 @@
 	                    //签到成功之后，按签到天数显示奖励			 
 	                }
 	            }
-	        } 
+	        }
+	        console.log("dateM[0]",dateM[0]);
+	        //判断是否为首次签到
+	        if(dateM[0]!==undefined){
+	        	isFirst = false;
+	        }
 	        //渲染持续签到奖励
-           	[parseInt(dateM[0])+7,parseInt(dateM[0])+14,parseInt(dateM[0])+21,parseInt(dateM[0])+28].forEach(function(item,index){
+           	[parseInt(dateM[0])+6,parseInt(dateM[0])+12,parseInt(dateM[0])+18,parseInt(dateM[0])+24].forEach(function(item,index){
         		$(".date" + item).addClass('qiandaoActive'+index);
 	        })
     	}).catch(function(error){
@@ -169,9 +174,9 @@
         }) 
         //按钮按钮
         $qiandaoBtn.on("click", function() { 
-    		if(!_handle){
+ /*   		if(!_handle){
     			return false;
-    		};
+    		};*/
         	qiandaoShow();
 			qiandaoFun();		                            
         }); 
@@ -179,37 +184,41 @@
         function qiandaoFun() {
             $qiandaoBtn.addClass('btnActived');
             $qiandaoBtn.text("明日再来签到");           
-        }  	
+        };  	        
         //签到成功
         function qiandaoShow(){ 
         	_handle = false;
+        	if(isFirst){
+        		[myDate.getDate()+6,myDate.getDate()+12,myDate.getDate()+18,myDate.getDate()+24].forEach(function(item,index){
+		        	$(".date" + item).addClass('qiandaoActive'+index);
+			    });
+        	}
         	//判断签到日期前一天是否未签
         	/*console.log({"前一天":$(".date" + (myDate.getDate()-1))},{"今天":$(".date" + myDate.getDate())});*/
     	    if($(".date" + (myDate.getDate()-1)).hasClass("qiandaoActive")){
     			$(".date" + myDate.getDate()).addClass('qiandaoActive');
         	}else{
-        		$(".date" + myDate.getDate()).addClass('qiandaoActive').siblings().removeClass('qiandaoActive');        		
+        		/*$(".date" + myDate.getDate()).addClass('qiandaoActive').siblings().removeClass('qiandaoActive'); */       				/*保留签到状态*/
+        		$(".date" + myDate.getDate()).addClass('qiandaoActive')
         	}			
-	    	//向后台发送签到成功请求 把签到信息追加到signList数组中去
+	    	//调用签到接口
 	    	axios.post("https://zhishun520.com/zaotoutiao-api-home-1.0.0/sign/in?userId="+userID+"&isSubmit=1")
 	    	.then(function(response){
-	    		console.log(response);
+	    		console.log(response);	    	
 	    		if(response.data.msg=="未连续签到，从头开始签到"){
-	    			console.log("未连续签到，从头开始签到");
+	    			/*console.log("未连续签到，从头开始签到");*/
 	    			$(".qiandaoActive0").removeClass("qiandaoActive0");
 	    			$(".qiandaoActive1").removeClass("qiandaoActive1");
 	    			$(".qiandaoActive2").removeClass("qiandaoActive2");
 	    			$(".qiandaoActive3").removeClass("qiandaoActive3");
 	    			//渲染持续签到奖励
-		           	[myDate.getDate()+7,myDate.getDate()+14,myDate.getDate()+21,myDate.getDate()+28].forEach(function(item,index){
+		           	[myDate.getDate()+6,myDate.getDate()+12,myDate.getDate()+18,myDate.getDate()+24].forEach(function(item,index){
 		        		$(".date" + item).addClass('qiandaoActive'+index);
-			        		/*$(".date" + item).text(_qiandaoJl[index]);*/
 			        })
-	    		}
+	    		};	    		
 	    		var getGold = response.data.getGold;//签到成功金币数
 				//弹出层
-	    		signIn(getGold);	
-	    		
+	    		signIn(getGold);		    		
 	    	}).catch(function(error){
 	    		console.log(error);
 	    	})
@@ -219,6 +228,7 @@
          * @param {Object} getGold
          */
         function signIn(getGold){    
+        	console.log("获取金币数为",getGold);
 	       var u = navigator.userAgent;
 	       var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
 	       var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端

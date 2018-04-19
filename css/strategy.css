@@ -4,10 +4,11 @@ body { font-size: 14px; overflow: hidden; }
 #main .strategyBg { z-index: -9999; position: absolute; left: 0; top: 0; width: 100%; }
 #main .strategyBg img { display: block; width: 100%; }
 #main .strategyText { display: block; width: 2.5rem; margin: 0 auto; }
-#main .strategy { display: flex; display: -webkit-flex; flex-direction: column; justify-content: center; align-items: center; width: 2.95rem; padding: 0.2rem; margin: 0.45rem auto 0; background: #fff; border-radius: 0.2rem; }
-#main .strategy .userPhoto { width: 0.5rem; height: 0.5rem; border-radius: 0.5rem; background: url(../img/strateHead.png) no-repeat center center; background-size: 100% 100%; }
+#main .strategy { position: relative; display: flex; display: -webkit-flex; flex-direction: column; justify-content: center; align-items: center; width: 2.95rem; padding: 0.2rem; margin: 0.45rem auto 0; background: #fff; border-radius: 0.2rem; }
+#main .strategy .gold { position: absolute; left: -0.2rem; top: -0.1rem; display: block; width: 3.5rem; height: 1rem; }
+#main .strategy .userPhoto { width: 0.75rem; height: 0.75rem; background: url(../img/strateHead.png) no-repeat center center; background-size: 100% 100%; margin-top: -0.5rem; }
 #main .strategy .userName { font-size: 0.14rem; line-height: 0.2rem; color: #333; margin-top: 0.1rem; }
-#main .strategy .userIntro { font-size: 0.13rem; line-height: 0.2rem; color: #999999; }
+#main .strategy .userIntro { margin-top: 0.1rem; font-size: 0.13rem; line-height: 0.2rem; color: #999999; }
 #main .strategy .strategyCont { margin-top: 0.2rem; color: #333; line-height: 0.23rem; text-indent: 2em; }
 #main .strategy .strategyCont p { margin-bottom: 0.23rem; font-size: 0.14rem; }
 #main .strategy .strategyCont .redFont { color: #df3106; }

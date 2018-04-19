@@ -1,293 +1,60 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>新闻</title>
-    <link rel="stylesheet" href="./css/reset.css" />
-    <link rel="stylesheet" href="./css/newsShare.css" /> 
-</head>
-<body onload="iframeLoad();">
-	<video id="my-video" class="video-js myVideo" controls preload="auto" poster="" data-setup="{}" webkit-playsinline="true" playsinline="true">
-        <source class="videoSrc" src="http://jq22com.qiniudn.com/jq22-sp.mp4" type="video/mp4">
-        <p class="vjs-no-js"> To view this video please enable JavaScript, and consider upgrading to a web browser that <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a> </p>
-      </video>
-      
-      
-      
-<!--http://app.v.k.360kan.com/vod-xinxiliu-tv-q2-bj/103395404_0-1521792265-b656c774-0ef5-d825.mp4?time=1523620444&sign=e1c9ef68f58653c556378010d3dfe5be&from=opendemoapi_appid_1542338670
-
-
-http://app.v.k.360kan.com/vod-xinxiliu-tv-q2-bj/71103163_06b8656ee-cc15-4810-8c51-856c418e6ade.mp4?time=1523618458&sign=875952b7df09d006419d64f4d863b0bc&from=opendemoapi_appid_1920524262-->
-	<iframe name="ifm" id="iframepage" style="background-color: transparent;" marginwidth="0" marginheight="0" frameborder="0"  scrolling="yes" width="100%" src="" style="overflow: hidden">		
-	</iframe>
-	<section id="main">				
-		<div class="title"><span></span>相关推荐</div>
-		<ul class="newsList">
-			<!--<a href="">
-			<li class="items">
-				<div class="leftCon">
-					<p>vivo X21屏幕指纹手机发布 鹿晗邀你一起解锁vivoivo X21屏幕指纹手机发布 鹿晗邀你一起解锁viv</p>
-					<div class="itemsInfor">
-						<span>新华社</span>
-						<span>刚刚</span>
-						<span>18909</span>阅读
-					</div>
-				</div>
-				<div class="rightImg">
-					<img src="./img/userPhoto.jpg" alt="" />
-				</div>
-			</li>
-			</a>-->
-		</ul>
-	</section>
-
-	<div class="shareLink">
-		<div class="icon"><span></span><span>头条TV</span></div>
-		<span>看新闻赚零花钱</span>
-		<a class="linkedme" id="openLink" href="#">打开</a>
-	</div>
-</body>
-<script type="text/javascript" src="./js/rem.js"></script>
-	<script type="text/javascript" src="./js/jquery-3.3.1.min.js"></script>
-	<script type="text/javascript" src="./js/fastclick.js"></script>
-	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-	<script type="text/javascript">
-			var newsUrl = window.location.href;
-					newsUrl =  "http://zhishun520.com/zttH5/newsShare.html?appVersion=0&brand=apple&device=1&domain=http://zhishun520.com/zaotoutiao-api-home-1.0.0/&height=667&idIdfa=C83B320E-16C2-4324-BEC9-C43C0238E410&idImei=xxxx&ip=183.156.227.161&model=iPhone&osType=2&osVersion=11.3&packageName=com.muki.TopLineTV&type=1&urls=information/list&userAgent=Mozilla/5.0%20(iPhone;%20CPU%20iPhone%20OS%2011_3%20like%20Mac%20OS%20X)%20AppleWebKit/605.1.15%20(KHTML,%20like%20Gecko)%20Mobile/15E216&userId=333&width=375&****zlink=https://lkme.cc/GJD/kzeKlr1DK&****znewsUrl=http://sh.qihoo.com/mob/transcoding?url=http%253A%252F%252Fwww.yidianzixun.com%252F0IkHZpB0&check=e1e2646c0767c673&uid=36111c0e19d8fd8679613ee590b39f87&sign=ex%255F2eb604c1&sv=1&templetctl=7&360newsdetail=1&hsitetype=1&ucheck=dd2e144b7a803e96cf65dde717b9febe&hscmt=1";	
-/*			newsUrl = "http://47.96.1.236:8080/zttH5/newsShare.html?appVersion=1.2.3&brand=apple&device=0&domain=http://47.96.1.236:8080/zaotoutiao-api-home-1.0.0/&height=1136&idIdfa=(UIDevice.current.identifierForVendor?.uuidString)!&idImei=eefcebef9c3baffb&infoId=b044478a815240cc&ip=192.168.0.124&model=iPhone6&osType=1&osVersion=1.1.1&packageName=com.muki.topline&type=1&urls=information/list&userAgent=&userId=331&width=22&z****zlink=https://lkme.cc/GJD/e53ZATnCK&z****znewsUrl=http://sh.qihoo.com/mob/transcoding?url=http%3A%2F%2Fent.163.com%2F18%2F0409%2F08%2FDEUIPUJD00038FO9.html&check=724e65fe71157641&uid=1185ac1cb69b143ff1615e0beda40507&sign=ex%5F2eb604c1&sv=1&templetctl=7&360newsdetail=1&articlety=zmt&hsitetype=1&ucheck=f95b630068ef84f0ccd1373f49264a91&hscmt=1&from=singlemessage"*///android
-			
-			var urlResult = decodeURI(newsUrl).split("****");
-			var urlPara = urlResult[0];
-			/**
-			 * 获取Url地址中userId参数   userID
-			 */
-			console.log(urlPara.substr(urlPara.indexOf("?")+1));
-			function getUrlParams(name) { 
-			    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i"); //定义正则表达式 
-			    var r = urlPara.substr(urlPara.indexOf("?")+1).match(reg);  
-			    if (r != null) return unescape(r[2]); 
-			    return null; 
-			};
-			console.log(urlResult);
-			/**
-			 *   @param    
-			 *   device:设备名称（0为安卓，1为iOS，2为PC）;
-			     userId:用户ID;
-			     packageName：app包名；
-			     appVersion：app版本号；
-			     idIdfa：ios为idfa;
-			     idImei: android为imei;
-			     height: 屏幕的物理高度，以像素为单位；
-			     width：屏幕的物理宽度，以像素为单位；
-			     brand：设备品牌；
-			     model：设备型号；
-			     osVersion：设备操作系统版本号，例如3.1.2，需要三位数；
-			     osType: 操作系统类型 1.ANDROID 2.IOS 3.WP；
-			     type: 设备网络环境 1.WIFI 2.UNKNOWN 3.2G 4.3G 5.4G；
-			     ip: 设备当前ip；
-			     domain：站点主域；
-			     urls: 当前页面；
-			     userAgent：浏览器的UA			     
-			     link:深度链接
-			 */
-			var device = getUrlParams("device");
-			var userId = getUrlParams("userId");
-			var packageName = getUrlParams("packageName");
-			var appVersion = getUrlParams("appVersion");
-			var idIdfa = getUrlParams("idIdfa");
-			var idImei = getUrlParams("idImei");
-			var height = getUrlParams("height");
-			var width = getUrlParams("width");
-			var brand = getUrlParams("brand");
-			var model = getUrlParams("model");
-			var osVersion = getUrlParams("osVersion");
-			var osType = getUrlParams("osType");
-			var type = getUrlParams("type");
-			var ip = getUrlParams("ip");
-			var domain = getUrlParams("domain");
-			var urls = getUrlParams("urls");
-			var userAgent = navigator.userAgent;
-			var newsUrl = urlResult[2].split("newsUrl=")[1].replace("http://","https://");//新闻链接
-			console.log("newsUrl",newsUrl);
-			var infoId = getUrlParams("infoId");//详情
-			console.log({"newsUrl":newsUrl});
-			console.log({
-			     "device":device,
-			     "userId":userId,
-			     "packageName":packageName,
-			     "appVersion":appVersion,
-			     "idIdfa":idIdfa,
-			     "idImei": idImei, 
-			     "height": height,
-			     "width":width,
-			     "brand":brand,
-			     "model":model,
-			     "osVersion":osVersion,
-			     "osType": osType,
-			     "type": type, 
-			     "ip": ip,
-			     "domain":domain,
-			     "urls": urls,
-			     "userAgent":userAgent,
-			     "newsUrl":newsUrl,
-			     "infoId":infoId
-			});
-			/**
-			 * iframe高度全屏
-			 */
-		    $('#iframepage').css("height",$(window).height()+"px" );		    
-			/**
-			 * 文章相关推荐
-			 */
-			axios({	
-			  url: 'information/relevant/list',
-			  method: 'get', // 默认是 get
-			  baseURL: 'https://zhishun520.com/zaotoutiao-api-home-1.0.0/',
-			  params: {
-			     device:device,
-			     userId:userId,
-			     packageName:packageName,
-			     appVersion:appVersion,
-			     idIdfa:idIdfa,
-			     idImei:idImei, 
-			     height:height,
-			     width:width,
-			     brand:brand,
-			     model:model,
-			     osVersion:osVersion,//设备操作系统版本号，例如3.1.2，需要三位数；
-			     osType: osType, //1.ANDROID 2.IOS 3.WP；
-			     type: type, //1.WIFI 2.UNKNOWN 3.2G 4.3G 5.4G；
-			     ip: ip,//设备当前ip；
-			     domain:domain,//站点主域；
-			     urls: urls,//当前页面；
-			     userAgent:userAgent,//浏览器的UA
-			  }
-			  })
-			.then(function(res){
-				/*alert("appVersion",appVersion);*/
-			  	console.log(res);
-			  	var _html = "";	
-			  	console.log(res.data.data);
-			  	res.data.data.forEach(function(item,index){
-			  		console.log("item",item);
-			  		if(item.type==1){
-			  			var time1 = new Date().getTime();
-			  			var time2 = getTs(item.obj.createDate);
-			  			var timeDiff = time1-time2;
-			  			_html += 
-			  			'<a href="'+ item.obj.url+'">'
-							+'<li class="items">'
-								+'<div class="leftCon">'
-									+'<p>'+item.obj.title+'</p>'
-									+'<div class="itemsInfor">'
-										+'<span>'+item.obj.author+'</span>'
-										+'<span>'+countdown(timeDiff)+'</span>'
-										+'<span>'+item.obj.readCnt+'</span>阅读'
-									+'</div>'
-								+'</div>'
-								+'<div class="rightImg">'
-									+'<img src="'+item.obj.picUrl+'" alt="" />'
-								+'</div>'
-							+'</li>'
-						+'</a>';
-			  		}else if(item.type == 2){
-			  			console.log("zheshiyitiaogaunggao",index);
-			  			_html += 
-			  			'<a href="'+ item.obj.cUrl+'">'
-					  		+'<li class="items">'
-								+'<div class="leftCon">'
-									+'<p>'+item.obj.title+'</p>'
-									+'<div class="itemsInfor">'
-										+'<span>广告</span>'								
-									+'</div>'
-								+'</div>'
-								+'<div class="rightImg">'
-									+'<img src="'+item.obj.url+'" alt="" />'
-								+'</div>'
-							+'</li>'
-						+'</a>';
-			  		}					
-			  	})		
-			  	console.log("_html",_html);
-			  	//渲染相关推荐
-			  	$(".newsList").eq(0).html(_html);
-			 })
-			.catch(function(error){
-				console.log(error);
-			});
-			/**
-			 * 时间计时
-			 */
-			function countdown(leftTime){				
-				var d,h,m,s; 
-				var showTime;
-                if(leftTime>=0){  
-	                 d = Math.floor(leftTime/1000/60/60/24);  
-	                 h = Math.floor(leftTime/1000/60/60%24);  
-	                 m = Math.floor(leftTime/1000/60%60);  
-	                 s = Math.floor(leftTime/1000%60);                     
-	            }  
-/*	            //将倒计时赋值到div中  				
-				console.log(`${h}:${m}:${s}`);*/
-				if(m!=0&&h===0){
-					showTime = m+"分钟前";
-				}else if(m===0){
-					showTime = s+"秒前";
-				}else if(h!=0){
-					showTime = h+"小时前";
+	<head>
+		<title>看新闻赚红包</title>
+		<meta charset="utf-8" />
+		<link rel="dns-prefetch" href="//yun.tuisnake.com">
+		<script type="text/javascript">
+			! function(e, i) {
+				var t = e.documentElement,
+					n = navigator.userAgent.match(/iphone|ipod|ipad/gi),
+					a = n ? Math.min(i.devicePixelRatio, 3) : 1,
+					m = "orientationchange" in window ? "orientationchange" : "resize";
+				t.dataset.dpr = a;
+				for(var d, l, c = !1, o = e.getElementsByTagName("meta"), r = 0; r < o.length; r++) l = o[r], "viewport" == l.name && (c = !0, d = l);
+				if(c) d.content = "width=device-width,initial-scale=1.0,maximum-scale=1.0, minimum-scale=1.0,user-scalable=no";
+				else {
+					var o = e.createElement("meta");
+					o.name = "viewport", o.content = "width=device-width,initial-scale=1.0,maximum-scale=1.0, minimum-scale=1.0,user-scalable=no", t.firstElementChild.appendChild(o)
 				}
-				return showTime;
-				/*console.log(showTime);*/
-			};
-			/**
-			 * 加载iframe
-			 */
-			var iframeLoad = () => {
-				/**
-			     * iframe 新闻链接
-			     */
-				$('#iframepage').attr("src",newsUrl);
-				document.frames("ifm").document.location=newsUrl;
-			}
-			/**
-			 * 获取时间戳兼容问题
-			 */
-			function getTs(time){  
-			    var arr = time.split(/[- :]/),  
-			    _date = new Date(arr[0], arr[1]-1, arr[2], arr[3], arr[4], arr[5]),  
-			    timeStr = Date.parse(_date)  
-			    return timeStr  
-			}  
-	</script>
-	<script src="https://static.lkme.cc/linkedme.min.js" ></script>
-	<script type="text/javascript">
-      linkedme.init("235d6842193c1bfb34204dd2ee7a3585", {type:"live"}, null);
-      var data = {};
-      data.type = "live";  //表示现在使用线上模式,如果填写"test", 表示测试模式.【可选】
-      data.feature = "功能名称"; // 自定义深度链接功能，多个用逗号分隔，【可选】
-      data.stage = "阶段名称"; // 自定义深度链接阶段，多个用逗号分隔，【可选】
-      data.channel = "渠道名称"; // 自定义深度链接渠道，多个用逗号分隔，【可选】
-      data.tags = "标签名称"; // 自定义深度链接标签，多个用逗号分隔，【可选】
-      data.ios_custom_url = ""; // 自定义iOS平台下App的下载地址，如果是AppStore的下载地址可以不用填写，需填写http或https【可选】
-      data.ios_direct_open = ""; //未安装情况下，设置为true为直接打开ios_custom_url，默认为false【可选】
-      data.android_custom_url = "";// 自定义安卓平台下App的下载地址，需填写http或https【可选】
-      data.android_direct_open =""; //设置为true，所有情况下跳转android_custom_url，默认为false【可选】
-      var value1 = 1;
-      var value2 = 2;
-      data.params = '{"key1":"'+value1+'","key2":"'+value2+'"}'; //注意单引号和双引号的位置
-      linkedme.link(data, function(err, response){
-        if(err){
-          // 生成深度链接失败，返回错误对象err
-        } else {
-			/**
-			 * 深度链接
-			 */
-			$("#openLink").attr("href",response.url);
-        	/*document.body.innerHTML += '<a class="linkedme" href="'+response.url+'">LinkedME深度链接</a>'*/
-        }
-      },false);
-	</script>
+				var s = function() {
+					var e = t.clientWidth;
+					e / a > 640 && (e = 640 * a), window.remScale = e / 640, t.style.fontSize = 200 * (e / 640) + "px"
+				};
+				s(), e.addEventListener && i.addEventListener(m, s, !1)
+			}(document, window);
+		</script>
+		<link rel="stylesheet" href="./css/promote.css">
+	</head>	
+	<body>
+		<script src="https://s22.cnzz.com/z_stat.php?id=1273455487&web_id=1273455487" language="JavaScript"></script><!--zhishun520-->
+		<!--<script src="https://s19.cnzz.com/z_stat.php?id=1273468288&web_id=1273468288" language="JavaScript"></script>--><!--hzmiaokun-->
+		<div class="btn clickArea" data-href="https://zhishun520.com/app-debug.apk"></div>
+		<div class="packContainer"></div>
+		<div class="light"></div>
+		<div class="lunbo">
+			<div class="info1"></div>
+			<div class="info2"></div>
+			<div class="info3"></div>
+			<div class="info4"></div>
+		</div>
+		<div class="float">
+			<div class="btn3 clickArea"></div>
+		</div>
+		<script type="text/javascript" src="./js/loading.js"></script>
+		<script type="text/javascript" src="./js/jquery-3.3.1.min.js"></script>
+		<script src="./js/linkedME/log.js"></script>	
+		<script type="text/javascript" src="./js/downApp.js"></script>
+		<script>
+			$(".clickArea").on("click",function(){
+				window.location.href = $(".clickArea").attr("data-href");
+				var _czc = _czc || [];
+				//下载链接
+				_czc.push(["_trackPageview", "/app-debug.apk","https://zhishun520.com"]);/*zhishun520*/
+				/*_czc.push(["_trackPageview", "/app-debug.apk","https://hzmiaokun.com"]);*//*hzmiaokun*/
+				//事件
+				_czc.push(["_trackEvent", "网页","H5页面下载","头条TV"]);
+			});
+		</script>
+	</body>
 </html>
-
-
