@@ -1,4 +1,324 @@
 {
-	"olDate":"2018/3/30",
-	"signDate":["2018/3/4","2018/3/5","2018/3/6","2018/3/7"]
+	"result": {
+"message": "请求成功<E2016A000000001>",
+"appName": "zaotoutiao",
+"success": "true",
+"status": "success"
+},
+"msg": "正常签到",
+"signList": [
+	{
+	"id": 12,
+	"userId": 1,
+	"signContinuousDay": 28,
+	"createDate": "2018-03-2613: 59: 37.0"
+	},
+	{
+	"id": 6,
+	"userId": 1,
+	"signContinuousDay": 27,
+	"createDate": "2018-03-2511: 47: 16.0"
+	}
+],
+"data": false,
+"getGoldRecord": {
+"id": 2424,
+"userId": 1,
+"type": 1,
+"gold": 10,
+"source": 3,
+"createDate": "2018-03-2612: 04: 05.0",
+"apprenticeId": null,
+"infoId": null,
+"shareId": null,
+"explanation": null,
+"details": null,
+"sumGold": 0,
+"apprenticeName": null,
+"apprenticeNickName": null,
+"times": null
+},
+"signGetGold": [
+{
+"id": 3,
+"name": "SIGN_IN",
+"unit": 1,
+"value": "10",
+"comments": "连续签到第一天",
+"type": 2,
+"highest": null
+},
+{
+"id": 4,
+"name": "SIGN_IN",
+"unit": 2,
+"value": "10",
+"comments": "连续签到第二天",
+"type": 2,
+"highest": null
+},
+{
+"id": 5,
+"name": "SIGN_IN",
+"unit": 3,
+"value": "10",
+"comments": "连续签到第三天",
+"type": 2,
+"highest": null
+},
+{
+"id": 6,
+"name": "SIGN_IN",
+"unit": 4,
+"value": "10",
+"comments": "连续签到第四天",
+"type": 2,
+"highest": null
+},
+{
+"id": 7,
+"name": "SIGN_IN",
+"unit": 5,
+"value": "10",
+"comments": "连续签到第五天",
+"type": 2,
+"highest": null
+},
+{
+"id": 8,
+"name": "SIGN_IN",
+"unit": 6,
+"value": "10",
+"comments": "连续签到第六天",
+"type": 2,
+"highest": null
+},
+{
+"id": 9,
+"name": "SIGN_IN",
+"unit": 7,
+"value": "100",
+"comments": "连续签到第七天",
+"type": 2,
+"highest": null
+},
+{
+"id": 12,
+"name": "SIGN_IN",
+"unit": 8,
+"value": "10",
+"comments": "连续签到第八天",
+"type": 2,
+"highest": null
+},
+{
+"id": 13,
+"name": "SIGN_IN",
+"unit": 9,
+"value": "10",
+"comments": "连续签到第九天",
+"type": 2,
+"highest": null
+},
+{
+"id": 14,
+"name": "SIGN_IN",
+"unit": 10,
+"value": "10",
+"comments": "连续签到第十天",
+"type": 2,
+"highest": null
+},
+{
+"id": 15,
+"name": "SIGN_IN",
+"unit": 11,
+"value": "10",
+"comments": "连续签到第十一天",
+"type": 2,
+"highest": null
+},
+{
+"id": 16,
+"name": "SIGN_IN",
+"unit": 12,
+"value": "10",
+"comments": "连续签到第十二天",
+"type": 2,
+"highest": null
+},
+{
+"id": 17,
+"name": "SIGN_IN",
+"unit": 13,
+"value": "10",
+"comments": "连续签到第十三天",
+"type": 2,
+"highest": null
+},
+{
+"id": 18,
+"name": "SIGN_IN",
+"unit": 14,
+"value": "120",
+"comments": "连续签到第十四天",
+"type": 2,
+"highest": null
+},
+{
+"id": 19,
+"name": "SIGN_IN",
+"unit": 15,
+"value": "10",
+"comments": "连续签到第十五天",
+"type": 2,
+"highest": null
+},
+{
+"id": 20,
+"name": "SIGN_IN",
+"unit": 16,
+"value": "10",
+"comments": "连续签到第十六天",
+"type": 2,
+"highest": null
+},
+{
+"id": 21,
+"name": "SIGN_IN",
+"unit": 17,
+"value": "10",
+"comments": "连续签到第十七天",
+"type": 2,
+"highest": null
+},
+{
+"id": 22,
+"name": "SIGN_IN",
+"unit": 18,
+"value": "10",
+"comments": "连续签到第十八天",
+"type": 2,
+"highest": null
+},
+{
+"id": 23,
+"name": "SIGN_IN",
+"unit": 19,
+"value": "10",
+"comments": "连续签到第十九天",
+"type": 2,
+"highest": null
+},
+{
+"id": 24,
+"name": "SIGN_IN",
+"unit": 20,
+"value": "10",
+"comments": "连续签到第二十天",
+"type": 2,
+"highest": null
+},
+{
+"id": 25,
+"name": "SIGN_IN",
+"unit": 21,
+"value": "160",
+"comments": "连续签到第二十一天",
+"type": 2,
+"highest": null
+},
+{
+"id": 26,
+"name": "SIGN_IN",
+"unit": 22,
+"value": "10",
+"comments": "连续签到第二十二天",
+"type": 2,
+"highest": null
+},
+{
+"id": 27,
+"name": "SIGN_IN",
+"unit": 23,
+"value": "10",
+"comments": "连续签到第二十三天",
+"type": 2,
+"highest": null
+},
+{
+"id": 28,
+"name": "SIGN_IN",
+"unit": 24,
+"value": "10",
+"comments": "连续签到第二十四天",
+"type": 2,
+"highest": null
+},
+{
+"id": 29,
+"name": "SIGN_IN",
+"unit": 25,
+"value": "10",
+"comments": "连续签到第二十五天",
+"type": 2,
+"highest": null
+},
+{
+"id": 30,
+"name": "SIGN_IN",
+"unit": 26,
+"value": "10",
+"comments": "连续签到第二十六天",
+"type": 2,
+"highest": null
+},
+{
+"id": 31,
+"name": "SIGN_IN",
+"unit": 27,
+"value": "10",
+"comments": "连续签到第二十七天",
+"type": 2,
+"highest": null
+},
+{
+"id": 32,
+"name": "SIGN_IN",
+"unit": 28,
+"value": "1",
+"comments": "连续签到第二十八天",
+"type": 2,
+"highest": null
+},
+{
+"id": 33,
+"name": "SIGN_IN",
+"unit": 29,
+"value": "10",
+"comments": "连续签到第二十九天",
+"type": 2,
+"highest": null
+},
+{
+"id": 34,
+"name": "SIGN_IN",
+"unit": 30,
+"value": "10",
+"comments": "连续签到第三十天",
+"type": 2,
+"highest": null
+},
+{
+"id": 35,
+"name": "SIGN_IN",
+"unit": 31,
+"value": "10",
+"comments": "连续签到第三十一天",
+"type": 2,
+"highest": null
+}
+],
+"getGold": 0,
+"getMoney": 1
 }

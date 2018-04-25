@@ -12,8 +12,7 @@
 	        }else if(currentScroll === totalScroll) {  
 	            el.scrollTop = top - 1;  
 	        }  
-	    });  
-	  
+	    });
 	    el.addEventListener('touchmove', function(evt) {  
 	    if(el.offsetHeight < el.scrollHeight)  
 	        evt._isScroller = true;  
@@ -26,43 +25,14 @@
 	    }  
 	});  		
     var signFun = function() {
-    		/**
-			 * 完美解决safari、微信浏览器下拉回弹效果和上拉空白的bug
-			 * @param {Object} el 滑动元素
-			 */
-			var overscroll = function(el) {  
-			    el.addEventListener('touchstart', function() {  
-			        var top = el.scrollTop  
-			        ,totalScroll = el.scrollHeight  
-			        ,currentScroll = top + el.offsetHeight;  
-			        if(top === 0) {  
-			            el.scrollTop = 1;  
-			        }else if(currentScroll === totalScroll) {  
-			            el.scrollTop = top - 1;  
-			        }  
-			    });  
-			  
-			    el.addEventListener('touchmove', function(evt) {  
-			    if(el.offsetHeight < el.scrollHeight)  
-			        evt._isScroller = true;  
-			    });  
-			}  
-			          
-			overscroll(document.querySelector('#main'));  
-			document.body.addEventListener('touchmove', function(evt) {  
-			    if(!evt._isScroller) {  
-			        evt.preventDefault();  
-			    }  
-			});  
 		//获取Url地址中userId参数
-		function getUrlParams(name) { 
+		function getUrlParams(name) {
 		    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i"); //定义正则表达式 
 		    var r = window.location.search.substr(1).match(reg);  
 		    if (r != null) return unescape(r[2]); 
 		    return null; 
 		};		
 		var userID = getUrlParams("userId");
-		userID= 8;
 		console.log({"用户userId":userID,"地址":window.location.search});
 		var olDate;//后台返回线上日期
         var dateArray = []; //遍历网格	
@@ -91,7 +61,7 @@
         	//设置日历 日期起始位置
             $dateLi.eq(i + monthFirst).addClass("date" + parseInt(i + 1));		            
             $dateLi.eq(i + monthFirst).text(i+1);        
-       } 
+        }
         /**
          * 用户签到信息
          */
@@ -133,13 +103,20 @@
 	            $dateLi.eq(i + monthFirst).addClass("date" + parseInt(i + 1));		            
 	            $dateLi.eq(i + monthFirst).text(i+1);
 	            //当前日期之前字体改变	            
-	            //显示已经签到的日期	
-	            for (var j = 0; j < dateM.length; j++) {	            	
+	            //显示已经签到的日期,不包含未连续签到日期
+/*	            for (var j = 0; j < dateM.length; j++) {
 	                if (i == dateM[j]) {		                	
 	                    $dateLi.eq(i + monthFirst-1).addClass("qiandaoActive");
 	                    //签到成功之后，按签到天数显示奖励			 
 	                }
-	            }
+	            };*/
+                //显示已经签到的日期,包含未连续签到日期
+                for (var j = 0; j < dateArray.length; j++) {
+                    if (i == dateArray[j]) {
+                        $dateLi.eq(i + monthFirst-1).addClass("qiandaoActive");
+                        //签到成功之后，按签到天数显示奖励
+                    }
+                }
 	        }
 	        console.log("dateM[0]",dateM[0]);
 	        //判断是否为首次签到
@@ -149,11 +126,11 @@
 	        //渲染持续签到奖励
            	[parseInt(dateM[0])+6,parseInt(dateM[0])+12,parseInt(dateM[0])+18,parseInt(dateM[0])+24].forEach(function(item,index){
         		$(".date" + item).addClass('qiandaoActive'+index);
-	        })
+	        });
+			signRewardStyle();//显示预持续签到奖励
     	}).catch(function(error){
     		console.log(error);
     	});
-           
         //可签到标记
         if($(".date" + myDate.getDate()).hasClass('qiandaoActive')){
         	_handle = false;
@@ -174,9 +151,9 @@
         }) 
         //按钮按钮
         $qiandaoBtn.on("click", function() { 
- /*   		if(!_handle){
+ 	  		if(!_handle){
     			return false;
-    		};*/
+    		};
         	qiandaoShow();
 			qiandaoFun();		                            
         }); 
@@ -199,7 +176,8 @@
     			$(".date" + myDate.getDate()).addClass('qiandaoActive');
         	}else{
         		/*$(".date" + myDate.getDate()).addClass('qiandaoActive').siblings().removeClass('qiandaoActive'); */       				/*保留签到状态*/
-        		$(".date" + myDate.getDate()).addClass('qiandaoActive')
+                //signRewardStyle();//未签到或者未连续签到预显示连续签到奖励
+				$(".date" + myDate.getDate()).addClass('qiandaoActive')
         	}			
 	    	//调用签到接口
 	    	axios.post("https://zhishun520.com/zaotoutiao-api-home-1.0.0/sign/in?userId="+userID+"&isSubmit=1")
@@ -234,10 +212,25 @@
 	       var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
 	       if(isAndroid){
 	            /*alert('是否是Android：'+isAndroid);*/
-	           window.jsi.signIn(getGold)
+	           window.jsi.signIn(getGold);
 	       }else if(isiOS){
 	            /*alert('是否是iOS：'+isiOS);*/
 	           window.webkit.messageHandlers.signIn.postMessage(getGold);
 	       }
-		}        
+		};
+        /**
+		 * 持续签到奖励样式
+         */
+        function signRewardStyle(){
+            if(!($(".date" + (myDate.getDate()-1)).hasClass("qiandaoActive"))){
+    			$(".qiandaoActive0").removeClass("qiandaoActive0");
+	            $(".qiandaoActive1").removeClass("qiandaoActive1");
+	            $(".qiandaoActive2").removeClass("qiandaoActive2");
+	            $(".qiandaoActive3").removeClass("qiandaoActive3");
+	            //渲染持续签到奖励
+	            [myDate.getDate()+6,myDate.getDate()+12,myDate.getDate()+18,myDate.getDate()+24].forEach(function(item,index){
+	                $(".date" + item).addClass('qiandaoActive'+index);
+	            })
+        	}	            
+		}
     }();

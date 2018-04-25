@@ -108,13 +108,12 @@
 			 * @param   userId 用户Id
 			 */
 			var userID = getUrlParams("userId");
-			userID = 497;
 			var danList = ["青铜","白银","黄金","白金","钻石","大师","王者"];
 			var index;
 			/**
 		    * 用户徒弟信息
 		    */
-		   axios({	
+		   axios({
 			  url: '/activity/reward',
 			  method: 'get', // 默认是 get
 			  baseURL: 'https://zhishun520.com/zaotoutiao-api-home-1.0.0/',
